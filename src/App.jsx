@@ -14,7 +14,7 @@ const App = () => {
     }
   ]
   return (
-    <div className='flex flex-col md:flex-row justify-between text-white items-center bg-zinc-900 w-full h-screen'>
+    <div className='flex flex-col md:flex-row justify-between text-white items-center w-full h-screen'>
       <div className='w-full md:w-1/4 m-10'>
         <Profile/>
       </div>

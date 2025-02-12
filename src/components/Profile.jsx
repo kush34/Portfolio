@@ -37,7 +37,7 @@ const Profile = () => {
       <div className="w-1/2 md:w-3/4 about-desc m-5">
         I'm Chatt Kush, a software engineer from Mumbai, India. I love technology, nerdy stuff, and cricket. Always curious, I enjoy coding, learning, and building new things.
       </div>
-      <div className="teachstack flex flex-col items-center gap-5 m-5">
+      <div className="teachstack flex flex-col items-center gap-5 md:m-5">
         <div className="techtitle text-2xl">
           TechStack
         </div>

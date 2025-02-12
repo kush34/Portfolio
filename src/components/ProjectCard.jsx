@@ -6,11 +6,11 @@ const ProjectCard = ({props}) => {
 
   }
   return (
-    <div className='h-1/3 sm:flex items-center text-zinc-300 rounded-xl hover:text-white hover:bg-zinc-800 hover:scale-99 duration-120 ease-in'>
-      <div className="image w-1/3 overflow-hidden h-3/4 rounded-xl p-5">
+    <div className='md:h-1/3 sm:flex items-center text-zinc-300 rounded-xl hover:text-white hover:bg-zinc-800 hover:scale-99 duration-120 ease-in'>
+      <div className="image md:w-1/3 overflow-hidden md:h-3/4 rounded-xl p-5">
         <img className='p-5' src={props?.image || "https://placehold.co/400x400"} alt="" />
       </div>
-      <div className=' w-2/3'>
+      <div className=' md:w-2/3'>
         <div className="title text-xl md:text-2xl font-semibold mx-5 my-2">
             {props?.title || "TitleProject"}
         </div>
