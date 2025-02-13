@@ -19,8 +19,11 @@ const Profile = () => {
   const handleLinkedIn = ()=>{
     window.location.href = 'https://www.linkedin.com/in/chatt-kush-a85490201/';
   }
+  const handleConnect = ()=>{
+    window.location.href = "mailto:chattkush34@gmail.com";
+  }
   return (
-    <div className="left  rounded-xl h-[70vh] hover:bg-zinc-800 hover:scale-99 ease-in duration-120">
+    <div className="left  rounded-xl h-[80vh] hover:bg-zinc-800 hover:scale-99 ease-in duration-120">
     <div className="image p-5 flex justify-center">
       <img className='rounded-full w-40 h-40' src="https://media.licdn.com/dms/image/v2/D4D03AQGTbxEpVGTmlg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1723552628755?e=1744848000&v=beta&t=evBPIbe9c6OURxLTP8-8BSPjnDWaNr6CPNcaXvlaMpo" alt="" />
     </div>
@@ -50,7 +53,7 @@ const Profile = () => {
         <SiWebrtc />
         </div>
       </div>
-      <div className="links flex justify-around mt-5 w-1/3">
+      <div className="links flex justify-around m-5 w-1/3">
         <div onClick={handleTwitter} className='text-2xl cursor-pointer'>
           <FaSquareXTwitter />
         </div>
@@ -60,6 +63,9 @@ const Profile = () => {
         <div onClick={handleLinkedIn} className='text-2xl cursor-pointer'>
           <FaLinkedin />
         </div>
+      </div>
+      <div>
+        <button onClick={handleConnect} className='bg-white px-5 py-2 text-black rounded mt-5 hover:bg-transparent border ease-in duration-120  hover:text-white'>Let's Connect</button>
       </div>
     </div>
   </div>
