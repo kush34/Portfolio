@@ -28,23 +28,23 @@ const Profile = () => {
       <img className='rounded-full w-40 h-40' src="Profile.jpeg" alt="" />
     </div>
     <div className="title flex flex-col items-center">
-      <div className="salutation md:text-xl">
+      <div className="salutation text-lg md:text-xl">
       👋Namaste, I am
       </div>
-      <div className='text-4xl font-bold'>
+      <div className='text-xl md:text-4xl font-bold'>
         Chatt Kush
       </div>
       <div className="about-title text-zinc-400 mt-10 text-xl font-semibold">
         About Me
       </div>
-      <div className="w-1/2 md:w-3/4 about-desc m-5">
+      <div className="w-5/6 md:w-3/4 about-desc m-5">
         I'm Chatt Kush, a software engineer from Mumbai, India. I love technology, nerdy stuff, and cricket. Always curious, I enjoy coding, learning, and building new things.
       </div>
       <div className="teachstack flex flex-col items-center gap-5 md:m-5">
         <div className="techtitle text-2xl">
           TechStack
         </div>
-        <div className='flex text-4xl gap-5'>
+        <div className='flex text-xl md:text-4xl gap-5 md:gap-5'>
         <FaReact />
         <BiLogoMongodb />
         <SiTailwindcss/>
@@ -65,7 +65,7 @@ const Profile = () => {
         </div>
       </div>
       <div>
-        <button onClick={handleConnect} className='bg-white px-5 py-2 text-black rounded mt-5 hover:bg-transparent border ease-in duration-120  hover:text-white'>Let's Connect</button>
+        <button onClick={handleConnect} className='bg-white px-5 py-2 text-black rounded md:mt-5 hover:bg-transparent border ease-in duration-120  hover:text-white'>Let's Connect</button>
       </div>
     </div>
   </div>
