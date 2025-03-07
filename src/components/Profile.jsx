@@ -25,7 +25,7 @@ const Profile = () => {
   return (
     <div className="left  rounded-xl h-[80vh] hover:bg-zinc-800 hover:scale-99 ease-in duration-120">
     <div className="image p-5 flex justify-center">
-      <img className='rounded-full w-40 h-40' src="https://media.licdn.com/dms/image/v2/D4D03AQGTbxEpVGTmlg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1723552628755?e=1744848000&v=beta&t=evBPIbe9c6OURxLTP8-8BSPjnDWaNr6CPNcaXvlaMpo" alt="" />
+      <img className='rounded-full w-40 h-40' src="Profile.jpeg" alt="" />
     </div>
     <div className="title flex flex-col items-center">
       <div className="salutation md:text-xl">
