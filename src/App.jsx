@@ -14,11 +14,11 @@ const App = () => {
     }
   ]
   return (
-    <div className='flex flex-col md:flex-row justify-between text-white items-center w-full h-screen'>
-      <div className='w-full md:w-1/4 m-10'>
+    <div className='flex flex-col md:flex-row justify-between text-white items-center w-full xl:h-screen'>
+      <div className='w-full md:w-1/4 h-screen'>
         <Profile/>
       </div>
-      <div className="Projects flex flex-col w-full md:w-3/4 p-5 h-screen m-10">
+      <div className="Projects flex flex-col w-full md:w-3/4 p-5 h-screen overflow-auto">
         {data.map((project)=>{
           return(
             <ProjectCard props={project}/>
