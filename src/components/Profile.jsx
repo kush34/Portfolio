@@ -11,16 +11,16 @@ import { SiWebrtc } from "react-icons/si";
 
 const Profile = () => {
   const handleTwitter = ()=>{
-    window.location.href = 'https://x.com/KushChatt';
+    window.location.href = '';
   }
   const handleGithub = ()=>{
-    window.location.href = 'https://github.com/kush34';
+    window.location.href = '';
   }
   const handleLinkedIn = ()=>{
-    window.location.href = 'https://www.linkedin.com/in/chatt-kush-a85490201/';
+    window.location.href = '';
   }
   const handleConnect = ()=>{
-    window.location.href = "mailto:chattkush34@gmail.com";
+    window.location.href = "";
   }
   return (
   <div className='flex flex-col items-center h-screen bg-zinc-900'>
@@ -52,18 +52,26 @@ const Profile = () => {
        </div>
     </div>
     <div className="links flex justify-around gap-5 m-5 w-1/3">
-        <div onClick={handleTwitter} className='text-xl cursor-pointer'>
+        <div className='text-xl cursor-pointer'>
+          <a href={`https://x.com/KushChatt`} target="_blank" rel="noopener noreferrer">
           <FaSquareXTwitter />
+          </a>
         </div>
-        <div onClick={handleGithub} className='text-xl cursor-pointer'>
+        <div className='text-xl cursor-pointer'>
+          <a href={`https://github.com/kush34`} target="_blank" rel="noopener noreferrer">
           <FaGithub/>
+          </a>
         </div>
-        <div onClick={handleLinkedIn} className='text-xl cursor-pointer'>
+        <div className='text-xl cursor-pointer'>
+          <a href={`https://www.linkedin.com/in/chatt-kush-a85490201/`} target="_blank" rel="noopener noreferrer">
           <FaLinkedin />
+          </a>
         </div>
     </div>
     <div>
-        <button onClick={handleConnect} className='bg-white px-5 py-2 text-black rounded md:mt-5 hover:bg-transparent border ease-in duration-120  hover:text-white'>Let's Connect</button>
+      <a href="mailto:chattkush34@gmail.com" target="_blank" rel="noopener noreferrer">
+        <button className='bg-white px-5 py-2 text-black rounded md:mt-5 hover:bg-transparent border ease-in duration-120  hover:text-white'>Let's Connect</button>
+      </a>
       </div>
     </div>  
   )
