@@ -14,7 +14,7 @@ const App = () => {
     }
   ]
   return (
-    <div className='max-w-screen-2xl flex flex-col justify-center md:flex-row justify-between text-white items-center w-full xl:h-screen'>
+    <div className='max-w-screen-2xl flex flex-col justify-center md:flex-row text-white items-center w-full xl:h-screen'>
       <div className='w-full md:w-1/4 h-screen'>
         <Profile/>
       </div>
