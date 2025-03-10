@@ -11,18 +11,6 @@ import { SiWebrtc } from "react-icons/si";
 import { IoMail } from "react-icons/io5";
 
 const Profile = () => {
-  const handleTwitter = () => {
-    window.location.href = "";
-  };
-  const handleGithub = () => {
-    window.location.href = "";
-  };
-  const handleLinkedIn = () => {
-    window.location.href = "";
-  };
-  const handleConnect = () => {
-    window.location.href = "";
-  };
   return (
     <div className="flex flex-col items-center h-screen bg-zinc-900">
       <div className="profile w-full mt-10  flex justify-center">
@@ -40,28 +28,28 @@ const Profile = () => {
       <div className="teachstack flex flex-col items-center gap-5 md:m-5">
         <div className="techtitle text-lg">Tech Stack</div>
         <div className="flex text-lg md:text-xl gap-5 md:gap-5">
-          <div title="React - Frontend Library">
+          <div title="React - Frontend Library" className="hover:text-sky-600 hover:scale-125 ease-in duration-120">
             <FaReact />
           </div>
-          <div title="MongoDB Database-NoSql">
+          <div title="MongoDB Database-NoSql" className="hover:text-green-800 hover:scale-125 ease-in duration-120">
             <BiLogoMongodb />
           </div>
-          <div title="TailwindCSS Framework">
+          <div title="TailwindCSS Framework" className="hover:text-sky-600 hover:scale-125 ease-in duration-120">
             <SiTailwindcss />
           </div>
-          <div className="NodeJS">
+          <div title="NodeJS" className="hover:text-green-600 hover:scale-125 ease-in duration-120">
             <FaNodeJs />
           </div>
-          <div title="Firebase Auth">
+          <div title="Firebase Auth" className="hover:text-yellow-300 hover:scale-125 ease-in duration-120">
             <IoLogoFirebase />
           </div>
-          <div className="WebRTC">
+          <div title="WebRTC" className="hover:text-red-500 hover:scale-125 ease-in duration-120">
             <SiWebrtc />
           </div>
         </div>
       </div>
       <div className="links flex justify-around gap-5 m-5 w-1/3">
-        <div className="text-xl cursor-pointer">
+        {/* <div className="text-xl cursor-pointer hover:text-black hover:scale-125 ease-in duration-120">
           <a
             title="Twitter Profile"
             href={`https://x.com/KushChatt`}
@@ -70,8 +58,8 @@ const Profile = () => {
           >
             <FaSquareXTwitter />
           </a>
-        </div>
-        <div title="Github Profile" className="text-xl cursor-pointer">
+        </div> */}
+        <div title="Github Profile" className="hover:text-black hover:scale-125 ease-in duration-120 text-xl cursor-pointer">
           <a
             href={`https://github.com/kush34`}
             target="_blank"
@@ -80,7 +68,7 @@ const Profile = () => {
             <FaGithub />
           </a>
         </div>
-        <div title="LinkedIn Profile" className="text-xl cursor-pointer">
+        <div title="LinkedIn Profile" className="hover:text-sky-500 hover:scale-125 ease-in duration-120 text-xl cursor-pointer">
           <a
             href={`https://www.linkedin.com/in/chatt-kush-a85490201/`}
             target="_blank"
@@ -89,7 +77,7 @@ const Profile = () => {
             <FaLinkedin />
           </a>
         </div>
-        <div title="Mail address" className="text-xl cursor-pointer">
+        <div title="Mail address" className="hover:text-red-400 hover:scale-125 ease-in duration-120 text-xl cursor-pointer">
           <a
             href={`mailto:chattkush34@gmail.com`}
             target="_blank"
