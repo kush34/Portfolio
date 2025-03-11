@@ -20,7 +20,7 @@ const Profile = () => {
         <div className="salutation">👋 Namaste, I am</div>
         <div className="name text-xl font-bold ">Chatt Kush</div>
         <div className="about text-left mt-5 text-sm">
-          I'm Chatt Kush, a software engineer from Mumbai, India. I love
+          I'm Chatt Kush, a software engineer from Mumbai, India. I am doing my B.Tech CSE from Renaissance University and love
           technology, nerdy stuff, and cricket. Always curious, I enjoy coding,
           learning, and building new things.
         </div>
@@ -31,7 +31,7 @@ const Profile = () => {
           <div title="React - Frontend Library" className="hover:text-sky-600 hover:scale-125 ease-in duration-120">
             <FaReact />
           </div>
-          <div title="MongoDB Database-NoSql" className="hover:text-green-800 hover:scale-125 ease-in duration-120">
+          <div title="MongoDB Database-NoSql" className="hover:text-green-800 hover:scale-145 ease-in duration-120">
             <BiLogoMongodb />
           </div>
           <div title="TailwindCSS Framework" className="hover:text-sky-600 hover:scale-125 ease-in duration-120">
@@ -49,16 +49,6 @@ const Profile = () => {
         </div>
       </div>
       <div className="links flex justify-around gap-5 m-5 w-1/3">
-        {/* <div className="text-xl cursor-pointer hover:text-black hover:scale-125 ease-in duration-120">
-          <a
-            title="Twitter Profile"
-            href={`https://x.com/KushChatt`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaSquareXTwitter />
-          </a>
-        </div> */}
         <div title="Github Profile" className="hover:text-black hover:scale-125 ease-in duration-120 text-xl cursor-pointer">
           <a
             href={`https://github.com/kush34`}
