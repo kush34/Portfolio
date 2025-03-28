@@ -1,6 +1,7 @@
 import React from 'react'
 import Profile from './components/Profile'
 import ProjectCard from './components/ProjectCard'
+import { Analytics } from "@vercel/analytics/react"
 
 const App = () => {
   const data = [
