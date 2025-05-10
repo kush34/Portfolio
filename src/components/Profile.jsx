@@ -12,22 +12,22 @@ import { IoMail } from "react-icons/io5";
 
 const Profile = () => {
   return (
-    <div className="flex flex-col items-center h-screen bg-zinc-900">
+    <div className="flex flex-col items-center h-screen bg-zinc-900 overflow-y-auto">
       <div className="profile w-full mt-10  flex justify-center">
         <img src="Profile.jpeg" className="rounded-full w-30 h-30" alt="" />
       </div>
       <div className="title text-center m-5 ">
         <div className="salutation">👋 Namaste, I am</div>
         <div className="name text-xl font-bold ">Chatt Kush</div>
-        <div className="about text-left mt-5 text-sm">
+        <div className="max-w-lg about text-left mt-5 text-sm">
           I'm Chatt Kush, a software engineer from Mumbai, India. I am doing my B.Tech CSE from Renaissance University and love
           technology, nerdy stuff, and cricket. Always curious, I enjoy coding,
           learning, and building new things.
         </div>
       </div>
-      <div className="teachstack flex flex-col items-center gap-5 md:m-5">
+      <div className="teachstack flex flex-col items-center gap-5 xl:m-5">
         <div className="techtitle text-lg">Tech Stack</div>
-        <div className="flex text-lg md:text-xl gap-5 md:gap-5">
+        <div className="flex text-lg md:text-xl gap-5 xl:gap-5">
           <div title="React - Frontend Library" className="hover:text-sky-600 hover:scale-125 ease-in duration-120">
             <FaReact />
           </div>
@@ -48,7 +48,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div className="links flex justify-around gap-5 m-5 w-1/3">
+      <div className="max-w-[10vw] links flex justify-around gap-5 m-5 w-1/3">
         <div title="Github Profile" className="hover:text-black hover:scale-125 ease-in duration-120 text-xl cursor-pointer">
           <a
             href={`https://github.com/kush34`}
@@ -84,7 +84,7 @@ const Profile = () => {
           title="Download Resume"
           rel="noopener noreferrer"
         >
-          <button className="bg-white px-5 py-2 text-black rounded md:mt-5 hover:bg-transparent border ease-in duration-120  hover:text-white">
+          <button className="cursor-pointer bg-white px-5 py-2 text-black rounded md:mt-5 hover:bg-transparent border ease-in duration-120  hover:text-white">
             Resume
           </button>
         </a>
