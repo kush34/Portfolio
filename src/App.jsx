@@ -19,7 +19,7 @@ const App = () => {
       <div className='w-full xl:w-1/4 h-screen'>
         <Profile/>
       </div>
-      <div className="Projects flex flex-col sm:gap-5 w-full md:w-3/4 p-5 md:h-screen overflow-auto">
+      <div className="Projects flex flex-col gap-5 w-full md:w-3/4 p-5 md:h-screen overflow-auto">
         {data.map((project)=>{
           return(
             <ProjectCard {...project}/>
