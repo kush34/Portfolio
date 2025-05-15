@@ -1,4 +1,5 @@
 import React from "react";
+import { SiLeetcode } from "react-icons/si";
 import { FaGithub } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
@@ -56,6 +57,15 @@ const Profile = () => {
             rel="noopener noreferrer"
           >
             <FaGithub />
+          </a>
+        </div>
+        <div title="Github Profile" className="hover:text-yellow-600   hover:scale-125 ease-in duration-120 text-xl cursor-pointer">
+          <a
+            href={`https://leetcode.com/u/kush_34`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <SiLeetcode />
           </a>
         </div>
         <div title="LinkedIn Profile" className="hover:text-sky-500 hover:scale-125 ease-in duration-120 text-xl cursor-pointer">

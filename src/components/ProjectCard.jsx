@@ -1,9 +1,13 @@
 import React from 'react';
-import { FaGithub } from "react-icons/fa";
 import { MdArrowOutward } from "react-icons/md";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaGithub } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
-const ProjectCard = ({ image, title, techstack, description, gitlink,liveLink }) => {
+const ProjectCard = ({id, image, title, techstack, description, gitlink,liveLink }) => {
+  const navigate = useNavigate();
+  const handleRedirect = ()=>{
+    navigate(`/projectPage/${id}`)
+  }
   const colors = {
     "React" : "bg-blue-500",
     "Nodejs":"bg-green-500",
@@ -11,7 +15,7 @@ const ProjectCard = ({ image, title, techstack, description, gitlink,liveLink })
     "TailwindCSS":"bg-sky-600" 
   }
   return (
-    <div className="flex flex-col md:flex-row items-center text-zinc-300 bg-zinc-800 hover:bg-zinc-900 rounded-xl p-4 transition duration-300 ease-in-out shadow-md w-full">
+    <span onClick={handleRedirect} className="cursor-pointer flex flex-col md:flex-row items-center text-zinc-300 bg-zinc-800 hover:bg-zinc-900 rounded-xl p-4 transition duration-300 ease-in-out shadow-md w-full">
       
       <div className="w-full md:w-1/3 mb-4 md:mb-0 md:mr-6">
         <img
@@ -46,7 +50,7 @@ const ProjectCard = ({ image, title, techstack, description, gitlink,liveLink })
           {description || "Brief description of the project goes here. Keep it concise for smaller screens."}
         </p>
         
-        <div className="flex gap-5 items-center justify-end">
+        <div className="flex gap-3 justify-end">
           {gitlink && (
             <a
               href={gitlink}
@@ -57,20 +61,19 @@ const ProjectCard = ({ image, title, techstack, description, gitlink,liveLink })
               <FaGithub />
             </a>
           )}
-            {liveLink && (
+          {liveLink && (
             <a
-              href={liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-zinc-300 hover:text-zinc-400 text-xl transition"
+            href={liveLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-300 hover:text-zinc-400 text-2xl transition"
             >
-              <FaExternalLinkAlt />
+            <MdArrowOutward />
             </a>
           )}
-
         </div>
       </div>
-    </div>
+    </span>
   );
 };
 
