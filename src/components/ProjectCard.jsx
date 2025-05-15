@@ -1,7 +1,9 @@
 import React from 'react';
+import { FaGithub } from "react-icons/fa";
 import { MdArrowOutward } from "react-icons/md";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
-const ProjectCard = ({ image, title, techstack, description, gitlink }) => {
+const ProjectCard = ({ image, title, techstack, description, gitlink,liveLink }) => {
   const colors = {
     "React" : "bg-blue-500",
     "Nodejs":"bg-green-500",
@@ -44,7 +46,7 @@ const ProjectCard = ({ image, title, techstack, description, gitlink }) => {
           {description || "Brief description of the project goes here. Keep it concise for smaller screens."}
         </p>
         
-        <div className="flex justify-end">
+        <div className="flex gap-5 items-center justify-end">
           {gitlink && (
             <a
               href={gitlink}
@@ -52,9 +54,20 @@ const ProjectCard = ({ image, title, techstack, description, gitlink }) => {
               rel="noopener noreferrer"
               className="text-zinc-300 hover:text-zinc-400 text-2xl transition"
             >
-              <MdArrowOutward />
+              <FaGithub />
             </a>
           )}
+            {liveLink && (
+            <a
+              href={liveLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-300 hover:text-zinc-400 text-xl transition"
+            >
+              <FaExternalLinkAlt />
+            </a>
+          )}
+
         </div>
       </div>
     </div>
