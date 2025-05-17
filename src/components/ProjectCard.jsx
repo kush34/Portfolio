@@ -15,7 +15,7 @@ const ProjectCard = ({id, image, title, techstack, description, gitlink,liveLink
     "TailwindCSS":"bg-sky-600" 
   }
   return (
-    <span onClick={handleRedirect} className="cursor-pointer flex flex-col md:flex-row items-center text-zinc-300 bg-zinc-800 hover:bg-zinc-900 rounded-xl p-4 transition duration-300 ease-in-out shadow-md w-full">
+    <span onClick={handleRedirect} className="cursor-pointer flex flex-col md:flex-row items-center text-zinc-300 bg-zinc-800 hover:bg-zinc-700 rounded-xl p-4 transition duration-300 ease-in-out shadow-md w-full">
       
       <div className="w-full md:w-1/3 mb-4 md:mb-0 md:mr-6">
         <img
