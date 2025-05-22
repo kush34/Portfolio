@@ -23,7 +23,7 @@ const App = () => {
         "Meet is a video calling app that lets users connect through high-quality video and audio. It is built to provide a seamless communication experience. Users can create and join video calls making it ideal for remote meetings, online classes, and virtual gatherings. The app supports real-time messaging, screen sharing, and multiple participants, making collaboration easy.",
       gitlink: "https://github.com/kush34/video-p2p",
       image:"/Videop2p/home.png",
-      liveLink: "https://video-p2p-seven.vercel.app/",
+      liveLink: "https://video-p2p-one.vercel.app/",
     },
     {
       id: 3,
