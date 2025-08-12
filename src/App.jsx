@@ -38,6 +38,7 @@ const App = () => {
   ];
   return (
     <div className="max-w-screen-2xl flex flex-col justify-center items-center xl:flex-row text-white  w-full xl:h-screen">
+      <Analytics />
       <div className="w-full xl:w-1/4 h-screen">
         <Profile />
       </div>
