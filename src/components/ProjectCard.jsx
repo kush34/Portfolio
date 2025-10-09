@@ -1,79 +1,41 @@
 import React from 'react';
+import { motion, useAnimation } from "framer-motion";
 import { MdArrowOutward } from "react-icons/md";
 import { FaGithub } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { div } from 'framer-motion/client';
+import { GoArrowUpRight } from 'react-icons/go';
 
-const ProjectCard = ({id, image, title, techstack, description, gitlink,liveLink }) => {
+const ProjectCard = ({ ...proj }) => {
   const navigate = useNavigate();
-  const handleRedirect = ()=>{
+  const handleRedirect = () => {
     navigate(`/projectPage/${id}`)
   }
   const colors = {
-    "React" : "bg-blue-500",
-    "Nodejs":"bg-green-500",
-    "Firebase":"bg-yellow-500",
-    "TailwindCSS":"bg-sky-600" 
+    "React": "bg-blue-500",
+    "Nodejs": "bg-green-500",
+    "Firebase": "bg-yellow-500",
+    "TailwindCSS": "bg-sky-600"
   }
   return (
-    <span onClick={handleRedirect} className="cursor-pointer flex flex-col md:flex-row items-center text-zinc-300 bg-zinc-800 hover:bg-zinc-700 rounded-xl p-4 transition duration-300 ease-in-out shadow-md w-full">
-      
-      <div className="w-full md:w-1/3 mb-4 md:mb-0 md:mr-6">
-        <img
-          className="w-full h-48 md:h-56 object-cover rounded-xl"
-          src={image || "https://placehold.co/800x400"}
-          alt={title || "Project Image"}
-        />
+    <motion.div initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 20 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className='flex flex-col gap-6'
+      >
+      <div className=''>
+        <img src={proj.image} className='rounded' alt="" />
       </div>
-      
-      <div className="w-full md:w-2/3 flex flex-col justify-between space-y-4">
-        
-        {/* Title */}
-        <h2 className="text-lg md:text-2xl font-semibold">
-          {title || "Project Title"}
-        </h2>
-        
-        <div className="techstack">
-          <ul className="flex flex-wrap gap-2 text-sm text-zinc-400">
-            {techstack?.length ? (
-              techstack.map((item, idx) => (
-                <li key={idx} className={`${colors[item] ? colors[item] :"bg-zinc-700"} font-medium text-white px-2 py-1 rounded`}>
-                  {item}
-                </li>
-              ))
-            ) : (
-              <li>Tech stack info</li>
-            )}
-          </ul>
-        </div>
-
-        <p className="text-sm md:text-base text-zinc-300">
-          {description || "Brief description of the project goes here. Keep it concise for smaller screens."}
-        </p>
-        
-        <div className="flex gap-3 justify-end">
-          {gitlink && (
-            <a
-              href={gitlink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-zinc-300 hover:text-zinc-400 text-2xl transition"
-            >
-              <FaGithub />
-            </a>
-          )}
-          {liveLink && (
-            <a
-            href={liveLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-zinc-300 hover:text-zinc-400 text-2xl transition"
-            >
-            <MdArrowOutward />
-            </a>
-          )}
-        </div>
+      <div className='flex flex-col'>
+        <span className='text-2xl font-medium'>{proj.title}</span>
+        <span>{proj.description}</span>
       </div>
-    </span>
+      <div className='flex justify-between mt-7 text-xl'>
+        <a className='flex gap-2 items-center' target={'_blank'} href={`${proj.liveLink}`}>Link<GoArrowUpRight /></a>
+        <a className='flex gap-2 items-center' target={'_blank'} href={`${proj.gitlink}`}>Github<FaGithub />
+        </a>
+      </div>
+    </motion.div>
   );
 };
 

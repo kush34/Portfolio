@@ -45,20 +45,20 @@ const ProjectPage = () => {
     return <div className="text-white text-center mt-10">Loading or Project Not Found</div>;
   }  
   return (
-    <div className='text-white w-full text-xl flex flex-col items-center justify-center'>
-      <div className='px-10 heading w-full mt-5 flex justify-between items-center'>
-        <div className=''>
-          <h1 className="text-white sm:text-sm md:text-xl xl:text-2xl font-medium">
+    <div className='text-white w-full flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 lg:p-10'>
+      <div className='w-full max-w-6xl px-4 sm:px-6 md:px-8 lg:px-10 heading mt-5 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0'>
+        <div className='text-center sm:text-left'>
+          <h1 className="text-white text-xl sm:text-2xl md:text-3xl font-medium">
             {project?.title}
           </h1>
         </div>
-        <div className="flex gap-3 justify-end">
+        <div className="flex gap-3 justify-center sm:justify-end items-center mt-3 sm:mt-0">
           {project?.gitlink && (
             <a
               href={project?.gitlink}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-300 hover:text-zinc-400 text-2xl transition"
+              className="text-zinc-300 hover:text-zinc-400 text-3xl transition"
             >
               <FaGithub />
             </a>
@@ -68,23 +68,23 @@ const ProjectPage = () => {
             href={project?.liveLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-zinc-300 hover:text-zinc-400 text-2xl transition"
+            className="text-zinc-300 hover:text-zinc-400 text-3xl transition"
             >
             <MdArrowOutward />
             </a>
           )}
         </div>
       </div>
-      <div className="images shadow-xl hover:shadow-2xl ease-in duration-150 shadow-zinc-800 flex justify-center items-center w-8/10 h-sm bg-zinc-900 m-5 rounded-xl">
-        <button className='cursor-pointer hover:scale-125 ease-in duration-150' onClick={()=>setImg(prev => (prev - 1) % project.images.length)}><FaAngleLeft size={32} /></button>
-        <img src={`${project?.images[img]}`} className='w-full h-full rounded-xl' alt="" />
-        <button className='cursor-pointer hover:scale-125 ease-in duration-150' onClick={()=>setImg(prev => (prev + 1) % project.images.length)}><FaAngleRight size={32} /></button>
+      <div className="images shadow-xl hover:shadow-2xl ease-in duration-150 shadow-zinc-800 flex justify-center items-center w-full max-w-4xl h-60 sm:h-80 md:h-96 lg:h-120 bg-zinc-900 m-5 rounded-xl relative">
+        <button className='absolute left-2 sm:left-4 cursor-pointer hover:scale-125 ease-in duration-150 p-2 bg-black bg-opacity-50 rounded-full' onClick={()=>setImg(prev => (prev - 1 + project.images.length) % project.images.length)}><FaAngleLeft size={24} className="sm:size-32" /></button>
+        <img src={`${project?.images[img]}`} className='w-full h-full object-contain rounded-xl' alt="" />
+        <button className='absolute right-2 sm:right-4 cursor-pointer hover:scale-125 ease-in duration-150 p-2 bg-black bg-opacity-50 rounded-full' onClick={()=>setImg(prev => (prev + 1) % project.images.length)}><FaAngleRight size={24} className="sm:size-32" /></button>
       </div>
-      <div className="techstack mt-5 mx-5">
-          <ul className="flex flex-wrap gap-2 text-sm text-zinc-400">
+      <div className="techstack mt-5 mx-5 w-full max-w-4xl">
+          <ul className="flex flex-wrap gap-2 text-sm sm:text-base text-zinc-400 justify-center">
             {project?.techstack?.length ? (
               project?.techstack.map((item, idx) => (
-                <li key={idx} className={`${colors[item] ? colors[item] :"bg-zinc-700"} font-medium text-white px-2 py-1 rounded`}>
+                <li key={idx} className={`${colors[item] ? colors[item] :"bg-zinc-700"} font-medium text-white px-3 py-1 rounded`}>
                   {item}
                 </li>
               ))
@@ -93,7 +93,7 @@ const ProjectPage = () => {
             )}
           </ul>
         </div>
-      <div className="p-5 max-w-4xl sm:w-full text-sm md:text-lg xl:text-xl flex justify-center items-center description">
+      <div className="p-5 max-w-4xl w-full text-base md:text-lg xl:text-xl flex justify-center items-center description text-center sm:text-left">
         {project?.description}
       </div>
     </div>
