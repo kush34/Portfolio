@@ -12,7 +12,7 @@ const App = () => {
       description:
         "Suchale is a real-time messaging app similar to WhatsApp, allowing users to chat instantly, share media, and stay connected through secure, low-latency communication. It supports one-on-one and group conversations with real-time updates powered by Socket.IO.",
       gitlink: "https://github.com/kush34/video-p2p",
-      image: "/Suchale/image1.png",
+      image: `${import.meta.env.VITE_IMAGE1}`,
       liveLink: "https://video-p2p-one.vercel.app/",
     },
     {
@@ -21,7 +21,7 @@ const App = () => {
       techstack: ["React", "Nodejs", "TailwindCSS", "Firebase", "Socket.IO"],
       description:
         "Dr.Writer is an online document editor that allows users to create, edit, and collaborate on documents in real-time. It provides a smooth and responsive editing experience. Users can access their documents from anywhere, making it a great tool for remote work and team collaboration.",
-      image: "/Dr.Writer/Editor.png",
+      image: `${import.meta.env.VITE_IMAGE2}`,
       gitlink: "https://github.com/kush34/Dr.Writer",
       liveLink: "https://dr-writer.vercel.app/",
     },
@@ -32,7 +32,7 @@ const App = () => {
       description:
         "Meet is a video calling app that lets users connect through high-quality video and audio. Users can create and join video calls making it ideal for remote meetings, online classes, and virtual gatherings.",
       gitlink: "https://github.com/kush34/video-p2p",
-      image: "/Videop2p/home.png",
+      image: `${import.meta.env.VITE_IMAGE3}`,
       liveLink: "https://video-p2p-one.vercel.app/",
     },
     {
@@ -41,7 +41,7 @@ const App = () => {
       techstack: ["React", "Nodejs", "TailwindCSS", "FirebaseAuth"],
       description:
         "KhataChopdi is a simple and efficient expense tracker designed to help users manage their finances with ease. It allows users to log income and expenses, categorize transactions, and view spending insights.",
-      image: "/WiseMon/Home.png",
+      image: `${import.meta.env.VITE_IMAGE4}`,
       gitlink: "https://github.com/kush34/WiseMon",
       liveLink: "https://wise-mon.vercel.app/",
     },
