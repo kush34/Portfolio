@@ -62,7 +62,7 @@ const Profile = () => {
 
         <div className="flex flex-col items-center md:items-start gap-4 flex-shrink-0">
           <img
-            src="Profile.jpeg"
+            src={`${import.meta.env.VITE_PROFILE}`}
             alt="Profile"
             className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover shadow-lg transition-all duration-300 hover:ring-2 hover:ring-white/40 hover:shadow-[0_0_20px_5px_rgba(255,255,255,0.4)]"
           />
@@ -96,8 +96,8 @@ const Profile = () => {
           </div>
 
           <motion.a
-            href="/Chattkush.pdf"
-            download="Chattkush.pdf"
+            href={`${import.meta.env.VITE_RESUME_LINK}`}
+            target="_blank"
             whileHover={{ scale: 1.05 }}
             className="mx-auto md:mx-0 flex items-center justify-center gap-2 px-6 py-3 bg-white/10 border border-white/20 rounded-lg text-white hover:bg-white/20 transition-all text-sm font-medium backdrop-blur-sm w-full sm:w-2/3 md:w-1/3"
           >
