@@ -3,6 +3,8 @@ import Profile from "./components/Profile";
 import ProjectCard from "./components/ProjectCard";
 import { Analytics } from "@vercel/analytics/react";
 import "./App.css"
+import GitHubCalendar from "react-github-calendar";
+import { motion, useAnimation } from "framer-motion";
 const App = () => {
   const data = [
     {
@@ -47,13 +49,7 @@ const App = () => {
     },
   ];
   return (
-    <div className="min-h-screen w-full relative bg-black">
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(226, 232, 240, 0.15), transparent 70%), #000000",
-        }}
-      />
+    <div className="min-h-screen w-full relative bg-[#0a0a0a]">
       <div className="flex flex-col items-center justify-center text-white min-h-screen px-4">
         <Analytics />
 
@@ -62,12 +58,27 @@ const App = () => {
             <Profile />
           </section>
 
-          <section className="grid grid-cols-1 gap-8 px-4 mb-10">
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 mb-10">
             {data.map((p) => (
               <ProjectCard key={p.id} {...p} />
             ))}
           </section>
-          <section className="grid grid-cols-1 gap-8 px-4 mb-10 h-[10vh]">
+          <motion.section
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 20 }}
+            transition={{ duration: 0.8, ease: "easeOut" }} className="z-10 flex flex-col gap-10 items-center justify-center py-10 rounded-2xl shadow-md">
+            <h2 className="text-4xl text-zinc-400 mb-6 font-bold">GitHub Activity</h2>
+            <div className="overflow-x-auto">
+              <GitHubCalendar
+                username="kush34"
+                blockSize={15}
+                blockMargin={5}
+                colorScheme="dark"
+                fontSize={14}
+              />
+            </div>
+          </motion.section>
+          <section className="z-10 grid grid-cols-4 gap-8 px-4 mb-10 h-[10vh]">
             <span className="text-zinc-500 text-center">Made with love by kush</span>
           </section>
         </div>

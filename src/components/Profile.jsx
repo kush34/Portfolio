@@ -42,7 +42,7 @@ const Profile = () => {
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 20 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative flex flex-col md:flex-row items-center justify-center gap-16 px-12 py-40 mt-[10vh] max-w-7xl mx-auto bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-xl text-white min-h-[300px]"
+        className="relative flex flex-col md:flex-row items-center justify-center gap-16 px-12 py-40 mt-[10vh] max-w-7xl mx-auto  rounded-3xl text-white min-h-[300px]"
       >
         <div className="hidden md:flex flex-col items-center gap-4 absolute -left-16 top-1/3">
           {socialLinks.map((s, i) => (
@@ -74,7 +74,7 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-8 sm:gap-10 max-w-xl">
+        <div className="flex flex-col gap-4 sm:gap-5 max-w-xl">
           <div>
             <p className="text-zinc-300 leading-relaxed">
               I'm Chatt Kush, a software engineer from Mumbai, India. Currently pursuing B.Tech CSE from
@@ -84,26 +84,45 @@ const Profile = () => {
           </div>
 
           <div>
-            <h3 className="text-zinc-400 mb-4 sm:mb-6 uppercase tracking-wider text-xs sm:text-sm font-medium">Tech Stack</h3>
             <div className="flex flex-wrap gap-4 sm:gap-6 text-2xl sm:text-3xl">
-              <FaReact className="hover:text-sky-500 transition-transform hover:scale-110 cursor-pointer" />
-              <FaNodeJs className="hover:text-green-500 transition-transform hover:scale-110 cursor-pointer" />
-              <SiTailwindcss className="hover:text-sky-400 transition-transform hover:scale-110 cursor-pointer" />
-              <BiLogoMongodb className="hover:text-green-600 transition-transform hover:scale-110 cursor-pointer" />
-              <IoLogoFirebase className="hover:text-amber-400 transition-transform hover:scale-110 cursor-pointer" />
-              <SiWebrtc className="hover:text-red-500 transition-transform hover:scale-110 cursor-pointer" />
+              <span className="border-2 border-dashed hover:text-sky-500 transition-transform cursor-pointer flex items-center gap-2 text-sm">
+                <FaReact className="text-lg" />
+                React
+              </span>
+              <span className="border-2 border-dashed hover:text-green-500 transition-transform cursor-pointer flex items-center gap-2 text-sm">
+                <FaNodeJs className="text-lg" />
+                Nodejs
+              </span>
+              <span className="border-2 border-dashed hover:text-sky-500 transition-transform cursor-pointer flex items-center gap-2 text-sm">
+                <SiTailwindcss className="text-lg" />
+                Tailwind
+              </span>
+              <span className="border-2 border-dashed hover:text-green-500 transition-transform cursor-pointer flex items-center gap-2 text-sm">
+                <BiLogoMongodb className="text-lg" />
+                MongoDB
+              </span>
+              <span className="border-2 border-dashed hover:text-yellow-500 transition-transform cursor-pointer flex items-center gap-2 text-sm">
+                <IoLogoFirebase className="text-lg" />
+                Firebase
+              </span>
+              <span className="border-2 border-dashed hover:text-red-500 transition-transform cursor-pointer flex items-center gap-2 text-sm">
+                <SiWebrtc className="text-lg" />
+                WebRTC
+              </span>
             </div>
           </div>
 
-          <motion.a
-            href={`${import.meta.env.VITE_RESUME_LINK}`}
-            target="_blank"
-            whileHover={{ scale: 1.05 }}
-            className="mx-auto md:mx-0 flex items-center justify-center gap-2 px-6 py-3 bg-white/10 border border-white/20 rounded-lg text-white hover:bg-white/20 transition-all text-sm font-medium backdrop-blur-sm w-full sm:w-2/3 md:w-1/3"
-          >
-            <HiOutlineDownload className="text-lg" />
-            Resume
-          </motion.a>
+          <div>
+            <motion.a
+              href={`${import.meta.env.VITE_RESUME_LINK}`}
+              target="_blank"
+              className="flex items-center gap-2 w-1/3 bg-zinc-500 hover:scale-101 duration-100 hover:shadow-2xl ease-in text-center justify-center rounded h-8"
+            >
+              <HiOutlineDownload className="text-lg" />
+              Resume
+            </motion.a>
+          </div>
+
         </div>
       </motion.section>
 

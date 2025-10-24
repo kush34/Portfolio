@@ -27,12 +27,12 @@ const ProjectCard = ({ ...proj }) => {
         <img src={proj.image} className='rounded' alt="" />
       </div>
       <div className='flex flex-col'>
-        <span className='text-2xl font-medium'>{proj.title}</span>
-        <span>{proj.description}</span>
+        <span className='mx-5 text-2xl font-medium'>{proj.title}</span>
+        <span className='text-zinc-500'>{proj.description}</span>
       </div>
       <div className='flex justify-between mt-7 text-xl'>
-        <a className='flex gap-2 items-center' target={'_blank'} href={`${proj.liveLink}`}>Link<GoArrowUpRight /></a>
-        <a className='flex gap-2 items-center' target={'_blank'} href={`${proj.gitlink}`}>Github<FaGithub />
+        <a className='flex gap-2 items-center' target={'_blank'} href={`${proj.liveLink}`}><GoArrowUpRight /></a>
+        <a className='flex gap-2 items-center' target={'_blank'} href={`${proj.gitlink}`}><FaGithub />
         </a>
       </div>
     </motion.div>
