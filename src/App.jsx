@@ -15,7 +15,7 @@ const App = () => {
         "Suchale is a real-time messaging app similar to WhatsApp, allowing users to chat instantly, share media, and stay connected through secure, low-latency communication. It supports one-on-one and group conversations with real-time updates powered by Socket.IO.",
       gitlink: "https://github.com/kush34/video-p2p",
       image: `${import.meta.env.VITE_IMAGE1}`,
-      liveLink: "https://video-p2p-one.vercel.app/",
+      liveLink: "https://suchale.vercel.app/",
     },
     {
       id: 2,
