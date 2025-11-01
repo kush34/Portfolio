@@ -19,9 +19,10 @@ const ProjectCard = ({ ...proj }) => {
   }
   return (
     <motion.div initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 20 }}
+      whileInView={{ opacity: 0.8, y: 20,padding:"15px",borderRadius:"2%"}}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className='flex flex-col gap-6'
+      whileHover={{opacity:1,scale:1.005,border:"1px solid #1a1a1a"}}
       >
       <div className=''>
         <img src={proj.image} className='rounded' alt="" />

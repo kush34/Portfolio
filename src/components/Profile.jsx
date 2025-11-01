@@ -147,7 +147,7 @@ const Profile = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-white/10 border border-white/10 hover:text-white hover:shadow-[0_0_15px_rgba(255,255,255,0.25)] transition-all text-zinc-300 text-sm sm:text-base"
-                whileHover={{ scale: 1.2 }}
+                whileHover={{ scale: 1.01 }}
                 title={s.label}
               >
                 {s.icon}
