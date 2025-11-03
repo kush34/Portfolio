@@ -32,9 +32,8 @@ const ProjectCard = ({ ...proj }) => {
         <span className='text-zinc-500'>{proj.description}</span>
       </div>
       <div className='flex justify-between mt-7 text-xl'>
-        <a className='flex gap-2 items-center' target={'_blank'} href={`${proj.liveLink}`}><GoArrowUpRight /></a>
-        <a className='flex gap-2 items-center' target={'_blank'} href={`${proj.gitlink}`}><FaGithub />
-        </a>
+        {proj.liveLink && <a className='flex gap-2 items-center' target={'_blank'} href={`${proj.liveLink}`}><GoArrowUpRight /></a>}
+        {proj.gitlink && <a className='flex gap-2 items-center' target={'_blank'} href={`${proj.gitlink}`}><FaGithub /></a>}
       </div>
     </motion.div>
   );
