@@ -6,6 +6,7 @@ import "./App.css"
 import GitHubCalendar from "react-github-calendar";
 import { motion, useAnimation } from "framer-motion";
 import ExperienceCard from "./components/ExperienceCard";
+import BlogCard from "./components/BlogCard";
 const App = () => {
   const data = [
     {
@@ -60,10 +61,19 @@ const App = () => {
   const company = [
     {
       name: "Ipex Logistics",
+      position: "Software Intern",
       time: "Sept-2025 - 3 monthns",
       points: ["Built and deployed scalable full-stack features using NextJS, and PostgreSQL, improving application performance and usability.", "Delivered end-to-end functionality with comprehensive test coverage, ensuring reliability and reducing production issues.", "Enhanced developer productivity by refactoring code and optimizing the code review pipeline, cuttingreview time significantly."],
       link: "https://www.ipexlogistics.com/",
       imageLink: "https://www.ipexlogistics.com/images/logo.png"
+    }
+  ]
+  const blogs = [
+    {
+      title: "How to be sane when developing complex application | Testing with Jest",
+      content: "I was doing development on my project and after some time i did some code refactoring and it was simple so i pushed the code to production. The things about pushing code and not testing them is when you make such changes and push it you think you have done is right but some things break and are easy to notice manually.",
+      time: "1 Nov 2025",
+      link: "https://medium.com/@chattkush34/how-to-be-sane-when-developing-complex-application-testing-with-jest-8743ccdd2520",
     }
   ]
   const [visibleCount, setVisibleCount] = useState(4);
@@ -71,27 +81,22 @@ const App = () => {
     setVisibleCount((prev) => prev + 4);
   };
 
-  // Responsive sizing for GitHubCalendar blocks
   const [blockSize, setBlockSize] = useState(15);
   const [blockMargin, setBlockMargin] = useState(5);
 
   useEffect(() => {
     const updateSizes = () => {
       const w = window.innerWidth;
-      // small phones
       if (w < 480) {
         setBlockSize(8);
         setBlockMargin(3);
       } else if (w < 640) {
-        // small screens
         setBlockSize(10);
         setBlockMargin(4);
       } else if (w < 1024) {
-        // tablets / small desktops
         setBlockSize(12);
         setBlockMargin(4);
       } else {
-        // large screens
         setBlockSize(15);
         setBlockMargin(5);
       }
@@ -114,14 +119,14 @@ const App = () => {
         <div className="flex flex-col items-center justify-center text-white min-h-screen px-4">
           <Analytics />
 
-          <div className="w-full max-w-5xl mx-auto flex flex-col gap-16 py-16">
+          <div className="w-full max-w-5xl mx-auto flex flex-col gap-24 py-24">
             <section className="px-4">
               <Profile />
             </section>
 
             <section className="z-10">
               {company.map((comp) =>
-                <ExperienceCard comp={comp}/>
+                <ExperienceCard comp={comp} />
               )}
             </section>
             <section className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 mb-6">
@@ -149,7 +154,12 @@ const App = () => {
                 </button>
               </div>
             )}
-
+            <section className="z-10 flex flex-col gap-10 items-center justify-center py-10 rounded-2xl shadow-md">
+              <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Blogs</h2>
+              {blogs.map((blog, index) =>
+                <BlogCard key={index} {...blog} />
+              )}
+            </section>
             <motion.section
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 20 }}
