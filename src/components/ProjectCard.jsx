@@ -19,21 +19,22 @@ const ProjectCard = ({ ...proj }) => {
   }
   return (
     <motion.div initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 0.8, y: 20,padding:"15px",borderRadius:"2%"}}
+      whileInView={{ opacity: 0.8, y: 20, padding: "15px", borderRadius: "2%" }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className='flex flex-col gap-6'
-      whileHover={{opacity:1,scale:1.005,border:"1px solid #1a1a1a"}}
-      >
+      whileHover={{ opacity: 1, scale: 1.005, border: "1px solid #1a1a1a" }}
+    >
       <div className=''>
-        <img src={proj.image} className='rounded' alt="" />
+        <img src={proj.image} className='rounded' alt={proj.altImage} />
       </div>
       <div className='flex flex-col'>
         <span className='mx-5 text-2xl font-medium'>{proj.title}</span>
         <span className='text-zinc-500'>{proj.description}</span>
       </div>
       <div className='flex justify-between mt-7 text-xl'>
-        {proj.liveLink && <a className='flex gap-2 items-center' target={'_blank'} href={`${proj.liveLink}`}><GoArrowUpRight /></a>}
-        {proj.gitlink && <a className='flex gap-2 items-center' target={'_blank'} href={`${proj.gitlink}`}><FaGithub /></a>}
+        {proj.liveLink && <a rel="noopener noreferrer"
+          aria-label={`View live project: ${proj.title || 'Project'}`} className='flex gap-2 items-center' target={'_blank'} href={`${proj.liveLink}`}><GoArrowUpRight /></a>}
+        {proj.gitlink && <a className='flex gap-2 items-center' rel="noopener noreferrer" aria-label={`View GitHub repository for ${proj.title || 'Project'}`} target={'_blank'} href={`${proj.gitlink}`}><FaGithub /></a>}
       </div>
     </motion.div>
   );

@@ -133,7 +133,7 @@ const Profile = () => {
       >
         <div className="flex items-center gap-2 sm:gap-4 md:gap-8 px-3 sm:px-6 md:px-8 py-2 sm:py-3 rounded-xl sm:rounded-2xl bg-black/50 backdrop-blur-xl border border-white/10 shadow-lg">
           <img
-            src="Profile.jpeg"
+            src={`${import.meta.env.VITE_PROFILE}`}
             alt="Profile Small"
             className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover ring-1 ring-white/20 flex-shrink-0"
           />

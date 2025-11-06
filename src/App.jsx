@@ -18,26 +18,29 @@ const App = () => {
       gitlink: "https://github.com/kush34/Suchale",
       image: `${import.meta.env.VITE_IMAGE1}`,
       liveLink: "https://suchale.vercel.app/",
+      altImage:"project1-Chat Application Image"
     },
     {
       id: 2,
       title: "Dr.Writer | Online Document Editor",
       techstack: ["React", "Nodejs", "TailwindCSS", "Firebase", "Socket.IO"],
       description:
-        "Dr.Writer is an online document editor that allows users to create, edit, and collaborate on documents in real-time. It provides a smooth and responsive editing experience. Users can access their documents from anywhere, making it a great tool for remote work and team collaboration.",
+      "Dr.Writer is an online document editor that allows users to create, edit, and collaborate on documents in real-time. It provides a smooth and responsive editing experience. Users can access their documents from anywhere, making it a great tool for remote work and team collaboration.",
       image: `${import.meta.env.VITE_IMAGE2}`,
       gitlink: "https://github.com/kush34/Dr.Writer",
       liveLink: "https://dr-writer.vercel.app/",
+      altImage:"project2-Document Editor web app"
     },
     {
       id: 3,
       title: "Meet | Video Call App",
       techstack: ["React", "Nodejs", "TailwindCSS", "WebRTC", "Socket.IO"],
       description:
-        "Meet is a video calling app that lets users connect through high-quality video and audio. Users can create and join video calls making it ideal for remote meetings, online classes, and virtual gatherings.",
+      "Meet is a video calling app that lets users connect through high-quality video and audio. Users can create and join video calls making it ideal for remote meetings, online classes, and virtual gatherings.",
       gitlink: "https://github.com/kush34/video-p2p",
       image: `${import.meta.env.VITE_IMAGE3}`,
       liveLink: "https://video-p2p-one.vercel.app/",
+      altImage:"project3-Video p2p web app"
     },
     {
       id: 4,
@@ -45,27 +48,30 @@ const App = () => {
       techstack: ["React Native", "Supabase", "TailwindCSS"],
       description: "It's a beta-stage trading app that enables users to log in, manage funds, monitor market prices, and handle their trading activities—all in a simple, professional interface.",
       image: `${import.meta.env.VITE_IMAGE4}`,
-
+      altImage:"project4-Paper Trading mobile app"
+      
     },
     {
       id: 5,
       title: "Ecom | Clothing Ecommerce  App",
       techstack: ["React", "Nodejs", "TailwindCSS", "FirebaseAuth"],
       description:
-        "Ecom is a fully functional e-commerce web application that includes both frontend and backend stacks, designed to showcase and handle typical online store workflows.",
+      "Ecom is a fully functional e-commerce web application that includes both frontend and backend stacks, designed to showcase and handle typical online store workflows.",
       image: `${import.meta.env.VITE_IMAGE5}`,
       gitlink: "https://github.com/kush34/ecom",
       liveLink: "https://ecom-eight-beta.vercel.app/",
+      altImage:"project5-Clothing ecommerce web app"
     },
     {
       id: 6,
       title: "KhataChopdi | Finance Guidance App",
       techstack: ["React", "Nodejs", "TailwindCSS", "FirebaseAuth"],
       description:
-        "KhataChopdi is a simple and efficient expense tracker designed to help users manage their finances with ease. It allows users to log income and expenses, categorize transactions, and view spending insights.",
+      "KhataChopdi is a simple and efficient expense tracker designed to help users manage their finances with ease. It allows users to log income and expenses, categorize transactions, and view spending insights.",
       image: `${import.meta.env.VITE_IMAGE6}`,
       gitlink: "https://github.com/kush34/WiseMon",
       liveLink: "https://wise-mon.vercel.app/",
+      altImage:"project5-Expense Tracker web app"
     }
   ];
   const company = [
@@ -75,7 +81,8 @@ const App = () => {
       time: "Sept-2025 - 3 monthns",
       points: ["Built and deployed scalable full-stack features using NextJS, and PostgreSQL, improving application performance and usability.", "Delivered end-to-end functionality with comprehensive test coverage, ensuring reliability and reducing production issues.", "Enhanced developer productivity by refactoring code and optimizing the code review pipeline, cuttingreview time significantly."],
       link: "https://www.ipexlogistics.com/",
-      imageLink: "https://www.ipexlogistics.com/images/logo.png"
+      imageLink: `${import.meta.env.VITE_COMP_IMG}`,
+      altImage:"company-logo of company"
     }
   ]
   const blogs = [
@@ -90,10 +97,10 @@ const App = () => {
   const handleShowMore = () => {
     setVisibleCount((prev) => prev + 4);
   };
-
+  
   const [blockSize, setBlockSize] = useState(15);
   const [blockMargin, setBlockMargin] = useState(5);
-
+  
   useEffect(() => {
     const updateSizes = () => {
       const w = window.innerWidth;

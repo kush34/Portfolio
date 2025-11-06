@@ -9,7 +9,7 @@ const BlogCard = ({...blog}) => {
                 <span className='text-zinc-400'>{blog?.content.slice(0,50) || "Loading Content..."}...</span>
             </div>
             <div>
-                {blog.link && <a className='flex gap-2 items-center' target={'_blank'} href={`${blog.link}`}><GoArrowUpRight size={24} /></a>}
+                {blog.link && <a className='flex gap-2 items-center' rel="noopener noreferrer" aria-label={`View Blog destination for ${blog.title || 'Blog Title'}`} target={'_blank'} href={`${blog.link}`}><GoArrowUpRight size={24} /></a>}
             </div>
         </div>
     )
