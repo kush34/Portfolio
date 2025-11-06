@@ -49,11 +49,21 @@ const App = () => {
     },
     {
       id: 5,
+      title: "Ecom | Clothing Ecommerce  App",
+      techstack: ["React", "Nodejs", "TailwindCSS", "FirebaseAuth"],
+      description:
+        "Ecom is a fully functional e-commerce web application that includes both frontend and backend stacks, designed to showcase and handle typical online store workflows.",
+      image: `${import.meta.env.VITE_IMAGE5}`,
+      gitlink: "https://github.com/kush34/ecom",
+      liveLink: "https://ecom-eight-beta.vercel.app/",
+    },
+    {
+      id: 6,
       title: "KhataChopdi | Finance Guidance App",
       techstack: ["React", "Nodejs", "TailwindCSS", "FirebaseAuth"],
       description:
         "KhataChopdi is a simple and efficient expense tracker designed to help users manage their finances with ease. It allows users to log income and expenses, categorize transactions, and view spending insights.",
-      image: `${import.meta.env.VITE_IMAGE5}`,
+      image: `${import.meta.env.VITE_IMAGE6}`,
       gitlink: "https://github.com/kush34/WiseMon",
       liveLink: "https://wise-mon.vercel.app/",
     }
