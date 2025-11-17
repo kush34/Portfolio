@@ -1,15 +1,15 @@
-import React from 'react';
 import { motion, useAnimation } from "framer-motion";
 import { MdArrowOutward } from "react-icons/md";
 import { FaGithub } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { div } from 'framer-motion/client';
 import { GoArrowUpRight } from 'react-icons/go';
+import { project } from "@/types";
 
-const ProjectCard = ({ ...proj }) => {
+const ProjectCard = (project: project) => {
   const navigate = useNavigate();
   const handleRedirect = () => {
-    navigate(`/projectPage/${id}`)
+    navigate(`/projectPage/${project.id}`)
   }
   const colors = {
     "React": "bg-blue-500",
@@ -25,16 +25,16 @@ const ProjectCard = ({ ...proj }) => {
       whileHover={{ opacity: 1, scale: 1.005, border: "1px solid #1a1a1a" }}
     >
       <div className=''>
-        <img src={proj.image} className='rounded' alt={proj.altImage} />
+        <img src={project.image} className='rounded' alt={project.altImage} />
       </div>
       <div className='flex flex-col'>
-        <span className='mx-5 text-2xl font-medium'>{proj.title}</span>
-        <span className='text-zinc-500'>{proj.description}</span>
+        <span className='mx-5 text-2xl font-medium'>{project.title}</span>
+        <span className='text-zinc-500'>{project.description}</span>
       </div>
       <div className='flex justify-between mt-7 text-xl'>
-        {proj.liveLink && <a rel="noopener noreferrer"
-          aria-label={`View live project: ${proj.title || 'Project'}`} className='flex gap-2 items-center' target={'_blank'} href={`${proj.liveLink}`}><GoArrowUpRight /></a>}
-        {proj.gitlink && <a className='flex gap-2 items-center' rel="noopener noreferrer" aria-label={`View GitHub repository for ${proj.title || 'Project'}`} target={'_blank'} href={`${proj.gitlink}`}><FaGithub /></a>}
+        {project.liveLink && <a rel="noopener noreferrer"
+          aria-label={`View live project: ${project.title || 'Project'}`} className='flex gap-2 items-center' target={'_blank'} href={`${project.liveLink}`}><GoArrowUpRight /></a>}
+        {project.gitlink && <a className='flex gap-2 items-center' rel="noopener noreferrer" aria-label={`View GitHub repository for ${project.title || 'Project'}`} target={'_blank'} href={`${project.gitlink}`}><FaGithub /></a>}
       </div>
     </motion.div>
   );

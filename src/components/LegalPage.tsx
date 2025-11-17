@@ -1,6 +1,5 @@
-import React from "react";
 
-const LegalPage = ({ type }) => {
+const LegalPage = ({ type }: { type: String }) => {
   const isPrivacy = type === "privacy";
 
   return (
