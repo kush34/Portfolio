@@ -1,3 +1,4 @@
+import { IconType } from "react-icons";
 
 
 export interface project {
@@ -26,4 +27,16 @@ export interface blog {
     content: string,
     time: string,
     link: string
+}
+
+export interface review {
+    id: string;
+    name: string;
+    content: string;
+}
+
+export interface technology {
+    name: string;
+    link?: string;
+    Icon: IconType;
 }

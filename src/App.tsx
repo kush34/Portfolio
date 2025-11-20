@@ -7,7 +7,8 @@ import GitHubCalendar from "react-github-calendar";
 import { motion } from "framer-motion";
 import ExperienceCard from "./components/ExperienceCard";
 import BlogCard from "./components/BlogCard";
-import { blog, company, project } from "./types";
+import { blog, company, project, review } from "./types";
+import Review from "./components/Review";
 const App = () => {
   const data: project[] = [
     {
@@ -94,6 +95,13 @@ const App = () => {
       link: "https://medium.com/@chattkush34/how-to-be-sane-when-developing-complex-application-testing-with-jest-8743ccdd2520",
     }
   ]
+  const reviews: review[] = [
+    {
+      id: "1",
+      name: "Adash Raguvanshi",
+      content: "gave him a finance project & he met the expectations. The great part is, he carries knowledge about multiple industries which makes it easy to coordinate about projects."
+    }
+  ]
   const [visibleCount, setVisibleCount] = useState(4);
   const handleShowMore = () => {
     setVisibleCount((prev) => prev + 4);
@@ -151,6 +159,14 @@ const App = () => {
               {data.slice(0, visibleCount).map((p) => (
                 <ProjectCard key={p.id} {...p} />
               ))}
+            </section>
+            <section className="flex flex-col justify-center items-center gap-5 px-4 mb-6">
+              <h2 className="text-4xl text-zinc-400 mb-6 font-bold z-10">Reviews</h2>
+              <div className="z-10">
+                {reviews.map((item) => (
+                  <Review key={item.id} {...item} />
+                ))}
+              </div>
             </section>
 
             {visibleCount < data.length && (

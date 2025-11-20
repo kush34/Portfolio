@@ -8,12 +8,21 @@ import { BiLogoMongodb } from "react-icons/bi";
 import { SiTailwindcss, SiWebrtc } from "react-icons/si";
 import { IoLogoFirebase } from "react-icons/io5";
 import { HiOutlineDownload } from "react-icons/hi";
+import Tech from "./technology";
 
 const socialLinks = [
   { icon: <FaGithub />, link: "https://github.com/kush34", label: "GitHub" },
   { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/chatt-kush-a85490201/", label: "LinkedIn" },
   { icon: <FaTwitter />, link: "https://twitter.com", label: "Twitter" },
   { icon: <IoMail />, link: "mailto:chattkush34@gmail.com", label: "Email" },
+];
+const techList = [
+  { name: "React", Icon: FaReact, hover: "text-sky-500" },
+  { name: "Nodejs", Icon: FaNodeJs, hover: "text-green-500" },
+  { name: "Tailwind", Icon: SiTailwindcss, hover: "text-sky-500" },
+  { name: "MongoDB", Icon: BiLogoMongodb, hover: "text-green-500" },
+  { name: "Firebase", Icon: IoLogoFirebase, hover: "text-yellow-500" },
+  { name: "WebRTC", Icon: SiWebrtc, hover: "text-red-500" },
 ];
 
 const Profile = () => {
@@ -83,34 +92,12 @@ const Profile = () => {
             </p>
           </div>
 
-          <div>
-            <div className="flex flex-wrap gap-4 sm:gap-6 text-2xl sm:text-3xl">
-              <span className="border-2 border-dashed hover:text-sky-500 transition-transform cursor-pointer flex items-center gap-2 text-sm">
-                <FaReact className="text-lg" />
-                React
-              </span>
-              <span className="border-2 border-dashed hover:text-green-500 transition-transform cursor-pointer flex items-center gap-2 text-sm">
-                <FaNodeJs className="text-lg" />
-                Nodejs
-              </span>
-              <span className="border-2 border-dashed hover:text-sky-500 transition-transform cursor-pointer flex items-center gap-2 text-sm">
-                <SiTailwindcss className="text-lg" />
-                Tailwind
-              </span>
-              <span className="border-2 border-dashed hover:text-green-500 transition-transform cursor-pointer flex items-center gap-2 text-sm">
-                <BiLogoMongodb className="text-lg" />
-                MongoDB
-              </span>
-              <span className="border-2 border-dashed hover:text-yellow-500 transition-transform cursor-pointer flex items-center gap-2 text-sm">
-                <IoLogoFirebase className="text-lg" />
-                Firebase
-              </span>
-              <span className="border-2 border-dashed hover:text-red-500 transition-transform cursor-pointer flex items-center gap-2 text-sm">
-                <SiWebrtc className="text-lg" />
-                WebRTC
-              </span>
-            </div>
+          <div className="flex flex-wrap gap-4 sm:gap-6 text-2xl sm:text-3xl">
+            {techList.map((t) => (
+              <Tech key={t.name} name={t.name} Icon={t.Icon}/>
+            ))}
           </div>
+
 
           <div>
             <motion.a
