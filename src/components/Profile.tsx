@@ -83,19 +83,13 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 sm:gap-5 max-w-xl">
+        <div className="flex flex-col gap-4 sm:gap-5 max-w-md xl:max-w-2xl">
           <div>
             <p className="text-zinc-300 leading-relaxed">
               I'm <strong className="text-lg" >Chatt Kush</strong>, a software engineer from Mumbai, India. Currently pursuing B.Tech CSE from
               Renaissance University. I love technology, nerdy stuff, and cricket. Always curious, I enjoy
               coding, learning, and building new things.
             </p>
-          </div>
-
-          <div className="flex flex-wrap gap-4 sm:gap-6 text-2xl sm:text-3xl">
-            {techList.map((t) => (
-              <Tech key={t.name} name={t.name} Icon={t.Icon} color={t.color} />
-            ))}
           </div>
 
 
@@ -118,15 +112,15 @@ const Profile = () => {
         className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95vw] max-w-2xl ${isSticky ? "pointer-events-auto" : "pointer-events-none"
           }`}
       >
-        <div className="flex items-center gap-2 sm:gap-4 md:gap-8 px-3 sm:px-6 md:px-8 py-2 sm:py-3 rounded-xl sm:rounded-2xl bg-black/50 backdrop-blur-xl border border-white/10 shadow-lg">
+        <div className="flex items-center gap-2 sm:gap-4 md:gap-8 px-3 sm:px-6 md:px-24 py-2 sm:py-3 rounded-xl sm:rounded-2xl bg-black/50 backdrop-blur-xl border border-white/10 shadow-lg">
           <img
             src={`${import.meta.env.VITE_PROFILE}`}
             alt="Profile Small"
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover ring-1 ring-white/20 flex-shrink-0"
+            className="w-5 h-5 sm:w-10 sm:h-10 rounded-full object-cover ring-1 ring-white/20 flex-shrink-0"
           />
           <span className="font-semibold text-white text-sm sm:text-base truncate min-w-0">Chatt Kush</span>
 
-          <div className="flex gap-1.5 sm:gap-3 md:gap-4 ml-auto sm:ml-6  flex-shrink-0">
+          <div className="flex gap-1.5 sm:gap-3 md:gap-4 ml-auto sm:ml-6 py-5  flex-shrink-0">
             {socialLinks.map((s, i) => (
               <motion.a
                 key={i}

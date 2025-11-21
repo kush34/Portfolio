@@ -3,7 +3,7 @@ import { GoArrowUpRight } from 'react-icons/go'
 
 const ExperienceCard = ({ name,position,time,points,link,imageLink,altImage }: company) => {
     return (
-        <div className='z-10 flex flex-col gap-5 text-white border-2 border-pink-800'>
+        <div className='z-10 flex flex-col gap-5 text-white'>
             <div className='flex justify-start items-center gap-10'>
                 <span className='bg-zinc-100 rounded'>
                     <img src={imageLink} alt={altImage} className='p-5 w-10 h-15 rounded' />

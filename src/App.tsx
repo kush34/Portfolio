@@ -9,6 +9,11 @@ import ExperienceCard from "./components/ExperienceCard";
 import BlogCard from "./components/BlogCard";
 import { blog, company, project, review } from "./types";
 import Review from "./components/Review";
+import Tech from "./components/Technology";
+import { FaDocker, FaNodeJs, FaReact } from "react-icons/fa";
+import { SiNextdotjs, SiPostgresql, SiRedis, SiSocketdotio, SiSupabase, SiTailwindcss, SiTypescript, SiWebrtc } from "react-icons/si";
+import { BiGitBranch, BiLogoMongodb } from "react-icons/bi";
+import { IoLogoFirebase } from "react-icons/io5";
 const App = () => {
   const data: project[] = [
     {
@@ -102,6 +107,22 @@ const App = () => {
       content: "gave him a finance project & he met the expectations. The great part is, he carries knowledge about multiple industries which makes it easy to coordinate about projects."
     }
   ]
+  const techList = [
+    { name: "React", Icon: FaReact, color: "text-sky-500" },
+    { name: "TypeScript", Icon: SiTypescript, color: "text-blue-400" },
+    { name: "NextJS", Icon: SiNextdotjs, color: "text-white" },
+    { name: "Nodejs", Icon: FaNodeJs, color: "text-green-400" },
+    { name: "Tailwind", Icon: SiTailwindcss, color: "text-sky-400" },
+    { name: "MongoDB", Icon: BiLogoMongodb, color: "text-green-400" },
+    { name: "Firebase", Icon: IoLogoFirebase, color: "text-yellow-400" },
+    { name: "WebRTC", Icon: SiWebrtc, color: "text-red-400" },
+    { name: "Supabase", Icon: SiSupabase, color: "text-green-400" },
+    { name: "PostgresSQL", Icon: SiPostgresql, color: "text-[#6497c1]" },
+    { name: "Docker", Icon: FaDocker, color: "text-[#0974be]" },
+    { name: "Redis", Icon: SiRedis, color: "text-[#d93327]" },
+    { name: "Git", Icon: BiGitBranch, color: "text-[#e84d31]" },
+    { name: "Socket.IO", Icon: SiSocketdotio, color: "text-[#21af90]" },
+  ];
   const [visibleCount, setVisibleCount] = useState(4);
   const handleShowMore = () => {
     setVisibleCount((prev) => prev + 4);
@@ -150,11 +171,20 @@ const App = () => {
               <Profile />
             </section>
 
-            <section className="z-10 experience">
+            <div className="flex flex-wrap items-center gap-8 sm:gap-2 text-2xl sm:text-3xl sm:max-w-lg md:max-w-4xl">
+              {techList.map((t) => (
+                <Tech key={t.name} name={t.name} Icon={t.Icon} color={t.color} />
+              ))}
+            </div>
+            <motion.section
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 20 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="z-10 experience flex items-center">
               {company.map((comp) =>
                 <ExperienceCard {...comp} />
               )}
-            </section>
+            </motion.section>
             <section className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 mb-6">
               {data.slice(0, visibleCount).map((p) => (
                 <ProjectCard key={p.id} {...p} />
@@ -197,7 +227,8 @@ const App = () => {
             <motion.section
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 20 }}
-              transition={{ duration: 0.8, ease: "easeOut" }} className="sm:w-1/4 md:w-full z-10 flex flex-col gap-10 items-center justify-center py-10 rounded-2xl shadow-md">
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="sm:w-1/4 md:w-full z-10 flex flex-col gap-10 items-center justify-center py-10 rounded-2xl shadow-md">
               <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Github Activity</h2>
               <div className="overflow-x-auto">
                 <GitHubCalendar
