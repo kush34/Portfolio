@@ -6,6 +6,7 @@
     "moduleResolution": "Node",
     "jsx": "react-jsx",
     "allowJs": true,
+    "skipLibCheck": true,
     "checkJs": false,
     "strict": true,
     "baseUrl": "./src",

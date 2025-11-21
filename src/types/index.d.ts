@@ -38,5 +38,6 @@ export interface review {
 export interface technology {
     name: string;
     link?: string;
+    color: string;
     Icon: IconType;
 }

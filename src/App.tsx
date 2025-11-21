@@ -150,7 +150,7 @@ const App = () => {
               <Profile />
             </section>
 
-            <section className="z-10">
+            <section className="z-10 experience">
               {company.map((comp) =>
                 <ExperienceCard {...comp} />
               )}

@@ -8,7 +8,7 @@ import { BiLogoMongodb } from "react-icons/bi";
 import { SiTailwindcss, SiWebrtc } from "react-icons/si";
 import { IoLogoFirebase } from "react-icons/io5";
 import { HiOutlineDownload } from "react-icons/hi";
-import Tech from "./technology";
+import Tech from "./Technology";
 
 const socialLinks = [
   { icon: <FaGithub />, link: "https://github.com/kush34", label: "GitHub" },
@@ -17,12 +17,12 @@ const socialLinks = [
   { icon: <IoMail />, link: "mailto:chattkush34@gmail.com", label: "Email" },
 ];
 const techList = [
-  { name: "React", Icon: FaReact, hover: "text-sky-500" },
-  { name: "Nodejs", Icon: FaNodeJs, hover: "text-green-500" },
-  { name: "Tailwind", Icon: SiTailwindcss, hover: "text-sky-500" },
-  { name: "MongoDB", Icon: BiLogoMongodb, hover: "text-green-500" },
-  { name: "Firebase", Icon: IoLogoFirebase, hover: "text-yellow-500" },
-  { name: "WebRTC", Icon: SiWebrtc, hover: "text-red-500" },
+  { name: "React", Icon: FaReact, color: "text-sky-400" },
+  { name: "Nodejs", Icon: FaNodeJs, color: "text-green-400" },
+  { name: "Tailwind", Icon: SiTailwindcss, color: "text-sky-400" },
+  { name: "MongoDB", Icon: BiLogoMongodb, color: "text-green-400" },
+  { name: "Firebase", Icon: IoLogoFirebase, color: "text-yellow-400" },
+  { name: "WebRTC", Icon: SiWebrtc, color: "text-red-400" },
 ];
 
 const Profile = () => {
@@ -51,7 +51,7 @@ const Profile = () => {
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 20 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative flex flex-col md:flex-row items-center justify-center gap-16 px-12 py-40 mt-[10vh] max-w-7xl mx-auto  rounded-3xl text-white min-h-[300px]"
+        className="relative flex flex-col md:flex-row items-center justify-center gap-16 px-12 py-40 mt-[10vh] max-w-7xl mx-auto border-10 border-green-500  rounded-3xl text-white min-h-[300px]"
       >
         <div className="hidden md:flex flex-col items-center gap-4 absolute -left-16 top-1/3">
           {socialLinks.map((s, i) => (
@@ -86,7 +86,7 @@ const Profile = () => {
         <div className="flex flex-col gap-4 sm:gap-5 max-w-xl">
           <div>
             <p className="text-zinc-300 leading-relaxed">
-              I'm Chatt Kush, a software engineer from Mumbai, India. Currently pursuing B.Tech CSE from
+              I'm <strong className="text-lg" >Chatt Kush</strong>, a software engineer from Mumbai, India. Currently pursuing B.Tech CSE from
               Renaissance University. I love technology, nerdy stuff, and cricket. Always curious, I enjoy
               coding, learning, and building new things.
             </p>
@@ -94,7 +94,7 @@ const Profile = () => {
 
           <div className="flex flex-wrap gap-4 sm:gap-6 text-2xl sm:text-3xl">
             {techList.map((t) => (
-              <Tech key={t.name} name={t.name} Icon={t.Icon}/>
+              <Tech key={t.name} name={t.name} Icon={t.Icon} color={t.color} />
             ))}
           </div>
 
@@ -110,8 +110,8 @@ const Profile = () => {
             </motion.a>
           </div>
 
-        </div>
-      </motion.section>
+        </div >
+      </motion.section >
 
       <motion.div
         animate={controls}
