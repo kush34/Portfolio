@@ -128,15 +128,15 @@ const App = () => {
     setVisibleCount((prev) => prev + 4);
   };
 
-  const [blockSize, setBlockSize] = useState(15);
+  const [blockSize, setBlockSize] = useState(10);
   const [blockMargin, setBlockMargin] = useState(5);
 
   useEffect(() => {
     const updateSizes = () => {
       const w = window.innerWidth;
       if (w < 480) {
-        setBlockSize(8);
-        setBlockMargin(3);
+        setBlockSize(1);
+        setBlockMargin(1);
       } else if (w < 640) {
         setBlockSize(10);
         setBlockMargin(4);
@@ -171,7 +171,7 @@ const App = () => {
               <Profile />
             </section>
 
-            <div className="flex flex-wrap items-center gap-8 sm:gap-2 text-2xl sm:text-3xl sm:max-w-lg md:max-w-4xl">
+            <div className="flex flex-wrap items-center gap-2 text-2xl sm:text-3xl md:max-w-4xl">
               {techList.map((t) => (
                 <Tech key={t.name} name={t.name} Icon={t.Icon} color={t.color} />
               ))}
@@ -228,19 +228,19 @@ const App = () => {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 20 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="sm:w-1/4 md:w-full z-10 flex flex-col gap-10 items-center justify-center py-10 rounded-2xl shadow-md">
+              className="sm:w-1/4 md:w-full z-10 flex flex-col gap-10 items-center justify-center md:py-10 rounded-2xl shadow-md">
               <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Github Activity</h2>
               <div className="overflow-x-auto">
                 <GitHubCalendar
                   username="kush34"
-                  blockSize={15}
-                  blockMargin={5}
+                  blockSize={blockSize}
+                  blockMargin={blockMargin}
                   colorScheme="dark"
                   fontSize={14}
                 />
               </div>
             </motion.section>
-            <section className="z-10 grid grid-cols-4 gap-8 px-4 mb-10 h-[10vh]">
+            <section className="z-10 px-4 mb-10 h-[10vh]">
               <span className="text-zinc-500 text-center">Made with love by kush</span>
             </section>
           </div>

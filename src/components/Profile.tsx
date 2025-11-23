@@ -97,7 +97,7 @@ const Profile = () => {
             <motion.a
               href={`${import.meta.env.VITE_RESUME_LINK}`}
               target="_blank"
-              className="flex items-center gap-2 w-1/3 bg-gray-800 hover:scale-101 duration-100 hover:shadow-2xl ease-in text-center justify-center rounded-xl h-8"
+              className="tech flex items-center gap-2 w-1/3 bg-gray-800 hover:scale-101 duration-100 hover:shadow-2xl ease-in text-center justify-center rounded-xl h-8"
             >
               <HiOutlineDownload className="text-lg" />
               Resume
