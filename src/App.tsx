@@ -15,6 +15,16 @@ import { SiNextdotjs, SiPostgresql, SiRedis, SiSocketdotio, SiSupabase, SiTailwi
 import { BiGitBranch, BiLogoMongodb } from "react-icons/bi";
 import { IoLogoFirebase } from "react-icons/io5";
 const App = () => {
+  const [theme, setTheme] = useState<"light" | "dark">(
+    localStorage.getItem("theme") === "dark" ? "dark" : "light"
+  );
+  function toggleTheme() {
+    const isDark = document.documentElement.classList.toggle("dark");
+    const newTheme = isDark ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  }
+
   const data: project[] = [
     {
       id: 1,
@@ -110,7 +120,7 @@ const App = () => {
   const techList = [
     { name: "React", Icon: FaReact, color: "text-sky-500" },
     { name: "TypeScript", Icon: SiTypescript, color: "text-blue-400" },
-    { name: "NextJS", Icon: SiNextdotjs, color: "text-white" },
+    { name: "NextJS", Icon: SiNextdotjs, color: "text-zinc-400" },
     { name: "Nodejs", Icon: FaNodeJs, color: "text-green-400" },
     { name: "Tailwind", Icon: SiTailwindcss, color: "text-sky-400" },
     { name: "MongoDB", Icon: BiLogoMongodb, color: "text-green-400" },
@@ -130,19 +140,22 @@ const App = () => {
 
   const [blockSize, setBlockSize] = useState(10);
   const [blockMargin, setBlockMargin] = useState(5);
+  const [fontSize, setFontSize] = useState(14);
 
   useEffect(() => {
     const updateSizes = () => {
       const w = window.innerWidth;
       if (w < 480) {
         setBlockSize(1);
-        setBlockMargin(1);
+        setBlockMargin(0);
+        setFontSize(5);
       } else if (w < 640) {
         setBlockSize(10);
-        setBlockMargin(4);
+        setBlockMargin(1);
+        setFontSize(10);
       } else if (w < 1024) {
         setBlockSize(12);
-        setBlockMargin(4);
+        setBlockMargin(2);
       } else {
         setBlockSize(15);
         setBlockMargin(5);
@@ -154,21 +167,30 @@ const App = () => {
     return () => window.removeEventListener("resize", updateSizes);
   }, []);
 
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   return (
-    <div className="min-h-screen w-full relative bg-[#0a0a0a]">
-      <div className="min-h-screen w-full relative bg-black">
+    <div className="min-h-screen w-full relative dark">
+      <div className="min-h-screen w-full relative ">
         <div
           className="absolute inset-0 z-0"
-          style={{
-            background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99, 102, 241, 0.25), transparent 70%), #000000",
-          }}
+        // style={{
+        //   background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99, 102, 241, 0.25), transparent 70%), #000000",
+        // }}
         />
-        <div className="flex flex-col items-center justify-center text-white min-h-screen px-4">
+        <div className="flex flex-col items-center justify-center min-h-screen px-4">
           <Analytics />
 
           <div className="w-full max-w-5xl mx-auto flex flex-col gap-24 py-24">
             <section className="px-4">
-              <Profile />
+              <Profile toggleTheme={toggleTheme} />
             </section>
 
             <div className="flex flex-wrap items-center gap-2 text-2xl sm:text-3xl md:max-w-4xl">
@@ -218,7 +240,7 @@ const App = () => {
                 </button>
               </div>
             )}
-            <section className="z-10 flex flex-col gap-10 items-center justify-center py-10 rounded-2xl shadow-md">
+            <section className="z-10 flex flex-col gap-10 items-center justify-center py-10 rounded-2xl">
               <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Blogs</h2>
               {blogs.map((blog, index) =>
                 <BlogCard key={index} {...blog} />
@@ -228,15 +250,16 @@ const App = () => {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 20 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="sm:w-1/4 md:w-full z-10 flex flex-col gap-10 items-center justify-center md:py-10 rounded-2xl shadow-md">
+              className="sm:w-1/4 md:w-full z-10 flex flex-col gap-10 items-center justify-center md:py-10 rounded-2xl">
               <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Github Activity</h2>
-              <div className="overflow-x-auto">
+              <div className="overflow-x-hidden">
                 <GitHubCalendar
+                  key={theme}
                   username="kush34"
                   blockSize={blockSize}
                   blockMargin={blockMargin}
-                  colorScheme="dark"
-                  fontSize={14}
+                  colorScheme={theme}
+                  fontSize={fontSize}
                 />
               </div>
             </motion.section>

@@ -3,16 +3,11 @@
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "moduleResolution": "Node",
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "skipLibCheck": true,
-    "checkJs": false,
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
     "strict": true,
-    "baseUrl": "./src",
-    "paths": {
-      "@/*": ["./*"]
-    }
+    "esModuleInterop": true,
+    "jsx": "react-jsx"
   },
   "include": ["src"]
 }
