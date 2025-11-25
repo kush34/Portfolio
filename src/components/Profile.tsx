@@ -62,7 +62,7 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative flex flex-col md:flex-row items-center justify-center gap-16 px-12 py-40 mt-[10vh] max-w-7xl mx-auto border-10 rounded-3xl min-h-[300px]"
       >
-        <div className="hidden md:flex flex-col items-center gap-4 absolute -left-16 top-1/3">
+        <div className="hidden md:flex flex-col items-start gap-4 absolute -left-2 top-1/3">
           {socialLinks.map((s, i) => (
             i + 1 != socialLinks.length ?
               <motion.a
