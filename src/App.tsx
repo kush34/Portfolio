@@ -154,21 +154,30 @@ const App = () => {
   useEffect(() => {
     const updateSizes = () => {
       const w = window.innerWidth;
-      if (w < 480) {
-        setBlockSize(1);
-        setBlockMargin(0);
-        setFontSize(5);
+      if (w < 200) {
+        setBlockSize(2);
+        setBlockMargin(1);
+        setFontSize(3);
+      } else if (w < 480) {
+        setBlockSize(5);
+        setBlockMargin(1);
+        setFontSize(4);
       } else if (w < 640) {
-        setBlockSize(10);
+        setBlockSize(5);
         setBlockMargin(1);
         setFontSize(10);
-        setFontSize(8);
+        setFontSize(5);
       } else if (w < 1024) {
-        setBlockSize(12);
+        setBlockSize(10);
         setBlockMargin(2);
+        setFontSize(5);
+      } else if (w < 1280) {
+        setBlockSize(12);
+        setBlockMargin(3);
         setFontSize(8);
-      } else {
-        setBlockSize(15);
+      }
+       else {
+        setBlockSize(14);
         setBlockMargin(5);
         setFontSize(8);
       }

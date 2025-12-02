@@ -28,7 +28,7 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
   const socialLinks = [
     { icon: <FaGithub />, link: "https://github.com/kush34", label: "GitHub" },
     { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/chatt-kush-a85490201/", label: "LinkedIn" },
-    { icon: <FaTwitter />, link: "https://twitter.com", label: "Twitter" },
+    { icon: <FaTwitter />, link: "https://x.com/KushChatt", label: "Twitter" },
     { icon: <IoMail />, link: "mailto:chattkush34@gmail.com", label: "Email" },
     { icon: <IoMdMoon />, link: "", label: "Theme", onclick: toggleTheme },
   ];
@@ -62,7 +62,7 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative flex flex-col md:flex-row items-center justify-center gap-16 px-12 py-40 mt-[10vh] max-w-7xl mx-auto border-10 rounded-3xl min-h-[300px]"
       >
-        <div className="hidden md:flex flex-col items-start gap-4 absolute -left-2 top-1/3">
+        <div className="hidden md:flex flex-col items-start gap-4 absolute -left-0 top-1/3">
           {socialLinks.map((s, i) => (
             i + 1 != socialLinks.length ?
               <motion.a
@@ -86,13 +86,13 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
           ))}
         </div>
 
-        <div className="flex flex-col items-center md:items-start gap-4 flex-shrink-0">
+        <div className="flex flex-col items-center justify-center md:items-start gap-4 flex-shrink-0">
           <img
             src={`${import.meta.env.VITE_PROFILE}`}
             alt="Profile"
             className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover shadow-lg transition-all duration-300 hover:ring-2 hover:shadow-[0_0_20px_5px_rgba(255,255,255,0.4)]"
           />
-          <div className="text-center md:text-left">
+          <div className="text-center md:text-left flex flex-col items-center">
             <h2 className="text-2xl font-bold">Chatt Kush</h2>
             <p className="flex items-center justify-center md:justify-start gap-1 mt-1">
               <MdLocationOn /> Mumbai, India
@@ -100,7 +100,7 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 sm:gap-5 max-w-md xl:max-w-2xl">
+        <div className="flex flex-col gap-4 sm:gap-5 max-w-md px-5 xl:max-w-2xl">
           <div>
             <p className="leading-relaxed">
               I'm <strong className="text-lg">Chatt Kush</strong>, a software engineer from Mumbai, India. Currently pursuing B.Tech CSE from
@@ -134,7 +134,7 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
           />
           <span className="font-semibold text-sm sm:text-base truncate min-w-0">Chatt Kush</span>
 
-          <div className="flex gap-1.5 sm:gap-3 md:gap-4 ml-auto sm:ml-6 py-5 flex-shrink-0">
+          <div className="navbarFloat flex gap-1.5 sm:gap-3 md:gap-4 ml-auto sm:ml-6 py-5 flex-shrink-0">
             {socialLinks.map((s, i) => (
               i + 1 != socialLinks.length ?
                 <motion.a

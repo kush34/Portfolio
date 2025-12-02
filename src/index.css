@@ -73,6 +73,9 @@ body {
   }
 }
 
+*{
+  /* border:1px solid lime; */
+}
 
 @keyframes circle-in {
   from {
@@ -82,4 +85,19 @@ body {
   to {
     clip-path: circle(130% at 50% 0%);
   }
+}
+
+@media (max-width: 768px) {
+  body{
+    padding:25px;
+  }
+}
+@media (max-width: 1024px) {
+  body{
+    padding:20px;
+  }
+}
+
+.navbarFloat{
+  padding: 5px 0px;
 }
