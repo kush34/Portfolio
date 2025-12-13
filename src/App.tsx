@@ -11,25 +11,26 @@ import { blog, company, project, review } from "./types";
 import Review from "./components/Review";
 import Tech from "./components/Technology";
 import { FaDocker, FaNodeJs, FaReact } from "react-icons/fa";
-import { SiNextdotjs, SiPostgresql, SiRedis, SiSocketdotio, SiSupabase, SiTailwindcss, SiTypescript, SiWebrtc } from "react-icons/si";
+import { SiNextdotjs, SiPostgresql, SiPrisma, SiRedis, SiSocketdotio, SiSupabase, SiTailwindcss, SiTypescript, SiWebrtc } from "react-icons/si";
 import { BiGitBranch, BiLogoMongodb } from "react-icons/bi";
 import { IoLogoFirebase } from "react-icons/io5";
+import PikachuCursor from "./components/PickachuCursor";
 const App = () => {
   const [theme, setTheme] = useState<"light" | "dark">(
     localStorage.getItem("theme") === "dark" ? "dark" : "light"
   );
   function toggleTheme() {
-      const isDark = document.documentElement.classList.toggle("dark");
-      const newTheme = isDark ? "dark" : "light";
-      setTheme(newTheme);
-      localStorage.setItem("theme", newTheme);
+    const isDark = document.documentElement.classList.toggle("dark");
+    const newTheme = isDark ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
   }
   const changeTheme = () => {
-    if(!document.startViewTransition){
+    if (!document.startViewTransition) {
       toggleTheme()
       return;
     }
-    document.startViewTransition(()=>{
+    document.startViewTransition(() => {
       toggleTheme();
     })
   }
@@ -128,6 +129,7 @@ const App = () => {
   ]
   const techList = [
     { name: "React", Icon: FaReact, color: "text-sky-500" },
+    { name: "Prisma", Icon: SiPrisma, color: "text-zinc-500" },
     { name: "TypeScript", Icon: SiTypescript, color: "text-blue-400" },
     { name: "NextJS", Icon: SiNextdotjs, color: "text-zinc-400" },
     { name: "Nodejs", Icon: FaNodeJs, color: "text-green-400" },
@@ -176,7 +178,7 @@ const App = () => {
         setBlockMargin(3);
         setFontSize(8);
       }
-       else {
+      else {
         setBlockSize(14);
         setBlockMargin(5);
         setFontSize(8);
@@ -201,15 +203,15 @@ const App = () => {
     <div className="min-h-screen w-full relative dark">
       <div className="min-h-screen w-full relative ">
         <div
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 "
         // style={{
         //   background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99, 102, 241, 0.25), transparent 70%), #000000",
         // }}
         />
-        <div className="flex flex-col items-center justify-center min-h-screen px-4">
+        <div className="flex flex-col items-center justify-center min-h-screen px-4 ">
           <Analytics />
 
-          <div className="w-full max-w-5xl mx-auto flex flex-col gap-24 py-24">
+          <div className="w-full max-w-5xl mx-auto flex flex-col gap-24 py-24 main">
             <section className="px-4">
               <Profile toggleTheme={changeTheme} />
             </section>
@@ -232,6 +234,7 @@ const App = () => {
               {data.slice(0, visibleCount).map((p) => (
                 <ProjectCard key={p.id} {...p} />
               ))}
+
             </section>
             {visibleCount < data.length && (
               <div className="flex justify-center mt-6 px-4">
@@ -284,9 +287,10 @@ const App = () => {
                 />
               </div>
             </motion.section>
-            <section className="z-10 px-4 mb-10 h-[10vh]">
+            <section className="z-10 px-4 mb-10 h-[10vh] text-center">
               <span className="text-zinc-500 text-center">Made with love by kush</span>
             </section>
+            <PikachuCursor/>
           </div>
         </div>
       </div>

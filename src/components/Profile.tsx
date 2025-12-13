@@ -87,11 +87,21 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
         </div>
 
         <div className="flex flex-col items-center justify-center md:items-start gap-4 flex-shrink-0">
-          <img
-            src={`${import.meta.env.VITE_PROFILE}`}
-            alt="Profile"
-            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover shadow-lg transition-all duration-300 hover:ring-2 hover:shadow-[0_0_20px_5px_rgba(255,255,255,0.4)]"
-          />
+          <div className="relative w-54 h-54 sm:w-28 sm:h-28">
+            {/* Penguin */}
+            <img
+              src="./penguin.png"
+              className="absolute w-8 h-8 rotate-20 z-10 -bottom-3 right-0 sm:-bottom-1 sm:right-0"
+              alt="penguin"
+            />
+
+            {/* Profile */}
+            <img
+              src={import.meta.env.VITE_PROFILE}
+              alt="profile"
+              className="w-full h-full rounded -rotate-6 hover:rotate-1 object-cover shadow-lg transition-all duration-300 hover:ring-2 hover:shadow-[0_0_20px_5px_rgba(255,255,255,0.4)]"
+            />
+          </div>
           <div className="text-center md:text-left flex flex-col items-center">
             <h2 className="text-2xl font-bold">Chatt Kush</h2>
             <p className="flex items-center justify-center md:justify-start gap-1 mt-1">
@@ -115,7 +125,7 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
               target="_blank"
               className="tech flex items-center gap-2 w-1/3 hover:scale-101 duration-100 hover:shadow-2xl ease-in text-center justify-center rounded-xl h-8"
             >
-              <HiOutlineDownload className="text-lg" />
+              <HiOutlineDownload className="text-lg " />
               Resume
             </motion.a>
           </div>

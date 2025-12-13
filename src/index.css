@@ -60,9 +60,11 @@ body {
 ::view-transition-group(root) {
   animation-duration: 1.5s;
 }
-::view-transition-new(root){
+
+::view-transition-new(root) {
   animation: circle-in 1500ms;
 }
+
 @keyframes move-in {
   from {
     translate: 0 -100%;
@@ -73,8 +75,15 @@ body {
   }
 }
 
-*{
-  /* border:1px solid lime; */
+* {
+  /* border:0.5px dashed lime; */
+
+}
+
+::selection {
+  background: #ffe600;
+  color: black;
+  text-shadow: none;
 }
 
 @keyframes circle-in {
@@ -88,16 +97,19 @@ body {
 }
 
 @media (max-width: 768px) {
-  body{
-    padding:25px;
-  }
-}
-@media (max-width: 1024px) {
-  body{
-    padding:20px;
+  body {
+    padding: 25px;
   }
 }
 
-.navbarFloat{
+@media (max-width: 1024px) {
+  body {
+
+    padding: 20px;
+  }
+
+}
+
+.navbarFloat {
   padding: 5px 0px;
 }
