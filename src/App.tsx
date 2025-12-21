@@ -117,7 +117,7 @@ const App = () => {
       title: "How to be sane when developing complex application | Testing with Jest",
       content: "I was doing development on my project and after some time i did some code refactoring and it was simple so i pushed the code to production. The things about pushing code and not testing them is when you make such changes and push it you think you have done is right but some things break and are easy to notice manually.",
       time: "1 Nov 2025",
-      link: "https://medium.com/@chattkush34/how-to-be-sane-when-developing-complex-application-testing-with-jest-8743ccdd2520",
+      link: "/blog/testing",
     }
   ]
   const reviews: review[] = [
@@ -290,7 +290,7 @@ const App = () => {
             <section className="z-10 px-4 mb-10 h-[10vh] text-center">
               <span className="text-zinc-500 text-center">Made with love by kush</span>
             </section>
-            <PikachuCursor/>
+            <PikachuCursor />
           </div>
         </div>
       </div>
