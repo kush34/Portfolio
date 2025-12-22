@@ -18,34 +18,34 @@ export default function BlogPost({ content }: Props) {
           rehypePlugins={[rehypeHighlight]}
           components={{
             h1: ({ children }) => (
-              <h1 className="mb-6 text-6xl font-bold text-zinc-500">
+              <h1 className="mb-6 text-6xl font-bold">
                 {children}
               </h1>
             ),
             h2: ({ children }) => (
-              <h2 className="article-head-secondary mt-10 mb-4 text-6xl font-bold text-black">
+              <h2 className="article-head-secondary mt-10 mb-4 text-6xl font-bold">
                 {children}
               </h2>
             ),
             p: ({ children }) => (
-              <p className="article-para my-4 text-zinc-900 leading-relaxed">{children}</p>
+              <p className="article-para my-4 leading-relaxed">{children}</p>
             ),
             ul: ({ children }) => (
-              <ul className="my-4 list-disc pl-6 text-zinc-300">
+              <ul className="my-4 list-disc pl-6">
                 {children}
               </ul>
             ),
             code({ inline, className, children, ...props }) {
               if (inline) {
                 return (
-                  <code className="rounded px-1.5 py-0.5 text-sm text-zinc-100">
+                  <code className="rounded px-1 py-0.5 text-sm">
                     {children}
                   </code>
                 );
               }
 
               return (
-                <pre className="my-6 overflow-x-auto rounded-lg p-4 text-sm">
+                <pre className="my-6 overflow-x-auto rounded text-sm">
                   <code className={className} {...props}>
                     {children}
                   </code>
