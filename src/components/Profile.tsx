@@ -60,9 +60,9 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 20 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative flex flex-col md:flex-row items-center justify-center gap-16 px-12 py-40 mt-[10vh] max-w-7xl mx-auto border-10 rounded-3xl min-h-[300px]"
+        className="relative flex flex-col md:flex-row items-center justify-center gap-16 px-12 py-10 max-w-7xl mx-auto rounded-3xl min-h-[300px]"
       >
-        <div className="hidden md:flex flex-col items-start gap-4 absolute -left-0 top-1/3">
+        <div className="hidden md:flex flex-col items-start gap-4 absolute -left-5 top-1/6">
           {socialLinks.map((s, i) => (
             i + 1 != socialLinks.length ?
               <motion.a
@@ -110,7 +110,7 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 sm:gap-5 max-w-md px-5 xl:max-w-2xl">
+        <div className="flex flex-col gap-4 sm:gap-5 max-w-2xl px-5 xl:max-w-2xl">
           <div>
             <p className="leading-relaxed">
               I'm <strong className="text-lg">Chatt Kush</strong>, a software engineer from Mumbai, India. Currently pursuing B.Tech CSE from
@@ -136,7 +136,7 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
         animate={controls}
         className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95vw] max-w-2xl ${isSticky ? "pointer-events-auto" : "pointer-events-none"}`}
       >
-        <div className="flex items-center gap-2 sm:gap-4 md:gap-8 px-3 sm:px-6 md:px-24 py-2 sm:py-3 rounded-xl sm:rounded-2xl backdrop-blur-xl border shadow-lg">
+        <div className="flex items-center gap-2 sm:gap-4 md:gap-8 px-3 sm:px-6 md:px-24 py-1 sm:py-3 rounded-xl sm:rounded-2xl backdrop-blur-xl shadow-lg">
           <img
             src={`${import.meta.env.VITE_PROFILE}`}
             alt="Profile Small"
@@ -144,7 +144,7 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
           />
           <span className="font-semibold text-sm sm:text-base truncate min-w-0">Chatt Kush</span>
 
-          <div className="navbarFloat flex gap-1.5 sm:gap-3 md:gap-4 ml-auto sm:ml-6 py-5 flex-shrink-0">
+          <div className="navbarFloat flex gap-1.5 sm:gap-3 md:gap-4 ml-auto sm:ml-6 flex-shrink-0">
             {socialLinks.map((s, i) => (
               i + 1 != socialLinks.length ?
                 <motion.a
@@ -152,7 +152,7 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
                   href={s.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center rounded-full border hover:shadow-[0_0_15px_rgba(255,255,255,0.25)] transition-all text-sm sm:text-base"
+                  className="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center rounded-full hover:shadow-[0_0_15px_rgba(255,255,255,0.25)] transition-all text-sm sm:text-base"
                   whileHover={{ scale: 1.01 }}
                   title={s.label}
                 >
@@ -160,7 +160,7 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
                 </motion.a>
                 :
                 <span
-                  className="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center rounded-full border hover:shadow-[0_0_15px_rgba(255,255,255,0.25)] transition-all text-sm sm:text-base"
+                  className="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center rounded-full hover:shadow-[0_0_15px_rgba(255,255,255,0.25)] transition-all text-sm sm:text-base"
                   onClick={s.onclick}
                 >
                   {s.icon}

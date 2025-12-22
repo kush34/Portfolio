@@ -1,61 +1,119 @@
 @import "tailwindcss";
 
-body {
-  background: var(--background);
-  color: var(--text);
-  border-color: var(--border);
-}
-
-
-@theme {
-  --color-background: var(--background);
-  --color-border: var(--border);
-  --color-text: var(--text);
-  --color-secondary: var(--secondary);
-}
-
+/* -------------------------------
+   THEME VARIABLES (single source of truth)
+-------------------------------- */
 :root {
   --background: #ffffff;
+  --primary: #f1f1f1;
   --text: #3f3f46;
   --border: #000000;
+  --text-secondary: #fff;
   --secondary: #71717a;
 }
 
 .dark {
   --background: #09090b;
   --text: #ffffff;
+  --text-secondary: #000;
   --border: #ffffff;
   --secondary: #71717a;
 }
 
+/* -------------------------------
+   TAILWIND THEME MAPPING (v4 way)
+-------------------------------- */
+@theme {
+  --color-background: var(--background);
+  --color-text: var(--text);
+  --color-border: var(--border);
+  --color-secondary: var(--secondary);
+}
 
+/* -------------------------------
+   BASE STYLES (keep minimal)
+-------------------------------- */
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--text);
+  }
+
+  ::selection {
+    background: #ffe600;
+    color: black;
+  }
+}
 @layer utilities {
+  .bg-diagonal {
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.05) 0,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 20px
+    );
+  }
+}
 
-  /* Hide scrollbar for Chrome, Safari and Opera */
+/* -------------------------------
+   COMPONENT STYLES
+-------------------------------- */
+@layer components {
+  .tech {
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+
+  .article {
+    margin: 24px;
+  }
+
+  .article-head-secondary {
+    font-size: 42px;
+    margin: 24px 0;
+    font-weight: 500;
+  }
+
+  .article-para {
+    font-size: 24px;
+    margin: 36px 0;
+  }
+
+  .navbarFloat {
+    padding: 5px 0;
+  }
+}
+
+/* -------------------------------
+   UTILITIES
+-------------------------------- */
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+}
 
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
+/* -------------------------------
+   ANIMATIONS (pure CSS)
+-------------------------------- */
+@keyframes circle-in {
+  from {
+    clip-path: circle(0% at 50% 0%);
+  }
+  to {
+    clip-path: circle(130% at 50% 0%);
   }
 }
-
-.tech {
-  padding: 4px 10px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-sizing: 10px;
-}
-
 
 ::view-transition-group(root) {
   animation-duration: 1.5s;
@@ -65,47 +123,12 @@ body {
   animation: circle-in 1500ms;
 }
 
-@keyframes move-in {
-  from {
-    translate: 0 -100%;
-  }
-
-  to {
-    translate: 0 0;
-  }
-}
-
-* {
-  /* border:0.5px dashed lime; */
-
-}
-
-::selection {
-  background: #ffe600;
-  color: black;
-  text-shadow: none;
-}
-
-
-.article{
-  margin:24px;  
-}
-.article-head-secondary{
-  font-size: 42px;
-  margin: 24px 0px;
-  font-weight: 500;
-}
-.article-para{
-  font-size:24px;
-  margin: 36px 0;
-}
-@keyframes circle-in {
-  from {
-    clip-path: circle(0% at 50% 0%);
-  }
-
-  to {
-    clip-path: circle(130% at 50% 0%);
+/* -------------------------------
+   MEDIA QUERIES (fine here)
+-------------------------------- */
+@media (max-width: 1024px) {
+  body {
+    padding: 20px;
   }
 }
 
@@ -113,16 +136,4 @@ body {
   body {
     padding: 25px;
   }
-}
-
-@media (max-width: 1024px) {
-  body {
-
-    padding: 20px;
-  }
-
-}
-
-.navbarFloat {
-  padding: 5px 0px;
 }

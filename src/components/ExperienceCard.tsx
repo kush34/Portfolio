@@ -6,7 +6,7 @@ const ExperienceCard = ({ name, position, time, points, link, imageLink, altImag
         <div className='z-10 flex flex-col gap-5'>
             <div className='flex justify-start items-center gap-10'>
                 <span className='bg-zinc-100 rounded'>
-                    <img src={imageLink} alt={altImage} className='p-5 w-10 h-15 rounded' />
+                    <img src={imageLink} alt={altImage} className='p-5 size-20 rounded' />
                 </span>
                 <div className='flex flex-col'>
                     <span className='text-xl font-medium'>{name} </span>

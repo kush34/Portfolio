@@ -15,14 +15,14 @@ const ProjectCard = (project: project) => {
     <motion.div initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 0.8, y: 20, padding: "15px", borderRadius: "1%" }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className='tech flex flex-col gap-6'
+      className='tech flex flex-col gap-6 shadow'
       whileHover={{ opacity: 1, scale: 1.005 }}
     >
       <div className=''>
         <img src={project.image} className='rounded' alt={project.altImage} />
       </div>
       <div className='flex flex-col'>
-        <span className='mx-5 text-lg md:text-2xl font-medium'>{project.title}</span>
+        <span className='text-lg md:text-2xl font-medium my-2'>{project.title}</span>
         <span className='text-secondary'>{project.description}</span>
       </div>
       <div className='flex justify-between mt-7 text-xl'>

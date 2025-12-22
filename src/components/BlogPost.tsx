@@ -11,7 +11,7 @@ type Props = {
 
 export default function BlogPost({ content }: Props) {
   return (
-    <div className="w-full h-screen flex flex-col items-center overflow-y-scroll overflow-x-scroll">
+    <div className="w-full h-9/10 flex flex-col items-center overflow-y-scroll overflow-x-scroll">
       <article className="max-w-3xl article">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}

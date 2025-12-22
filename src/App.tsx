@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Profile from "./components/Profile";
 import ProjectCard from "./components/ProjectCard";
 import { Analytics } from "@vercel/analytics/react";
-import "./App.css"
 import GitHubCalendar from "react-github-calendar";
 import { motion } from "framer-motion";
 import ExperienceCard from "./components/ExperienceCard";
@@ -226,11 +225,11 @@ const App = () => {
               whileInView={{ opacity: 1, y: 20 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="z-10 experience flex items-center">
-              {company.map((comp) =>
+              {company.map((comp) =>  
                 <ExperienceCard {...comp} />
               )}
             </motion.section>
-            <section className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 mb-6">
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {data.slice(0, visibleCount).map((p) => (
                 <ProjectCard key={p.id} {...p} />
               ))}
@@ -240,7 +239,7 @@ const App = () => {
               <div className="flex justify-center mt-6 px-4">
                 <button
                   onClick={handleShowMore}
-                  className="z-10 flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold border border-zinc-700 rounded-xl hover:bg-zinc-800 transition bg-transparent"
+                  className="z-10 flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold border border-zinc-700 rounded-xl transition bg-transparent"
                 >
                   Show more
                   <svg
@@ -255,7 +254,7 @@ const App = () => {
                 </button>
               </div>
             )}
-            <section className="flex flex-col justify-center items-center gap-5 px-4 mb-6">
+            <section className="flex flex-col justify-center items-center gap-5 px-4 mb-2 ">
               <h2 className="text-4xl text-zinc-400 mb-6 font-bold z-10">Reviews</h2>
               <div className="z-10">
                 {reviews.map((item) => (
