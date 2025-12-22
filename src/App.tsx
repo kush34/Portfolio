@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Profile from "./components/Profile";
 import ProjectCard from "./components/ProjectCard";
 import { Analytics } from "@vercel/analytics/react";
@@ -14,7 +14,11 @@ import { SiNextdotjs, SiPostgresql, SiPrisma, SiRedis, SiSocketdotio, SiSupabase
 import { BiGitBranch, BiLogoMongodb } from "react-icons/bi";
 import { IoLogoFirebase } from "react-icons/io5";
 import PikachuCursor from "./components/PickachuCursor";
+import keys from 'ctrl-keys'
+
 const App = () => {
+  const handlerRef = useRef<ReturnType<typeof keys> | null>(null);
+  const [customCurosr,setCustomCursor] = useState<boolean>(true);
   const [theme, setTheme] = useState<"light" | "dark">(
     localStorage.getItem("theme") === "dark" ? "dark" : "light"
   );
@@ -151,6 +155,24 @@ const App = () => {
   const [blockSize, setBlockSize] = useState(10);
   const [blockMargin, setBlockMargin] = useState(5);
   const [fontSize, setFontSize] = useState(14);
+  useEffect(() => {
+    const handler   = keys();
+    handlerRef.current = handler;
+
+    handler.add("alt+a", () => {
+      setTheme(prev => (prev === "dark" ? "light" : "dark"));
+    });
+
+    handler.add("alt+w", () => {
+      setCustomCursor(prev =>!prev);
+    });
+    window.addEventListener("keydown", handler.handle);
+
+    // cleanup or you deserve bugs
+    return () => {
+      window.removeEventListener("keydown", handler.handle);
+    };
+  }, []);
 
   useEffect(() => {
     const updateSizes = () => {
@@ -225,7 +247,7 @@ const App = () => {
               whileInView={{ opacity: 1, y: 20 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="z-10 experience flex items-center">
-              {company.map((comp) =>  
+              {company.map((comp) =>
                 <ExperienceCard {...comp} />
               )}
             </motion.section>
@@ -289,7 +311,7 @@ const App = () => {
             <section className="z-10 px-4 mb-10 h-[10vh] text-center">
               <span className="text-zinc-500 text-center">Made with love by kush</span>
             </section>
-            <PikachuCursor />
+            {customCurosr && <PikachuCursor />}
           </div>
         </div>
       </div>
