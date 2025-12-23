@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
-import { MdLocationOn } from "react-icons/md";
+import { MdKeyboardCommandKey, MdLocationOn } from "react-icons/md";
 import { FaReact, FaNodeJs } from "react-icons/fa";
 import { BiLogoMongodb } from "react-icons/bi";
 import { SiTailwindcss, SiWebrtc } from "react-icons/si";
@@ -22,7 +22,7 @@ const techList = [
 
 
 
-const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
+const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggleModel: () => void }) => {
   const [isSticky, setIsSticky] = useState(false);
   const controls = useAnimation();
   const socialLinks = [
@@ -30,9 +30,11 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
     { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/chatt-kush-a85490201/", label: "LinkedIn" },
     { icon: <FaTwitter />, link: "https://x.com/KushChatt", label: "Twitter" },
     { icon: <IoMail />, link: "mailto:chattkush34@gmail.com", label: "Email" },
-    { icon: <IoMdMoon />, link: "", label: "Theme", onclick: toggleTheme },
   ];
-
+  const actions = [
+    { icon: <MdKeyboardCommandKey />, link: "", label: "Theme", onclick: toggleModel },
+    { icon: <IoMdMoon />, link: "", label: "Theme", onclick: toggleTheme }
+  ]
   useEffect(() => {
     const saved = localStorage.getItem("theme");
     if (saved === "dark") document.documentElement.classList.add("dark");
@@ -62,9 +64,8 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative flex flex-col md:flex-row items-center justify-center gap-16 px-12 py-10 max-w-7xl mx-auto rounded-3xl min-h-[300px]"
       >
-        <div className="hidden md:flex flex-col items-start gap-4 absolute -left-5 top-1/6">
+        <div className="hidden md:flex flex-col items-start gap-4 absolute -left-5 top-1/8">
           {socialLinks.map((s, i) => (
-            i + 1 != socialLinks.length ?
               <motion.a
                 key={i}
                 href={s.link}
@@ -76,13 +77,6 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
               >
                 {s.icon}
               </motion.a>
-              :
-              <span
-                className="flex items-center justify-center w-10 h-10 rounded-full shadow-md hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all"
-                onClick={s.onclick}
-              >
-                {s.icon}
-              </span>
           ))}
         </div>
 
@@ -110,7 +104,7 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 sm:gap-5 max-w-2xl px-5 xl:max-w-2xl">
+        <div className="flex flex-col gap-4 sm:gap-5 max-w-full px-5 xl:max-w-2xl">
           <div>
             <p className="leading-relaxed">
               I'm <strong className="text-lg">Chatt Kush</strong>, a software engineer from Mumbai, India. Currently pursuing B.Tech CSE from
@@ -130,8 +124,17 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
             </motion.a>
           </div>
         </div>
+        <div className="hidden md:flex flex-col items-start gap-4 absolute right-6 top-1/8">
+          {actions.map((s, i) => (
+             <span
+                className="flex items-center justify-center w-10 h-10 rounded-full shadow-md hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all"
+                onClick={s.onclick}
+              >
+                {s.icon}
+              </span>
+          ))}
+        </div>  
       </motion.section>
-
       <motion.div
         animate={controls}
         className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95vw] max-w-2xl ${isSticky ? "pointer-events-auto" : "pointer-events-none"}`}
@@ -142,11 +145,10 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
             alt="Profile Small"
             className="w-5 h-5 sm:w-10 sm:h-10 rounded-full object-cover ring-1 flex-shrink-0"
           />
-          <span className="font-semibold text-sm sm:text-base truncate min-w-0">Chatt Kush</span>
+          <span className="font-semibold text-sm sm:text-base truncate min-w-0">Kush</span>
 
           <div className="navbarFloat flex gap-1.5 sm:gap-3 md:gap-4 ml-auto sm:ml-6 flex-shrink-0">
             {socialLinks.map((s, i) => (
-              i + 1 != socialLinks.length ?
                 <motion.a
                   key={i}
                   href={s.link}
@@ -158,13 +160,6 @@ const Profile = ({ toggleTheme }: { toggleTheme: () => void }) => {
                 >
                   {s.icon}
                 </motion.a>
-                :
-                <span
-                  className="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center rounded-full hover:shadow-[0_0_15px_rgba(255,255,255,0.25)] transition-all text-sm sm:text-base"
-                  onClick={s.onclick}
-                >
-                  {s.icon}
-                </span>
             ))}
           </div>
         </div>

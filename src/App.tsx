@@ -15,10 +15,12 @@ import { BiGitBranch, BiLogoMongodb } from "react-icons/bi";
 import { IoLogoFirebase } from "react-icons/io5";
 import PikachuCursor from "./components/PickachuCursor";
 import keys from 'ctrl-keys'
+import ShortcutModal from "./components/ShortcutModel";
 
 const App = () => {
   const handlerRef = useRef<ReturnType<typeof keys> | null>(null);
-  const [customCurosr,setCustomCursor] = useState<boolean>(true);
+  const [customCurosr, setCustomCursor] = useState<boolean>(true);
+  const [showShortcuts, setShowShortcuts] = useState<boolean>(false);
   const [theme, setTheme] = useState<"light" | "dark">(
     localStorage.getItem("theme") === "dark" ? "dark" : "light"
   );
@@ -156,15 +158,21 @@ const App = () => {
   const [blockMargin, setBlockMargin] = useState(5);
   const [fontSize, setFontSize] = useState(14);
   useEffect(() => {
-    const handler   = keys();
+    const handler = keys();
     handlerRef.current = handler;
 
     handler.add("alt+a", () => {
       setTheme(prev => (prev === "dark" ? "light" : "dark"));
     });
+    handler.add("alt+f", () =>{
+      window.open(`${import.meta.env.VITE_RESUME_LINK}`, "_blank", "noopener,noreferrer");
+    });
+    handler.add("alt+k", () =>{
+      setShowShortcuts((prev)=>!prev)
+    });
 
     handler.add("alt+w", () => {
-      setCustomCursor(prev =>!prev);
+      setCustomCursor(prev => !prev);
     });
     window.addEventListener("keydown", handler.handle);
 
@@ -221,7 +229,7 @@ const App = () => {
   }, [theme]);
 
   return (
-    <div className="min-h-screen w-full relative dark">
+    <div className="min-h-screen w-full relative">
       <div className="min-h-screen w-full relative ">
         <div
           className="absolute inset-0 z-0 "
@@ -234,9 +242,9 @@ const App = () => {
 
           <div className="w-full max-w-5xl mx-auto flex flex-col gap-24 py-24 main">
             <section className="px-4">
-              <Profile toggleTheme={changeTheme} />
+              <Profile toggleTheme={changeTheme} toggleModel={() => setShowShortcuts(true)} />
             </section>
-
+            {showShortcuts && <ShortcutModal onClose={() => setShowShortcuts(false)} />}
             <div className="flex flex-wrap items-center gap-2 text-2xl sm:text-3xl md:max-w-4xl">
               {techList.map((t) => (
                 <Tech key={t.name} name={t.name} Icon={t.Icon} color={t.color} />
