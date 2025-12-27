@@ -104,7 +104,7 @@ const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggle
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 sm:gap-5 max-w-full px-5 xl:max-w-2xl">
+        <div className="flex flex-col gap-4 sm:gap-5 max-w-full  xl:max-w-2xl">
           <div>
             <p className="leading-relaxed">
               I'm <strong className="text-lg">Chatt Kush</strong>, a software engineer from Mumbai, India. Currently pursuing B.Tech CSE from
@@ -117,7 +117,7 @@ const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggle
             <motion.a
               href={`${import.meta.env.VITE_RESUME_LINK}`}
               target="_blank"
-              className="tech flex items-center gap-2 w-1/3 hover:scale-101 duration-100 hover:shadow-2xl ease-in text-center justify-center rounded-xl h-8"
+              className="tech flex items-center gap-2 xl:w-1/3 hover:scale-101 duration-100 hover:shadow-2xl ease-in text-center justify-center rounded-xl h-8"
             >
               <HiOutlineDownload className="text-lg " />
               Resume

@@ -10,12 +10,13 @@ import { blog, company, project, review } from "./types";
 import Review from "./components/Review";
 import Tech from "./components/Technology";
 import { FaDocker, FaNodeJs, FaReact } from "react-icons/fa";
-import { SiNextdotjs, SiPostgresql, SiPrisma, SiRedis, SiSocketdotio, SiSupabase, SiTailwindcss, SiTypescript, SiWebrtc } from "react-icons/si";
+import { SiNextdotjs, SiPostgresql, SiPrisma, SiRedis, SiSocketdotio, SiSupabase, SiTailwindcss, SiTypescript, SiVitest, SiWebrtc } from "react-icons/si";
 import { BiGitBranch, BiLogoMongodb } from "react-icons/bi";
 import { IoLogoFirebase } from "react-icons/io5";
 import PikachuCursor from "./components/PickachuCursor";
 import keys from 'ctrl-keys'
 import ShortcutModal from "./components/ShortcutModel";
+import { SiJest } from "react-icons/si";
 
 const App = () => {
   const handlerRef = useRef<ReturnType<typeof keys> | null>(null);
@@ -144,6 +145,8 @@ const App = () => {
     { name: "WebRTC", Icon: SiWebrtc, color: "text-red-400" },
     { name: "Supabase", Icon: SiSupabase, color: "text-green-400" },
     { name: "PostgresSQL", Icon: SiPostgresql, color: "text-[#6497c1]" },
+    { name: "Jest", Icon: SiJest, color: "text-red-500" },
+    { name: "Vitest", Icon: SiVitest, color: "text-purple-500" },
     { name: "Docker", Icon: FaDocker, color: "text-[#0974be]" },
     { name: "Redis", Icon: SiRedis, color: "text-[#d93327]" },
     { name: "Git", Icon: BiGitBranch, color: "text-[#e84d31]" },
@@ -164,11 +167,11 @@ const App = () => {
     handler.add("alt+a", () => {
       setTheme(prev => (prev === "dark" ? "light" : "dark"));
     });
-    handler.add("alt+f", () =>{
+    handler.add("alt+f", () => {
       window.open(`${import.meta.env.VITE_RESUME_LINK}`, "_blank", "noopener,noreferrer");
     });
-    handler.add("alt+k", () =>{
-      setShowShortcuts((prev)=>!prev)
+    handler.add("alt+k", () => {
+      setShowShortcuts((prev) => !prev)
     });
 
     handler.add("alt+w", () => {
@@ -186,19 +189,23 @@ const App = () => {
     const updateSizes = () => {
       const w = window.innerWidth;
       if (w < 200) {
+        setCustomCursor(false); 
         setBlockSize(2);
         setBlockMargin(1);
         setFontSize(3);
       } else if (w < 480) {
+        setCustomCursor(false);
         setBlockSize(5);
         setBlockMargin(1);
         setFontSize(4);
       } else if (w < 640) {
+        setCustomCursor(false);
         setBlockSize(5);
         setBlockMargin(1);
         setFontSize(10);
         setFontSize(5);
       } else if (w < 1024) {
+        setCustomCursor(false);
         setBlockSize(10);
         setBlockMargin(2);
         setFontSize(5);
@@ -241,7 +248,7 @@ const App = () => {
           <Analytics />
 
           <div className="w-full max-w-5xl mx-auto flex flex-col gap-24 py-24 main">
-            <section className="px-4">
+            <section className="">
               <Profile toggleTheme={changeTheme} toggleModel={() => setShowShortcuts(true)} />
             </section>
             {showShortcuts && <ShortcutModal onClose={() => setShowShortcuts(false)} />}
