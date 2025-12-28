@@ -17,6 +17,9 @@ import PikachuCursor from "./components/PickachuCursor";
 import keys from 'ctrl-keys'
 import ShortcutModal from "./components/ShortcutModel";
 import { SiJest } from "react-icons/si";
+import Tanstack from "./components/icons/tanstack";
+
+
 
 const App = () => {
   const handlerRef = useRef<ReturnType<typeof keys> | null>(null);
@@ -143,6 +146,7 @@ const App = () => {
     { name: "MongoDB", Icon: BiLogoMongodb, color: "text-green-400" },
     { name: "Firebase", Icon: IoLogoFirebase, color: "text-yellow-400" },
     { name: "WebRTC", Icon: SiWebrtc, color: "text-red-400" },
+    { name: "Tanstack", Icon: Tanstack, color: "text-yellow-400" },
     { name: "Supabase", Icon: SiSupabase, color: "text-green-400" },
     { name: "PostgresSQL", Icon: SiPostgresql, color: "text-[#6497c1]" },
     { name: "Jest", Icon: SiJest, color: "text-red-500" },
