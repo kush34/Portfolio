@@ -127,6 +127,12 @@ const App = () => {
       content: "I was doing development on my project and after some time i did some code refactoring and it was simple so i pushed the code to production. The things about pushing code and not testing them is when you make such changes and push it you think you have done is right but some things break and are easy to notice manually.",
       time: "1 Nov 2025",
       link: "/blog/testing",
+    },
+    {
+      title: "Suchale | chat application | MERN Stack + Redis",
+      content: "I was doing development on my project and after some time i did some code refactoring and it was simple so i pushed the code to production. The things about pushing code and not testing them is when you make such changes and push it you think you have done is right but some things break and are easy to notice manually.",
+      time: "1 Nov 2025",
+      link: "/blog/Suchale",
     }
   ]
   const reviews: review[] = [

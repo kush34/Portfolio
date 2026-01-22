@@ -22,7 +22,7 @@ export default function BlogPost({ content }: Props) {
               </h1>
             ),
             h2: ({ children }) => (
-              <h2 className="article-head-secondary mt-10 mb-4 text-6xl font-bold">
+              <h2 className="text-4xl article-head-secondary mt-10 mb-4 font-bold">
                 {children}
               </h2>
             ),
@@ -32,6 +32,11 @@ export default function BlogPost({ content }: Props) {
             ul: ({ children }) => (
               <ul className="my-4 list-disc pl-6">
                 {children}
+              </ul>
+            ),
+            li: ({ children }) => (
+              <ul className="text-2xl my-4 list-disc">
+                - {children}
               </ul>
             ),
             code({ inline, className, children, ...props }) {

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import BlogPost from "../components/BlogPost";
 import { getBlogBySlug } from "../lib/loadBlog";
+import { ImUndo2 } from "react-icons/im";
 
 export default function BlogPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -33,7 +34,7 @@ export default function BlogPage() {
           className="shadow px-3 py-1 rounded text-lg cursor-pointer"
           onClick={() => navigate("/")}
         >
-          Back
+          <ImUndo2/>
         </button>
 
       </div>
