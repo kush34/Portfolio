@@ -5,7 +5,7 @@ import { IoMail } from "react-icons/io5";
 import { MdKeyboardCommandKey, MdLocationOn } from "react-icons/md";
 import { FaReact, FaNodeJs } from "react-icons/fa";
 import { BiLogoMongodb } from "react-icons/bi";
-import { SiTailwindcss, SiWebrtc } from "react-icons/si";
+import { SiLeetcode, SiTailwindcss, SiWebrtc } from "react-icons/si";
 import { IoLogoFirebase } from "react-icons/io5";
 import { IoMdMoon } from "react-icons/io";
 import { HiOutlineDownload } from "react-icons/hi";
@@ -27,6 +27,7 @@ const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggle
   const controls = useAnimation();
   const socialLinks = [
     { icon: <FaGithub />, link: "https://github.com/kush34", label: "GitHub" },
+    { icon: <SiLeetcode />, link: "https://leetcode.com/kush_34", label: "Leetcode Profile" },
     { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/chatt-kush-a85490201/", label: "LinkedIn" },
     { icon: <FaTwitter />, link: "https://x.com/KushChatt", label: "Twitter" },
     { icon: <IoMail />, link: "mailto:chattkush34@gmail.com", label: "Email" },

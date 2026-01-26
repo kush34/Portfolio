@@ -131,7 +131,7 @@ const App = () => {
     },
     {
       title: "Suchale | chat application | MERN Stack + Redis",
-      content: "I was doing development on my project and after some time i did some code refactoring and it was simple so i pushed the code to production. The things about pushing code and not testing them is when you make such changes and push it you think you have done is right but some things break and are easy to notice manually.",
+      content: "Explaining Websocket and Chat App in detail",
       time: "1 Nov 2025",
       link: "/blog/Suchale",
     }
@@ -245,7 +245,6 @@ const App = () => {
     }
     localStorage.setItem("theme", theme);
   }, [theme]);
-
   return (
     <div className="min-h-screen w-full relative">
       <div className="min-h-screen w-full relative ">
@@ -287,7 +286,7 @@ const App = () => {
               <div className="flex justify-center mt-6 px-4">
                 <button
                   onClick={handleShowMore}
-                  className="z-10 flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold border border-zinc-700 rounded-xl transition bg-transparent"
+                  className="tech z-10 flex items-center justify-center gap-2 px-5 py-2 text-sm font-semibold border border-zinc-700 rounded-xl cursor-pointer"
                 >
                   Show more
                   <svg
@@ -321,17 +320,15 @@ const App = () => {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 20 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="sm:w-1/4 md:w-full z-10 flex flex-col gap-10 items-center justify-center md:py-10 rounded-2xl">
-              <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Github Activity</h2>
-              <div className="overflow-x-hidden">
+              className="z-10 flex flex-col gap-10 items-center justify-center md:py-10 rounded-2xl">
+              <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Leetcode Grind</h2>
                 <LeetCodeStats username="kush_34"/>
-              </div>
             </motion.section>
             <motion.section
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 20 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="sm:w-1/4 md:w-full z-10 flex flex-col gap-10 items-center justify-center md:py-10 rounded-2xl">
+              className="w-full z-10 flex flex-col gap-10 items-center justify-center md:py-10 rounded-2xl">
               <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Github Activity</h2>
               <div className="overflow-x-hidden">
                 <GitHubCalendar

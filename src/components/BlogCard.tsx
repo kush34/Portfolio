@@ -3,7 +3,7 @@ import { blog } from '../types'
 
 const BlogCard = ({ title, content, time, link }: blog) => {
     return (
-        <div className='p-10 rounded-xl w-full flex justify-between shadow border border-gray-100'>
+        <div className='tech p-10 rounded-xl w-full flex justify-between shadow'>
             <div className='flex flex-col gap-2'>
                 <span className='text-2xl font-semibold'>{title.slice(0, 50) || "Blog Title"}...</span>
                 <span className=''>{content.slice(0, 50) || "Loading Content..."}...</span>
