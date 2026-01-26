@@ -18,6 +18,7 @@ import keys from 'ctrl-keys'
 import ShortcutModal from "./components/ShortcutModel";
 import { SiJest } from "react-icons/si";
 import Tanstack from "./components/icons/tanstack";
+import LeetCodeStats from "./components/leetcode";
 
 
 
@@ -316,6 +317,16 @@ const App = () => {
                 <BlogCard key={index} {...blog} />
               )}
             </section>
+            <motion.section
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 20 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="sm:w-1/4 md:w-full z-10 flex flex-col gap-10 items-center justify-center md:py-10 rounded-2xl">
+              <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Github Activity</h2>
+              <div className="overflow-x-hidden">
+                <LeetCodeStats username="kush_34"/>
+              </div>
+            </motion.section>
             <motion.section
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 20 }}
