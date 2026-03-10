@@ -24,7 +24,7 @@ import LeetCodeStats from "./components/leetcode";
 
 const App = () => {
   const handlerRef = useRef<ReturnType<typeof keys> | null>(null);
-  const [customCurosr, setCustomCursor] = useState<boolean>(true);
+  const [customCurosr, setCustomCursor] = useState<boolean>(false);
   const [showShortcuts, setShowShortcuts] = useState<boolean>(false);
   const [theme, setTheme] = useState<"light" | "dark">(
     localStorage.getItem("theme") === "dark" ? "dark" : "light"
@@ -123,6 +123,12 @@ const App = () => {
     }
   ]
   const blogs: blog[] = [
+    {
+      title: "Making an App out of spite | GeoImg",
+      content: "Making an app after getting frustated from Ads",
+      time: "10 Feb 2026",
+      link: "/blog/GeoImg",
+    },
     {
       title: "How to be sane when developing complex application | Testing with Jest",
       content: "I was doing development on my project and after some time i did some code refactoring and it was simple so i pushed the code to production. The things about pushing code and not testing them is when you make such changes and push it you think you have done is right but some things break and are easy to notice manually.",
@@ -250,9 +256,6 @@ const App = () => {
       <div className="min-h-screen w-full relative ">
         <div
           className="absolute inset-0 z-0 "
-        // style={{
-        //   background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99, 102, 241, 0.25), transparent 70%), #000000",
-        // }}
         />
         <div className="flex flex-col items-center justify-center min-h-screen px-4 ">
           <Analytics />
