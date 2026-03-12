@@ -124,6 +124,12 @@ const App = () => {
   ]
   const blogs: blog[] = [
     {
+      title:"My First Interview Experience",
+      content:"My Interview experience at a firm in Mumbai",
+      time:"04 March 2026",
+      link:"/blog/Interview"
+    },
+    {
       title: "Making an App out of spite | GeoImg",
       content: "Making an app after getting frustated from Ads",
       time: "10 Feb 2026",
