@@ -6,11 +6,12 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 import BlogPage from "./pages/BlogPage.js";
 import Layout from "./layout/main.js";
+import { HelmetProvider } from 'react-helmet-async'
 
-const root = document.getElementById("root");
+const rootElement = document.getElementById("root")!;
 
-if (root) {
-  ReactDOM.createRoot(root).render(
+const app = (
+  <HelmetProvider>
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
@@ -21,6 +22,11 @@ if (root) {
         </Route>
       </Routes>
     </BrowserRouter>
+  </HelmetProvider>
+);
 
-  );
+if (rootElement.hasChildNodes()) {
+  ReactDOM.hydrateRoot(rootElement, app); // react-snap prerendered
+} else {
+  ReactDOM.createRoot(rootElement).render(app); // normal dev/fallback
 } 
