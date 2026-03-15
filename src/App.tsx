@@ -124,10 +124,10 @@ const App = () => {
   ]
   const blogs: blog[] = [
     {
-      title:"My First Interview Experience",
-      content:"My Interview experience at a firm in Mumbai",
-      time:"04 March 2026",
-      link:"/blog/Interview"
+      title: "My First Interview Experience",
+      content: "My Interview experience at a firm in Mumbai",
+      time: "04 March 2026",
+      link: "/blog/Interview"
     },
     {
       title: "Making an App out of spite | GeoImg",
@@ -212,7 +212,7 @@ const App = () => {
     const updateSizes = () => {
       const w = window.innerWidth;
       if (w < 200) {
-        setCustomCursor(false); 
+        setCustomCursor(false);
         setBlockSize(2);
         setBlockMargin(1);
         setFontSize(3);
@@ -321,9 +321,11 @@ const App = () => {
 
             <section className="z-10 flex flex-col gap-10 items-center justify-center py-10 rounded-2xl">
               <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Blogs</h2>
-              {blogs.map((blog, index) =>
-                <BlogCard key={index} {...blog} />
-              )}
+              <div className="grid grid-cols-2 gap-8">
+                {blogs.map((blog, index) =>
+                  <BlogCard key={index} {...blog} />
+                )}
+              </div>
             </section>
             <motion.section
               initial={{ opacity: 0, y: 40 }}
@@ -331,7 +333,7 @@ const App = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="z-10 flex flex-col gap-10 items-center justify-center md:py-10 rounded-2xl">
               <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Leetcode Grind</h2>
-                <LeetCodeStats username="kush_34"/>
+              <LeetCodeStats username="kush_34" />
             </motion.section>
             <motion.section
               initial={{ opacity: 0, y: 40 }}

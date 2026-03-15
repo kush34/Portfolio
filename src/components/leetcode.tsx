@@ -28,18 +28,18 @@ const LeetCodeStats: React.FC<Props> = ({ username }) => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await fetch(`https://leetcode-stats-api.herokuapp.com/${username}`);
-        const data = await res.json();
+        // const res = await fetch(`https://leetcode-stats-api.herokuapp.com/${username}`);
+        // const data = await res.json();
 
         setStats({
-          totalSolved: data.totalSolved,
-          totalQuestions: data.totalQuestions,
-          easySolved: data.easySolved,
-          totalEasy: data.totalEasy,
-          mediumSolved: data.mediumSolved,
-          totalMedium: data.totalMedium,
-          hardSolved: data.hardSolved,
-          totalHard: data.totalHard,
+          totalSolved: 382,
+          totalQuestions: 3873,
+          easySolved: 253,
+          totalEasy: 932,
+          mediumSolved: 124,
+          totalMedium: 2026,
+          hardSolved: 5,
+          totalHard: 915,
         });
         setLoading(false);
       } catch (err) {
