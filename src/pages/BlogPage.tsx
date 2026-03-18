@@ -93,7 +93,7 @@ export default function BlogPage() {
 
       <div className="mx-5 my-10 flex justify-end bg-background text-text">
         <button
-          className="shadow px-3 py-1 rounded text-lg cursor-pointer"
+          className="fixed shadow px-3 py-1 rounded text-lg cursor-pointer"
           onClick={() => navigate("/")}
         >
           <ImUndo2 />

@@ -146,6 +146,12 @@ const App = () => {
       content: "Explaining Websocket and Chat App in detail",
       time: "1 Nov 2025",
       link: "/blog/Suchale",
+    },
+    {
+      title: "FastAPI | Express to fastAPI Journey",
+      content: "understanding fastapi from an express js pov",
+      time: "18 March 2026",
+      link: "/blog/fastapi",
     }
   ]
   const reviews: review[] = [
