@@ -27,7 +27,7 @@ export default function BlogPost({ content }: Props) {
               </h2>
             ),
             p: ({ children }) => (
-              <p className="article-para my-4 leading-relaxed">{children}</p>
+              <p className="article-para my-8 leading-relaxed">{children}</p>
             ),
             ul: ({ children }) => (
               <ul className="my-4 list-disc pl-6">
