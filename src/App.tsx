@@ -109,7 +109,7 @@ const App = () => {
       else {
         setBlockSize(14);
         setBlockMargin(5);
-        setFontSize(8);
+        setFontSize(12);
       }
     };
 
@@ -140,7 +140,7 @@ const App = () => {
               <Profile toggleTheme={changeTheme} toggleModel={() => setShowShortcuts(true)} />
             </section>
             {showShortcuts && <ShortcutModal onClose={() => setShowShortcuts(false)} />}
-            <div className="flex flex-wrap items-center gap-2 text-2xl sm:text-3xl md:max-w-4xl">
+            <div className="flex flex-wrap items-center gap-2 text-2xl sm:text-3xl">
               {techList.map((t) => (
                 <Tech key={t.name} name={t.name} Icon={t.Icon} color={t.color} />
               ))}
@@ -179,18 +179,18 @@ const App = () => {
                 </button>
               </div>
             )}
-            <section className="flex flex-col justify-center items-center gap-5 px-4 mb-2 ">
-              <h2 className="text-4xl text-zinc-400 mb-6 font-bold z-10">Reviews</h2>
-              <div className="z-10">
-                {reviews.map((item) => (
-                  <Review key={item.id} {...item} />
-                ))}
-              </div>
-            </section>
+              {/* <section className="flex flex-col justify-center items-center gap-5 px-4 mb-2 ">
+                <h2 className="text-4xl text-zinc-400 mb-6 font-bold z-10">Reviews</h2>
+                <div className="z-10">
+                  {reviews.map((item) => (
+                    <Review key={item.id} {...item} />
+                  ))}
+                </div>
+              </section> */}
 
             <section className="z-10 flex flex-col gap-10 items-center justify-center py-10 rounded-2xl">
               <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Blogs</h2>
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
                 {blogs.map((blog, index) =>
                   <BlogCard key={index} {...blog} />
                 )}

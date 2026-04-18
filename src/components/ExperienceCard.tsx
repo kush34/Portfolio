@@ -11,7 +11,7 @@ const ExperienceCard = ({ name, position, time, points, link, imageLink, altImag
         <div className='z-10 flex flex-col gap-5 '>
             <div className='flex justify-between items-center gap-10'>
                 <div className='flex items-center gap-10'>
-                    <span className={`${theme == "light" ? "bg-zinc-200" : "bg-zinc-800"}  rounded flex items-center`}>
+                    <span className={`${theme == "light" ? "bg-neutral-100" : "bg-zinc-900"}  rounded flex items-center`}>
                         <img src={imageLink} alt={altImage} className={`p-2 md:p-5 size-15 md:size-20 rounded ${theme == "dark" && img_bg}`} />
                     </span>
                     <div className='flex flex-col'>
@@ -24,9 +24,9 @@ const ExperienceCard = ({ name, position, time, points, link, imageLink, altImag
                     <span className='text-sm font-light '>{time}</span>
                 </div>
             </div>
-            <div className='grid grid-cols-1 gap-5 text-zinc-500 max-w-2xl'>
+            <div className='grid grid-cols-1 gap-5 text-zinc-500 max-w-3xl'>
                 {points.map((point, idx) =>
-                    <span key={idx}>{point}</span>
+                    <span key={idx}> - {point}</span>
                 )}
             </div>
         </div>
