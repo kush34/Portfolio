@@ -10,8 +10,8 @@ import { blog, company, project, review } from "./types";
 import Review from "./components/Review";
 import Tech from "./components/Technology";
 import { FaDocker, FaNodeJs, FaReact } from "react-icons/fa";
-import { SiNextdotjs, SiPostgresql, SiPrisma, SiRedis, SiSocketdotio, SiSupabase, SiTailwindcss, SiTypescript, SiVitest, SiWebrtc } from "react-icons/si";
-import { BiGitBranch, BiLogoMongodb } from "react-icons/bi";
+import { SiFastapi, SiNextdotjs, SiPostgresql, SiPrisma, SiRedis, SiSocketdotio, SiSupabase, SiTailwindcss, SiTypescript, SiVitest, SiWebrtc } from "react-icons/si";
+import { BiGitBranch, BiLogoDjango, BiLogoMongodb } from "react-icons/bi";
 import { IoLogoFirebase } from "react-icons/io5";
 import PikachuCursor from "./components/PickachuCursor";
 import keys from 'ctrl-keys'
@@ -19,6 +19,7 @@ import ShortcutModal from "./components/ShortcutModel";
 import { SiJest } from "react-icons/si";
 import Tanstack from "./components/icons/tanstack";
 import LeetCodeStats from "./components/leetcode";
+import { DiDjango } from "react-icons/di";
 
 
 
@@ -113,6 +114,16 @@ const App = () => {
   ];
   const company: company[] = [
     {
+      name: "AxentraOS",
+      position: "Software Intern",
+      time: "March-2026 - present",
+      points: ["Built and deployed scalable full-stack features using NextJS, and PostgreSQL, improving application performance and usability.", "Delivered end-to-end functionality with comprehensive test coverage, ensuring reliability and reducing production issues.", "Enhanced developer productivity by refactoring code and optimizing the code review pipeline, cuttingreview time significantly."],
+      link: "https://axentraos.com/",
+      img_bg:"dark:invert dark:brightness-0",
+      imageLink: `${import.meta.env.VITE_COMP2_IMG}`,
+      altImage: "company-logo of company"
+    },
+    {
       name: "Ipex Logistics",
       position: "Software Intern",
       time: "Sept-2025 - 3 monthns",
@@ -163,10 +174,12 @@ const App = () => {
   ]
   const techList = [
     { name: "React", Icon: FaReact, color: "text-sky-500" },
-    { name: "Prisma", Icon: SiPrisma, color: "text-zinc-500" },
-    { name: "TypeScript", Icon: SiTypescript, color: "text-blue-400" },
     { name: "NextJS", Icon: SiNextdotjs, color: "text-zinc-400" },
+    { name: "TypeScript", Icon: SiTypescript, color: "text-blue-400" },
+    { name: "FastAPI", Icon: SiFastapi, color: "text-green-500" },
+    { name: "Django", Icon: BiLogoDjango, color: "text-pink-500" },
     { name: "Nodejs", Icon: FaNodeJs, color: "text-green-400" },
+    { name: "Prisma", Icon: SiPrisma, color: "text-zinc-500" },
     { name: "Tailwind", Icon: SiTailwindcss, color: "text-sky-400" },
     { name: "MongoDB", Icon: BiLogoMongodb, color: "text-green-400" },
     { name: "Firebase", Icon: IoLogoFirebase, color: "text-yellow-400" },
@@ -286,9 +299,9 @@ const App = () => {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 20 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="z-10 experience flex items-center">
+              className="z-10 experience flex flex-col gap-15">
               {company.map((comp) =>
-                <ExperienceCard {...comp} />
+                <ExperienceCard {...comp} theme={theme} />
               )}
             </motion.section>
             <section className="grid grid-cols-1 md:grid-cols-2 gap-8">

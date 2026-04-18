@@ -13,6 +13,7 @@ export interface project {
 }
 
 export interface company {
+    img_bg?:string,
     name: string
     position: string,
     time: string,
