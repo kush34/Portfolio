@@ -2,10 +2,11 @@ import { blog, company, project, review } from "@/types";
 import { FaDocker, FaNodeJs, FaReact } from "react-icons/fa";
 import { SiFastapi, SiNextdotjs, SiPostgresql, SiPrisma, SiRedis, SiSocketdotio, SiSupabase, SiTailwindcss, SiTypescript, SiVitest, SiWebrtc } from "react-icons/si";
 import { BiGitBranch, BiLogoDjango, BiLogoMongodb } from "react-icons/bi";
-import { DiDjango } from "react-icons/di";
 import { IoLogoFirebase } from "react-icons/io5";
 import { SiJest } from "react-icons/si";
 import Tanstack from "@/components/icons/tanstack";
+import { FaAws } from "react-icons/fa6";
+import { VscGitMerge } from "react-icons/vsc";
 
 const projects: project[] = [
     {
@@ -151,6 +152,8 @@ const techList = [
     { name: "Jest", Icon: SiJest, color: "text-red-500" },
     { name: "Vitest", Icon: SiVitest, color: "text-purple-500" },
     { name: "Docker", Icon: FaDocker, color: "text-[#0974be]" },
+    { name: "AWS", Icon: FaAws, color: "text-yellow-400" },
+    { name: "CI/CD", Icon: VscGitMerge, color: "text-neutral-600" },
     { name: "Redis", Icon: SiRedis, color: "text-[#d93327]" },
     { name: "Git", Icon: BiGitBranch, color: "text-[#e84d31]" },
     { name: "Socket.IO", Icon: SiSocketdotio, color: "text-[#21af90]" },
