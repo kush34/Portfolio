@@ -13,6 +13,7 @@ export interface project {
 }
 
 export interface company {
+    techs?: { icon: IconType, label: string }[]
     img_bg?:string,
     name: string
     position: string,

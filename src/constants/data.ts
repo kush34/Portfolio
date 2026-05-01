@@ -1,12 +1,15 @@
 import { blog, company, project, review } from "@/types";
 import { FaDocker, FaNodeJs, FaReact } from "react-icons/fa";
-import { SiFastapi, SiNextdotjs, SiPostgresql, SiPrisma, SiRedis, SiSocketdotio, SiSupabase, SiTailwindcss, SiTypescript, SiVitest, SiWebrtc } from "react-icons/si";
+import { SiDjango, SiFastapi, SiNextdotjs, SiPostgresql, SiPrisma, SiRedis, SiSocketdotio, SiSupabase, SiTailwindcss, SiTypescript, SiVitest, SiWebrtc } from "react-icons/si";
 import { BiGitBranch, BiLogoDjango, BiLogoMongodb } from "react-icons/bi";
 import { IoLogoFirebase } from "react-icons/io5";
 import { SiJest } from "react-icons/si";
 import Tanstack from "@/components/icons/tanstack";
 import { FaAws } from "react-icons/fa6";
 import { VscGitMerge } from "react-icons/vsc";
+import { TbWebhook } from "react-icons/tb";
+import { GiBearFace } from "react-icons/gi";
+import { DiReact } from "react-icons/di";
 
 const projects: project[] = [
     {
@@ -78,22 +81,44 @@ const companies: company[] = [
     {
         name: "AxentraOS",
         position: "Software Intern",
-        time: "March-2026 - present",
-        points: ["Built and deployed scalable full-stack features using NextJS, and PostgreSQL, improving application performance and usability.", "Delivered end-to-end functionality with comprehensive test coverage, ensuring reliability and reducing production issues.", "Enhanced developer productivity by refactoring code and optimizing the code review pipeline, cuttingreview time significantly."],
+        time: "March 2026 - Present",
+        points: [
+            "Designed and shipped Billing & Dashboard APIs covering MRR, ARR, NRR, and Top Metrics — enabling real-time financial insights across the platform.",
+            "Built a full Referral Program system from scratch — referral code generation, click tracking via webhooks, discount logic, and transactional email triggers for referrers, referees, and merchants across 6+ API endpoints.",
+            "Integrated order webhook pipeline to handle referral conversions, coupon validation, and multi-party email dispatch in a single request flow.",
+        ],
+        techs: [
+            { icon: SiDjango, label: "Django" },
+            { icon: SiFastapi, label: "FastAPI" },
+            { icon: SiPostgresql, label: "PostgreSQL" },
+            { icon: DiReact, label: "React" },
+            { icon: TbWebhook, label: "Webhooks" },
+        ],
         link: "https://axentraos.com/",
         img_bg: "dark:invert dark:brightness-0",
         imageLink: `${import.meta.env.VITE_COMP2_IMG}`,
-        altImage: "company-logo of company"
+        altImage: "AxentraOS company logo",
     },
     {
         name: "Ipex Logistics",
         position: "Software Intern",
-        time: "Sept-2025 - 3 monthns",
-        points: ["Built and deployed scalable full-stack features using NextJS, and PostgreSQL, improving application performance and usability.", "Delivered end-to-end functionality with comprehensive test coverage, ensuring reliability and reducing production issues.", "Enhanced developer productivity by refactoring code and optimizing the code review pipeline, cuttingreview time significantly."],
+        time: "Sept 2025 - Dec 2025",
+        points: [
+            "Designed and shipped Dashboard APIs and Notification Services across multiple production projects.",
+            "Built backend services using Django and FastAPI — handling REST APIs, background tasks, and business logic.",
+            "Integrated multi-partner logistics systems, enabling seamless order tracking and fulfillment across providers.",
+        ],
+        techs: [
+            { icon: SiTypescript, label: "Typescript" },
+            { icon: SiNextdotjs, label: "Next.js" },
+            { icon: SiPostgresql, label: "PostgreSQL" },
+            { icon: GiBearFace, label: "Zustand" },
+            { icon: SiPrisma, label: "Prisma" },
+        ],
         link: "https://www.ipexlogistics.com/",
         imageLink: `${import.meta.env.VITE_COMP_IMG}`,
-        altImage: "company-logo of company"
-    }
+        altImage: "Ipex Logistics company logo",
+    },
 ]
 const blogs: blog[] = [
     {

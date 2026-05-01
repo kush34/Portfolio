@@ -67,17 +67,17 @@ const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggle
       >
         <div className="hidden md:flex flex-col items-start gap-4 absolute -left-5 top-1/8">
           {socialLinks.map((s, i) => (
-              <motion.a
-                key={i}
-                href={s.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center w-10 h-10 rounded-full shadow-md hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all"
-                whileHover={{ scale: 1.2 }}
-                title={s.label}
-              >
-                {s.icon}
-              </motion.a>
+            <motion.a
+              key={i}
+              href={s.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-10 h-10 rounded-full shadow-md hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all"
+              whileHover={{ scale: 1.2 }}
+              title={s.label}
+            >
+              {s.icon}
+            </motion.a>
           ))}
         </div>
 
@@ -118,23 +118,24 @@ const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggle
             <motion.a
               href={`${import.meta.env.VITE_RESUME_LINK}`}
               target="_blank"
-              className="tech flex items-center gap-2 xl:w-1/3 hover:scale-101 duration-100 hover:shadow-2xl ease-in text-center justify-center rounded-xl h-8"
+              rel="noopener noreferrer"
+              className="tech flex items-center justify-center border border-neutral-500 gap-2 lg:w-1/6 duration-100 hover:shadow ease-in rounded-xl h-8 px-3"
             >
-              <HiOutlineDownload className="text-lg " />
-              Resume
+              <HiOutlineDownload className="text-lg shrink-0" />
+              <span>Resume</span>
             </motion.a>
           </div>
         </div>
         <div className="hidden md:flex flex-col items-start gap-4 absolute right-6 top-1/8">
           {actions.map((s, i) => (
-             <span
-                className="flex items-center justify-center w-10 h-10 rounded-full shadow-md hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all"
-                onClick={s.onclick}
-              >
-                {s.icon}
-              </span>
+            <span
+              className="flex items-center justify-center w-10 h-10 rounded-full shadow-md hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all"
+              onClick={s.onclick}
+            >
+              {s.icon}
+            </span>
           ))}
-        </div>  
+        </div>
       </motion.section>
       <motion.div
         animate={controls}
@@ -150,17 +151,17 @@ const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggle
 
           <div className="navbarFloat flex gap-1.5 sm:gap-3 md:gap-4 ml-auto sm:ml-6 flex-shrink-0">
             {socialLinks.map((s, i) => (
-                <motion.a
-                  key={i}
-                  href={s.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center rounded-full hover:shadow-[0_0_15px_rgba(255,255,255,0.25)] transition-all text-sm sm:text-base"
-                  whileHover={{ scale: 1.01 }}
-                  title={s.label}
-                >
-                  {s.icon}
-                </motion.a>
+              <motion.a
+                key={i}
+                href={s.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center rounded-full hover:shadow-[0_0_15px_rgba(255,255,255,0.25)] transition-all text-sm sm:text-base"
+                whileHover={{ scale: 1.01 }}
+                title={s.label}
+              >
+                {s.icon}
+              </motion.a>
             ))}
           </div>
         </div>

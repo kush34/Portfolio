@@ -3,33 +3,31 @@ import React, { useEffect, useRef, useState } from 'react';
 const PikachuCursor: React.FC = () => {
     const cursorRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
     const pikachuRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
-
     const elementRef = useRef<HTMLDivElement>(null);
-
     const isMovingRef = useRef<boolean>(false);
     const rotationRef = useRef<number>(0);
-
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const prevMovingRef = useRef<boolean>(false);
 
-    const [isFast, setIsFast] = useState<boolean>(false);
-    const [isMoving, setIsMoving] = useState<boolean>(false);
-    const [rotation, setRotation] = useState<number>(0);
+    const [isFast, setIsFast] = useState(false);
+    const [isMoving, setIsMoving] = useState(false);
+    const [gifKey, setGifKey] = useState(0);
+    const [flipped, setFlipped] = useState(false);
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             cursorRef.current = { x: e.clientX, y: e.clientY };
 
-            isMovingRef.current = true;
-            setIsMoving(true);
-
-            if (timeoutRef.current) {
-                clearTimeout(timeoutRef.current);
+            if (!isMovingRef.current) {
+                isMovingRef.current = true;
+                setIsMoving(true);
             }
 
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
             timeoutRef.current = setTimeout(() => {
                 isMovingRef.current = false;
                 setIsMoving(false);
-            }, 200);
+            }, 500);
         };
 
         window.addEventListener('mousemove', handleMouseMove);
@@ -41,33 +39,24 @@ const PikachuCursor: React.FC = () => {
 
             const targetX = cursorRef.current.x + 25;
             const targetY = cursorRef.current.y + 30;
-            const currentX = pikachuRef.current.x;
-            const currentY = pikachuRef.current.y;
+            const dx = targetX - pikachuRef.current.x;
+            const dy = targetY - pikachuRef.current.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
 
-            const distX = targetX - currentX;
-            const distY = targetY - currentY;
-
-            const distance = Math.sqrt(distX * distX + distY * distY);
-
-            const speedThreshold = 150;
-            const isCurrentlyFast = distance > speedThreshold;
-            if (isCurrentlyFast !== isFast) setIsFast(isCurrentlyFast);
+            const isCurrentlyFast = distance > 150;
+            setIsFast(prev => prev !== isCurrentlyFast ? isCurrentlyFast : prev);
 
             const ease = isCurrentlyFast ? 0.15 : 0.08;
-            pikachuRef.current.x += distX * ease;
-            pikachuRef.current.y += distY * ease;
+            pikachuRef.current.x += dx * ease;
+            pikachuRef.current.y += dy * ease;
 
             if (isMovingRef.current && distance > 5) {
-                const angle = Math.atan2(distY, distX) * (180 / Math.PI);
-                if (Math.abs(angle - rotationRef.current) > 1) {
-                    rotationRef.current = angle;
-                    setRotation(angle);
-                }
+                const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+                rotationRef.current = angle;
+                setFlipped(Math.abs(angle) > 90);
             } else if (!isMovingRef.current) {
-                if (rotationRef.current !== 0) {
-                    rotationRef.current = 0;
-                    setRotation(0);
-                }
+                rotationRef.current = 0;
+                setFlipped(false);
             }
 
             elementRef.current.style.transform = `translate3d(${pikachuRef.current.x}px, ${pikachuRef.current.y}px, 0) rotate(${rotationRef.current}deg)`;
@@ -82,32 +71,36 @@ const PikachuCursor: React.FC = () => {
             cancelAnimationFrame(requestRef);
             if (timeoutRef.current) clearTimeout(timeoutRef.current);
         };
-    }, [isFast]);
+    }, []);
 
-    const getImageSource = (): string => {
-        if (!isMoving) return "./sleepingPicka.gif";
-        if (isFast) return "./runPicka.gif";
-        return "./runPicka.gif";
-    };
+    // restart GIF on state change
+    useEffect(() => {
+        if (prevMovingRef.current !== isMoving) {
+            prevMovingRef.current = isMoving;
+            setGifKey(prev => prev + 1);
+        }
+    }, [isMoving]);
+
+    const src = isMoving
+        ? `./runPicka.gif?v=${gifKey}`
+        : `./sleepingPicka.gif?v=${gifKey}`;
 
     return (
         <div
             ref={elementRef}
             className="fixed top-0 left-0 pointer-events-none z-50 will-change-transform -mt-10 -ml-10"
         >
-            <div className="relative flex items-center justify-center">
-                <div className={`transition-all duration-300 z-10 ${isFast ? 'scale-110' : 'scale-100'}`}>
-                    <img
-                        key={isMoving ? 'moving' : 'sleeping'}
-                        src={getImageSource()}
-                        alt="Pikachu Cursor"
-                        className="w-15 h-15 object-contain"
-                        style={{
-                            transform: (isMoving && Math.abs(rotation) > 90) ? 'scaleY(-1)' : 'none',
-                            transition: 'transform 0.2s'
-                        }}
-                    />
-                </div>
+            <div className={`transition-transform duration-300 ${isFast ? 'scale-110' : 'scale-100'}`}>
+                <img
+                    key={gifKey}
+                    src={src}
+                    alt="Pikachu"
+                    className="w-15 h-15 object-contain"
+                    style={{
+                        transform: flipped ? 'scaleX(-1)' : 'none',
+                        transition: 'transform 0.15s'
+                    }}
+                />
             </div>
         </div>
     );

@@ -16,132 +16,41 @@ interface Props {
 }
 
 const LeetCodeStats: React.FC<Props> = ({ username }) => {
-  const [stats, setStats] = useState<LeetCodeStats | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [isDark, setIsDark] = useState(true);
+  const stats = {
+    easySolved: 253, totalEasy: 932,
+    mediumSolved: 124, totalMedium: 2026,
+    hardSolved: 5, totalHard: 915,
+    totalSolved: 382,
+  };
 
-  useEffect(() => {
-    setIsDark(document.documentElement.classList.contains("dark"));
-  }, []);
-
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        // const res = await fetch(`https://leetcode-stats-api.herokuapp.com/${username}`);
-        // const data = await res.json();
-
-        setStats({
-          totalSolved: 382,
-          totalQuestions: 3873,
-          easySolved: 253,
-          totalEasy: 932,
-          mediumSolved: 124,
-          totalMedium: 2026,
-          hardSolved: 5,
-          totalHard: 915,
-        });
-        setLoading(false);
-      } catch (err) {
-        setError('Failed to fetch stats');
-        setLoading(false);
-      }
-    };
-
-    fetchStats();
-  }, [username]);
-
-  if (loading) return <div className="text-gray-400 text-center p-8">Loading...</div>;
-  if (error) return <div className="text-red-500 text-center p-8">{error}</div>;
-  if (!stats) return null;
-
-  const radius = 85;
-  const circumference = 2 * Math.PI * radius;
-  
-  const easyPercent = (stats.easySolved / stats.totalSolved) * 100;
-  const mediumPercent = (stats.mediumSolved / stats.totalSolved) * 100;
-  const hardPercent = (stats.hardSolved / stats.totalSolved) * 100;
-  
-  const easyLength = (easyPercent / 100) * circumference;
-  const mediumLength = (mediumPercent / 100) * circumference;
-  const hardLength = (hardPercent / 100) * circumference;
+  const levels = [
+    { label: "Easy", solved: stats.easySolved, total: stats.totalEasy, color: "bg-green-500", text: "text-green-500" },
+    { label: "Medium", solved: stats.mediumSolved, total: stats.totalMedium, color: "bg-yellow-500", text: "text-yellow-500" },
+    { label: "Hard", solved: stats.hardSolved, total: stats.totalHard, color: "bg-red-500", text: "text-red-500" },
+  ];
 
   return (
-    <div className="w-full flex flex-col md:flex-row items-center justify-center gap-16 rounded-xl p-8 shadow tech">
-      <div className="relative w-56 h-56">
-        <svg className="w-full h-full -rotate-90">
-          <circle
-            cx="112"
-            cy="112"
-            r={radius}
-            stroke={isDark ? "#1f2937" : "#e5e5e5"}
-            strokeWidth="20"
-            fill="none"
-          />
-          
-          {/* Easy (Green) */}
-          <circle
-            cx="112"
-            cy="112"
-            r={radius}
-            stroke="#22c55e"
-            strokeWidth="20"
-            fill="none"
-            strokeDasharray={`${easyLength} ${circumference}`}
-            strokeDashoffset="0"
-            strokeLinecap="butt"
-            className="transition-all duration-1000"
-          />
-          
-          {/* Medium (Yellow) */}
-          <circle
-            cx="112"
-            cy="112"
-            r={radius}
-            stroke="#eab308"
-            strokeWidth="20"
-            fill="none"
-            strokeDasharray={`${mediumLength} ${circumference}`}
-            strokeDashoffset={-easyLength}
-            strokeLinecap="butt"
-            className="transition-all duration-1000"
-          />
-          
-          {/* Hard (Red) */}
-          <circle
-            cx="112"
-            cy="112"
-            r={radius}
-            stroke="#ef4444"
-            strokeWidth="20"
-            fill="none"
-            strokeDasharray={`${hardLength} ${circumference}`}
-            strokeDashoffset={-(easyLength + mediumLength)}
-            strokeLinecap="butt"
-            className="transition-all duration-1000"
-          />
-        </svg>
-        
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <div className="text-xl xl:text-5xl font-bold">{stats.totalSolved}</div>
-          <div className="text-base">/{stats.totalQuestions}</div>
-          <div className="text-xs mt-1">✓ Solved</div>
-        </div>
+    <div className="w-full max-w-2xl flex flex-col gap-6">
+      <div className="flex items-baseline gap-2">
+        <span className="text-5xl font-bold">{stats.totalSolved}</span>
+        <span className="text-zinc-500 text-sm">problems solved</span>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-5 xl:gap-12">
-        <div className="rounded p-12">
-          <div className="text-green-500 font-semibold text-xl m-2">Easy</div>
-          <div className="text-lg font-bold">{stats.easySolved}/{stats.totalEasy}</div>
-        </div>
-        <div className="rounded p-12">
-          <div className="text-yellow-500 font-semibold text-xl mb-2">Medium</div>
-          <div className="text-lg font-bold">{stats.mediumSolved}/{stats.totalMedium}</div>
-        </div>
-        <div className="rounded p-12">
-          <div className="text-red-500 font-semibold text-xl mb-2">Hard</div>
-          <div className="text-lg font-bold">{stats.hardSolved}/{stats.totalHard}</div>
-        </div>
+      <div className="flex flex-col gap-4">
+        {levels.map(({ label, solved, total, color, text }) => (
+          <div key={label} className="flex flex-col gap-1">
+            <div className="flex justify-between text-sm">
+              <span className={text}>{label}</span>
+              <span className="text-zinc-500">{solved} / {total}</span>
+            </div>
+            <div className="w-full h-1.5 bg-zinc-500 rounded-full">
+              <div
+                className={`h-1.5 rounded-full ${color} transition-all duration-700`}
+                style={{ width: `${(solved / total) * 100}%` }}
+              />
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
