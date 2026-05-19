@@ -23,7 +23,11 @@ const ProjectCard = (project: project) => {
       </div>
       <div className='flex flex-col'>
         <span className='text-lg md:text-2xl font-medium my-2'>{project.title}</span>
-        <span className='text-secondary'>{project.description}</span>
+        <span className='text-secondary'>
+          {project.description.length > 120
+            ? project.description.slice(0, 120) + '...'
+            : project.description}
+        </span>
       </div>
       <div className='flex justify-between mt-7 text-xl'>
         {project.liveLink && <a rel="noopener noreferrer"

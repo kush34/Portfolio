@@ -44,7 +44,7 @@ const App = () => {
   }
 
 
-  const [visibleCount, setVisibleCount] = useState(4);
+  const [visibleCount, setVisibleCount] = useState(6);
   const handleShowMore = () => {
     setVisibleCount((prev) => prev + 4);
   };

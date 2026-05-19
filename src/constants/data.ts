@@ -28,11 +28,33 @@ const projects: project[] = [
         title: "Dr.Writer | Online Document Editor",
         techstack: ["React", "Nodejs", "TailwindCSS", "Firebase", "Socket.IO"],
         description:
-            "Dr.Writer is an online document editor that allows users to create, edit, and collaborate on documents in real-time. It provides a smooth and responsive editing experience. Users can access their documents from anywhere, making it a great tool for remote work and team collaboration.",
+        "Dr.Writer is an online document editor that allows users to create, edit, and collaborate on documents in real-time. It provides a smooth and responsive editing experience. Users can access their documents from anywhere, making it a great tool for remote work and team collaboration.",
         image: `${import.meta.env.VITE_IMAGE2}`,
         gitlink: "https://github.com/kush34/Dr.Writer",
         liveLink: "https://dr-writer.vercel.app/",
         altImage: "project2-Document Editor web app"
+    },
+        {
+            id: 7,
+            title: "Guarded AI Agent | MCP-Powered Policy Engine",
+            techstack: ["React", "Node.js", "TailwindCSS", "MCP Protocol", "Claude API", "WebSockets"],
+            description:
+                "A full-stack AI agent with real-time guardrails enforcement. Features a live policy dashboard to block tools, require human approval, and validate inputs — all without restarting the agent. Built with MCP protocol support for dynamic tool discovery across multiple servers, including a custom MCP server with CRUD tools.",
+            image: `${import.meta.env.VITE_IMAGE7}`,
+            gitlink: "https://github.com/YOUR_USERNAME/guarded-ai-agent",
+            liveLink: "https://your-deployed-link.vercel.app/",
+            altImage: "Guarded AI Agent with MCP Support and Policy Dashboard"
+        },
+    {
+        id: 8,
+        title: "Woop | VS Code Project Launcher",
+        techstack: ["TypeScript", "VS Code API", "JavaScript"],
+        description:
+            "Woop is a VS Code extension that lets you launch, switch, and run projects directly from the status bar. Features auto-detection of dev commands across Node, Python, Go, Rust, Docker and more, with live state indicators and one-click stop/restart.",
+        image: `${import.meta.env.VITE_IMAGE8}`,
+        gitlink: "https://github.com/kush34/Woop",
+        liveLink: "https://marketplace.visualstudio.com/items?itemName=chattkush.woop",
+        altImage: "Woop VS Code Project Launcher Extension"
     },
     {
         id: 3,
