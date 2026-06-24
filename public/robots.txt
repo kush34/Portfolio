@@ -1,2 +1,15 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# AI Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Sitemap
+Sitemap: https://chattkush.online/sitemap.xml
