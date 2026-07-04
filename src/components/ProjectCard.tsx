@@ -1,40 +1,92 @@
-import { motion, useAnimation } from "framer-motion";
-import { MdArrowOutward } from "react-icons/md";
-import { FaGithub } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
-import { div } from 'framer-motion/client';
-import { GoArrowUpRight } from 'react-icons/go';
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { ExternalLink } from "lucide-react";
+
 import { project } from "@/types";
+
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+
+import { Button } from "@/components/ui/button";
+import { FaGithub } from "react-icons/fa6";
+
+const MotionCard = motion(Card);
 
 const ProjectCard = (project: project) => {
   const navigate = useNavigate();
-  const handleRedirect = () => {
-    navigate(`/projectPage/${project.id}`)
-  }
+
   return (
-    <motion.div initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 0.8, y: 20, padding: "15px", borderRadius: "1%" }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className='tech flex flex-col gap-6 shadow'
-      whileHover={{ opacity: 1, scale: 1.005 }}
+    <MotionCard
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+      onClick={() => navigate(`/projectPage/${project.id}`)}
+      className="group cursor-pointer overflow-hidden transition-shadow hover:shadow-xl"
     >
-      <div className=''>
-        <img src={project.image} className='rounded' alt={project.altImage} />
-      </div>
-      <div className='flex flex-col'>
-        <span className='text-lg md:text-2xl font-medium my-2'>{project.title}</span>
-        <span className='text-secondary'>
-          {project.description.length > 120
-            ? project.description.slice(0, 120) + '...'
-            : project.description}
-        </span>
-      </div>
-      <div className='flex justify-between mt-7 text-xl'>
-        {project.liveLink && <a rel="noopener noreferrer"
-          aria-label={`View live project: ${project.title || 'Project'}`} className='flex gap-2 items-center' target={'_blank'} href={`${project.liveLink}`}><GoArrowUpRight /></a>}
-        {project.gitlink && <a className='flex gap-2 items-center' rel="noopener noreferrer" aria-label={`View GitHub repository for ${project.title || 'Project'}`} target={'_blank'} href={`${project.gitlink}`}><FaGithub /></a>}
-      </div>
-    </motion.div>
+        <img
+          src={project.image}
+          alt={project.altImage}
+          className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+      <CardHeader className="p-0">
+      </CardHeader>
+
+      <CardContent className="space-y-3">
+        <h3 className="text-xl font-semibold">
+          {project.title}
+        </h3>
+
+        <p className="text-sm text-muted-foreground line-clamp-3">
+          {project.description}
+        </p>
+      </CardContent>
+
+      <CardFooter className="flex justify-between">
+        {project.liveLink ? (
+          <Button
+            asChild
+            variant="outline"
+            size="icon"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <a
+              href={project.liveLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${project.title}`}
+            >
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </Button>
+        ) : (
+          <div />
+        )}
+
+        {project.gitlink && (
+          <Button
+            asChild
+            variant="ghost"
+            size="icon"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <a
+              href={project.gitlink}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`GitHub repository for ${project.title}`}
+            >
+              <FaGithub className="h-4 w-4" />
+            </a>
+          </Button>
+        )}
+      </CardFooter>
+    </MotionCard>
   );
 };
 

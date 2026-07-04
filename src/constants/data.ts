@@ -147,31 +147,36 @@ const blogs: blog[] = [
         title: "My First Interview Experience",
         content: "My Interview experience at a firm in Mumbai",
         time: "04 March 2026",
-        link: "/blog/Interview"
+        link: "/blog/Interview",
+        slug: "/blog/Interview",
     },
     {
         title: "Making an App out of spite | GeoImg",
         content: "Making an app after getting frustated from Ads",
         time: "10 Feb 2026",
         link: "/blog/GeoImg",
+        slug: "/blog/GeoImg",
     },
     {
         title: "How to be sane when developing complex application | Testing with Jest",
         content: "I was doing development on my project and after some time i did some code refactoring and it was simple so i pushed the code to production. The things about pushing code and not testing them is when you make such changes and push it you think you have done is right but some things break and are easy to notice manually.",
         time: "1 Nov 2025",
         link: "/blog/testing",
+        slug: "/blog/testing",
     },
     {
         title: "Suchale | chat application | MERN Stack + Redis",
         content: "Explaining Websocket and Chat App in detail",
         time: "1 Nov 2025",
         link: "/blog/Suchale",
+        slug: "/blog/Suchale",
     },
     {
         title: "FastAPI | Express to fastAPI Journey",
         content: "understanding fastapi from an express js pov",
         time: "18 March 2026",
-        link: "/blog/fastapi",
+      link: "/blog/fastapi",
+        slug: "/blog/fastapi",
     }
 ]
 const reviews: review[] = [

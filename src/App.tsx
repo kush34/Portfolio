@@ -14,10 +14,10 @@ import PikachuCursor from "@/components/PickachuCursor";
 import keys from 'ctrl-keys'
 import ShortcutModal from "@/components/ShortcutModel";
 
-import LeetCodeStats from "@/components/leetcode";
 import { blogs, companies, projects, reviews, techList } from "@/constants/data";
-
-
+import FadeSection from "@/components/fade-section";
+import LeetCodeStats from "@/components/leetcode";
+FadeSection
 
 
 const App = () => {
@@ -107,7 +107,7 @@ const App = () => {
         setFontSize(8);
       }
       else {
-        setBlockSize(14);
+        setBlockSize(13 );
         setBlockMargin(5);
         setFontSize(12);
       }
@@ -136,24 +136,21 @@ const App = () => {
           <Analytics />
 
           <div className="w-full max-w-5xl mx-auto flex flex-col gap-24 py-24 main">
-            <section className="">
+            <FadeSection
+            >
               <Profile toggleTheme={changeTheme} toggleModel={() => setShowShortcuts(true)} />
-            </section>
+            </FadeSection>
             {showShortcuts && <ShortcutModal onClose={() => setShowShortcuts(false)} />}
-            <div className="flex flex-wrap items-center gap-2 text-2xl sm:text-3xl">
+            <FadeSection className="flex flex-wrap items-center gap-2 text-2xl sm:text-3xl">
               {techList.map((t) => (
                 <Tech key={t.name} name={t.name} Icon={t.Icon} color={t.color} />
               ))}
-            </div>
-            <motion.section
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 20 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="z-10 experience flex flex-col gap-15">
+            </FadeSection>
+            <FadeSection className="z-10 experience flex flex-col gap-15">
               {companies.map((comp) =>
                 <ExperienceCard {...comp} theme={theme} />
               )}
-            </motion.section>
+            </FadeSection>
               <span className="text-xs text-zinc-600">try alt+w 👀</span>
             <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {projects.slice(0, visibleCount).map((p) => (
@@ -189,26 +186,21 @@ const App = () => {
                 </div>
               </section> */}
 
-            <section className="z-10 flex flex-col gap-10 items-center justify-center py-10 rounded-2xl">
+            <FadeSection
+             className="z-10 flex flex-col gap-10 items-center justify-center py-10 rounded-2xl">
               <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Blogs</h2>
               <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
                 {blogs.map((blog, index) =>
                   <BlogCard key={index} {...blog} />
                 )}
               </div>
-            </section>
-            <motion.section
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 20 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+            </FadeSection>
+            <FadeSection
               className="z-10 flex flex-col gap-10 items-center justify-center md:py-10 rounded-2xl">
               <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Leetcode Grind</h2>
               <LeetCodeStats username="kush_34" />
-            </motion.section>
-            <motion.section
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 20 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+            </FadeSection>
+            <FadeSection
               className="w-full z-10 flex flex-col gap-10 items-center justify-center md:py-10 rounded-2xl">
               <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Github Activity</h2>
               <div className="overflow-x-hidden">
@@ -221,7 +213,7 @@ const App = () => {
                   fontSize={fontSize}
                 />
               </div>
-            </motion.section>
+            </FadeSection>
             <section className="z-10 px-4 mb-10 h-[10vh] text-center">
               <span className="text-zinc-500 text-center">Made with love by kush</span>
             </section>

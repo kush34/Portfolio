@@ -10,18 +10,6 @@ import { IoLogoFirebase } from "react-icons/io5";
 import { IoMdMoon } from "react-icons/io";
 import { HiOutlineDownload } from "react-icons/hi";
 
-
-const techList = [
-  { name: "React", Icon: FaReact },
-  { name: "Nodejs", Icon: FaNodeJs },
-  { name: "Tailwind", Icon: SiTailwindcss },
-  { name: "MongoDB", Icon: BiLogoMongodb },
-  { name: "Firebase", Icon: IoLogoFirebase },
-  { name: "WebRTC", Icon: SiWebrtc },
-];
-
-
-
 const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggleModel: () => void }) => {
   const [isSticky, setIsSticky] = useState(false);
   const controls = useAnimation();
