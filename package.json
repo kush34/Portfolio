@@ -2,31 +2,29 @@
   "name": "portfolio",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
     "@fontsource-variable/geist": "^5.2.9",
-    "@tailwindcss/vite": "^4.0.6",
     "@vercel/analytics": "^1.5.0",
+    "@tailwindcss/postcss": "^4.0.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "ctrl-keys": "^1.0.6",
-    "dotenv": "^17.2.3",
     "framer-motion": "^12.23.22",
     "highlight.js": "^11.11.1",
     "lucide-react": "^1.23.0",
+    "next": "^15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-github-calendar": "^4.5.11",
     "react-icons": "^5.4.0",
     "react-markdown": "^10.1.0",
-    "react-router-dom": "^7.6.0",
     "recharts": "^3.8.0",
     "rehype-highlight": "^7.0.2",
     "remark-gfm": "^4.0.1",
@@ -36,17 +34,12 @@
     "tw-animate-css": "^1.4.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.19.0",
+    "@eslint/eslintrc": "^3.2.0",
+    "@types/node": "^22.10.7",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
-    "@types/tailwindcss": "^3.0.11",
-    "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.19.0",
-    "eslint-plugin-react": "^7.37.4",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-refresh": "^0.4.18",
-    "globals": "^15.14.0",
-    "typescript": "^5.9.3",
-    "vite": "^6.1.0"
+    "eslint-config-next": "^15.1.6",
+    "typescript": "^5.9.3"
   }
 }

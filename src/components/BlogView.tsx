@@ -1,11 +1,12 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 import { ArrowLeft } from "lucide-react";
 import keys from "ctrl-keys";
 
-import BlogPost from "../components/BlogPost";
-import { getBlogBySlug } from "../lib/loadBlog";
+import BlogPost from "@/components/BlogPost";
 import PikachuCursor from "@/components/PickachuCursor";
 import ShortcutModal from "@/components/ShortcutModel";
 
@@ -18,27 +19,24 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-export default function BlogPage() {
-  const { slug } = useParams<{ slug: string }>();
-  const navigate = useNavigate();
+export default function BlogView({
+  content,
+}: {
+  content: string;
+}) {
+  const router = useRouter();
 
-  const [theme, setTheme] = useState<"light" | "dark">(
-    localStorage.getItem("theme") === "dark" ? "dark" : "light"
-  );
-
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [customCursor, setCustomCursor] = useState(false);
-  const [content, setContent] = useState("");
 
   const handlerRef = useRef<ReturnType<typeof keys> | null>(null);
 
   useEffect(() => {
-    if (!slug) return;
-
-    getBlogBySlug(slug)
-      .then(setContent)
-      .catch(console.error);
-  }, [slug]);
+    setTheme(
+      localStorage.getItem("theme") === "dark" ? "dark" : "light"
+    );
+  }, []);
 
   useEffect(() => {
     document.documentElement.classList.toggle(
@@ -59,7 +57,7 @@ export default function BlogPage() {
 
     handler.add("alt+f", () => {
       window.open(
-        import.meta.env.VITE_RESUME_LINK,
+        process.env.NEXT_PUBLIC_RESUME_LINK,
         "_blank",
         "noopener,noreferrer"
       );
@@ -99,15 +97,17 @@ export default function BlogPage() {
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <TooltipProvider>
             <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={() => navigate("/")}
-                >
-                  <ArrowLeft className="h-5 w-5" />
-                </Button>
-              </TooltipTrigger>
+              <TooltipTrigger
+                render={
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => router.push("/")}
+                  >
+                    <ArrowLeft className="h-5 w-5" />
+                  </Button>
+                }
+              />
 
               <TooltipContent>
                 Back to Portfolio
@@ -122,7 +122,7 @@ export default function BlogPage() {
       </header>
 
       <main className="mx-auto max-w-5xl px-6 py-10">
-        <BlogPost slug={slug} content={content} />
+        <BlogPost content={content} />
       </main>
 
       {customCursor && <PikachuCursor />}

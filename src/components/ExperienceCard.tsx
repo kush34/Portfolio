@@ -1,3 +1,5 @@
+"use client";
+
 import { company } from "@/types";
 import { GoArrowUpRight } from "react-icons/go";
 import { TbPointFilled } from "react-icons/tb";
@@ -6,12 +8,6 @@ import {
   Card,
   CardContent,
 } from "@/components/ui/card";
-
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar";
 
 import { Badge } from "@/components/ui/badge";
 
@@ -75,14 +71,16 @@ const ExperienceCard = ({
                 <div className="flex flex-wrap justify-end gap-2">
                   {techs.map(({ icon: Icon, label }, idx) => (
                     <Tooltip key={idx}>
-                      <TooltipTrigger asChild>
-                        <Badge
-                          variant="secondary"
-                          className="h-9 w-9 p-0 rounded-full flex items-center justify-center"
-                        >
-                          <Icon size={18} />
-                        </Badge>
-                      </TooltipTrigger>
+                      <TooltipTrigger
+                        render={
+                          <Badge
+                            variant="secondary"
+                            className="h-9 w-9 p-0 rounded-full flex items-center justify-center"
+                          >
+                            <Icon size={18} />
+                          </Badge>
+                        }
+                      />
 
                       <TooltipContent>
                         {label}
@@ -96,19 +94,19 @@ const ExperienceCard = ({
             <div className="flex items-center gap-3">
               {link && (
                 <Button
-                  asChild
                   size="icon"
                   variant="ghost"
-                >
-                  <a
-                    href={link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Visit ${name}`}
-                  >
-                    <GoArrowUpRight size={18} />
-                  </a>
-                </Button>
+                  render={
+                    <a
+                      href={link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Visit ${name}`}
+                    >
+                      <GoArrowUpRight size={18} />
+                    </a>
+                  }
+                />
               )}
 
               <span className="text-sm text-muted-foreground">

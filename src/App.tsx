@@ -1,12 +1,12 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 import Profile from "@/components/Profile";
 import ProjectCard from "@/components/ProjectCard";
 import { Analytics } from "@vercel/analytics/react";
 import GitHubCalendar from "react-github-calendar";
-import { motion } from "framer-motion";
 import ExperienceCard from "@/components/ExperienceCard";
 import BlogCard from "@/components/BlogCard";
-import Review from "@/components/Review";
 import Tech from "@/components/Technology";
 
 
@@ -14,10 +14,9 @@ import PikachuCursor from "@/components/PickachuCursor";
 import keys from 'ctrl-keys'
 import ShortcutModal from "@/components/ShortcutModel";
 
-import { blogs, companies, projects, reviews, techList } from "@/constants/data";
+import { blogs, companies, projects, techList } from "@/constants/data";
 import FadeSection from "@/components/fade-section";
 import LeetCodeStats from "@/components/leetcode";
-FadeSection
 
 
 const App = () => {
@@ -25,7 +24,11 @@ const App = () => {
   const [customCurosr, setCustomCursor] = useState<boolean>(false);
   const [showShortcuts, setShowShortcuts] = useState<boolean>(false);
   const [theme, setTheme] = useState<"light" | "dark">(
-    localStorage.getItem("theme") === "dark" ? "dark" : "light"
+    () =>
+      (typeof window !== "undefined" &&
+        localStorage.getItem("theme") === "dark")
+        ? "dark"
+        : "light"
   );
   function toggleTheme() {
     const isDark = document.documentElement.classList.toggle("dark");
@@ -60,7 +63,7 @@ const App = () => {
       setTheme(prev => (prev === "dark" ? "light" : "dark"));
     });
     handler.add("alt+f", () => {
-      window.open(`${import.meta.env.VITE_RESUME_LINK}`, "_blank", "noopener,noreferrer");
+      window.open(`${process.env.NEXT_PUBLIC_RESUME_LINK}`, "_blank", "noopener,noreferrer");
     });
     handler.add("alt+k", () => {
       setShowShortcuts((prev) => !prev)
@@ -148,7 +151,7 @@ const App = () => {
             </FadeSection>
             <FadeSection className="z-10 experience flex flex-col gap-15">
               {companies.map((comp) =>
-                <ExperienceCard {...comp} theme={theme} />
+                <ExperienceCard key={comp.name} {...comp} theme={theme} />
               )}
             </FadeSection>
               <span className="text-xs text-zinc-600">try alt+w 👀</span>

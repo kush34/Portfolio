@@ -1,3 +1,5 @@
+"use client";
+
 import { technology } from "@/types";
 import { motion } from "framer-motion";
 

@@ -1,5 +1,7 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { ExternalLink } from "lucide-react";
 
 import { blog } from "@/types";
@@ -11,11 +13,11 @@ import { Button } from "@/components/ui/button";
 const MotionCard = motion(Card);
 
 const BlogCard = ({ title, content, time, slug }: blog) => {
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   return (
     <MotionCard
-      onClick={() => navigate(`${slug}`)}
+      onClick={() => navigate.push(`${slug}`)}
       whileHover={{ y: -4 }}
       whileTap={{ scale: 0.98 }}
       transition={{
@@ -37,7 +39,7 @@ const BlogCard = ({ title, content, time, slug }: blog) => {
           size="icon"
           onClick={(e) => {
             e.stopPropagation();
-            navigate(`${slug}`);
+            navigate.push(`${slug}`);
           }}
         >
           <ExternalLink className="h-4 w-4" />

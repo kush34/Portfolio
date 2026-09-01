@@ -1,13 +1,12 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
-import { MdKeyboardCommandKey, MdLocationOn } from "react-icons/md";
-import { FaReact, FaNodeJs } from "react-icons/fa";
-import { BiLogoMongodb } from "react-icons/bi";
-import { SiLeetcode, SiTailwindcss, SiWebrtc } from "react-icons/si";
-import { IoLogoFirebase } from "react-icons/io5";
 import { IoMdMoon } from "react-icons/io";
+import { MdKeyboardCommandKey, MdLocationOn } from "react-icons/md";
+import { SiLeetcode } from "react-icons/si";
 import { HiOutlineDownload } from "react-icons/hi";
 
 const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggleModel: () => void }) => {
@@ -80,7 +79,7 @@ const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggle
 
             {/* Profile */}
             <img
-              src={import.meta.env.VITE_PROFILE}
+              src={process.env.NEXT_PUBLIC_PROFILE}
               alt="profile"
               className="w-full h-full rounded -rotate-6 hover:rotate-1 object-cover shadow-lg transition-all duration-300 hover:ring-2 hover:shadow-[0_0_20px_5px_rgba(255,255,255,0.4)]"
             />
@@ -96,7 +95,7 @@ const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggle
         <div className="flex flex-col gap-4 sm:gap-5 max-w-full  xl:max-w-2xl">
           <div>
             <p className="leading-relaxed">
-              I'm <strong className="text-lg">Chatt Kush</strong>, a software engineer from Mumbai, India. Currently pursuing B.Tech CSE from
+              I&apos;m <strong className="text-lg">Chatt Kush</strong>, a software engineer from Mumbai, India. Currently pursuing B.Tech CSE from
               Renaissance University. I love technology, nerdy stuff, and cricket. Always curious, I enjoy
               coding, learning, and building new things.
             </p>
@@ -104,7 +103,7 @@ const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggle
 
           <div>
             <motion.a
-              href={`${import.meta.env.VITE_RESUME_LINK}`}
+              href={`${process.env.NEXT_PUBLIC_RESUME_LINK}`}
               target="_blank"
               rel="noopener noreferrer"
               className="tech flex items-center justify-center border border-neutral-500 gap-2 lg:w-1/6 duration-100 hover:shadow ease-in rounded-xl h-8 px-3"
@@ -117,6 +116,7 @@ const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggle
         <div className="hidden md:flex flex-col items-start gap-4 absolute right-6 top-1/8">
           {actions.map((s, i) => (
             <span
+              key={i}
               className="flex items-center justify-center w-10 h-10 rounded-full shadow-md hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all"
               onClick={s.onclick}
             >
@@ -131,7 +131,7 @@ const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggle
       >
         <div className="flex items-center gap-2 sm:gap-4 md:gap-8 px-3 sm:px-6 md:px-24 py-1 sm:py-3 rounded-xl sm:rounded-2xl backdrop-blur-xl shadow-lg">
           <img
-            src={`${import.meta.env.VITE_PROFILE}`}
+            src={`${process.env.NEXT_PUBLIC_PROFILE}`}
             alt="Profile Small"
             className="w-5 h-5 sm:w-10 sm:h-10 rounded-full object-cover ring-1 flex-shrink-0"
           />

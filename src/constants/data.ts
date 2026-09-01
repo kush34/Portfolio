@@ -26,15 +26,15 @@ import { DiReact } from "react-icons/di";
 
 const projects: project[] = [
   {
-    id: 8,
+    id: 9,
     description:
       "Open Logistics is an open-source logistics integration library that provides a unified interface for shipping providers such as Shiprocket, Delhivery, and iThink Logistics.",
     title: "Open-logistics | Integrate any logistics provider",
     techstack: ["Typescript"],
     gitlink: "https://github.com/kush34/Open-logistics",
     liveLink: "https://www.npmjs.com/package/open-logistics",
-    altImage: "project8-Open Logistics Library",
-    image: `${import.meta.env.VITE_IMAGE9}`,
+    altImage: "project9-Open Logistics Library",
+    image: `${process.env.NEXT_PUBLIC_IMAGE9}`,
   },
   {
     id: 1,
@@ -43,7 +43,7 @@ const projects: project[] = [
     description:
       "Suchale is a real-time messaging app similar to WhatsApp, allowing users to chat instantly, share media, and stay connected through secure, low-latency communication. It supports one-on-one and group conversations with real-time updates powered by Socket.IO.",
     gitlink: "https://github.com/kush34/Suchale",
-    image: `${import.meta.env.VITE_IMAGE1}`,
+    image: `${process.env.NEXT_PUBLIC_IMAGE1}`,
     liveLink: "https://suchale.vercel.app/",
     altImage: "project1-Chat Application Image",
   },
@@ -53,7 +53,7 @@ const projects: project[] = [
     techstack: ["React", "Nodejs", "TailwindCSS", "Firebase", "Socket.IO"],
     description:
       "Dr.Writer is an online document editor that allows users to create, edit, and collaborate on documents in real-time. It provides a smooth and responsive editing experience. Users can access their documents from anywhere, making it a great tool for remote work and team collaboration.",
-    image: `${import.meta.env.VITE_IMAGE2}`,
+    image: `${process.env.NEXT_PUBLIC_IMAGE2}`,
     gitlink: "https://github.com/kush34/Dr.Writer",
     liveLink: "https://dr-writer.vercel.app/",
     altImage: "project2-Document Editor web app",
@@ -71,7 +71,7 @@ const projects: project[] = [
     ],
     description:
       "A full-stack AI agent with real-time guardrails enforcement. Features a live policy dashboard to block tools, require human approval, and validate inputs — all without restarting the agent. Built with MCP protocol support for dynamic tool discovery across multiple servers, including a custom MCP server with CRUD tools.",
-    image: `${import.meta.env.VITE_IMAGE7}`,
+    image: `${process.env.NEXT_PUBLIC_IMAGE7}`,
     gitlink: "https://github.com/YOUR_USERNAME/guarded-ai-agent",
     liveLink: "https://your-deployed-link.vercel.app/",
     altImage: "Guarded AI Agent with MCP Support and Policy Dashboard",
@@ -82,7 +82,7 @@ const projects: project[] = [
     techstack: ["TypeScript", "VS Code API", "JavaScript"],
     description:
       "Woop is a VS Code extension that lets you launch, switch, and run projects directly from the status bar. Features auto-detection of dev commands across Node, Python, Go, Rust, Docker and more, with live state indicators and one-click stop/restart.",
-    image: `${import.meta.env.VITE_IMAGE8}`,
+    image: `${process.env.NEXT_PUBLIC_IMAGE8}`,
     gitlink: "https://github.com/kush34/Woop",
     liveLink:
       "https://marketplace.visualstudio.com/items?itemName=chattkush.woop",
@@ -95,7 +95,7 @@ const projects: project[] = [
     description:
       "Meet is a video calling app that lets users connect through high-quality video and audio. Users can create and join video calls making it ideal for remote meetings, online classes, and virtual gatherings.",
     gitlink: "https://github.com/kush34/video-p2p",
-    image: `${import.meta.env.VITE_IMAGE3}`,
+    image: `${process.env.NEXT_PUBLIC_IMAGE3}`,
     liveLink: "https://video-p2p-one.vercel.app/",
     altImage: "project3-Video p2p web app",
   },
@@ -105,7 +105,7 @@ const projects: project[] = [
     techstack: ["React Native", "Supabase", "TailwindCSS"],
     description:
       "It's a beta-stage trading app that enables users to log in, manage funds, monitor market prices, and handle their trading activities—all in a simple, professional interface.",
-    image: `${import.meta.env.VITE_IMAGE4}`,
+    image: `${process.env.NEXT_PUBLIC_IMAGE4}`,
     altImage: "project4-Paper Trading mobile app",
   },
   {
@@ -114,7 +114,7 @@ const projects: project[] = [
     techstack: ["React", "Nodejs", "TailwindCSS", "FirebaseAuth"],
     description:
       "Ecom is a fully functional e-commerce web application that includes both frontend and backend stacks, designed to showcase and handle typical online store workflows.",
-    image: `${import.meta.env.VITE_IMAGE5}`,
+    image: `${process.env.NEXT_PUBLIC_IMAGE5}`,
     gitlink: "https://github.com/kush34/ecom",
     liveLink: "https://ecom-eight-beta.vercel.app/",
     altImage: "project5-Clothing ecommerce web app",
@@ -125,7 +125,7 @@ const projects: project[] = [
     techstack: ["React", "Nodejs", "TailwindCSS", "FirebaseAuth"],
     description:
       "KhataChopdi is a simple and efficient expense tracker designed to help users manage their finances with ease. It allows users to log income and expenses, categorize transactions, and view spending insights.",
-    image: `${import.meta.env.VITE_IMAGE6}`,
+    image: `${process.env.NEXT_PUBLIC_IMAGE6}`,
     gitlink: "https://github.com/kush34/WiseMon",
     liveLink: "https://wise-mon.vercel.app/",
     altImage: "project5-Expense Tracker web app",
@@ -150,7 +150,7 @@ const companies: company[] = [
     ],
     link: "https://axentraos.com/",
     img_bg: "dark:invert dark:brightness-0",
-    imageLink: `${import.meta.env.VITE_COMP2_IMG}`,
+    imageLink: `${process.env.NEXT_PUBLIC_COMP2_IMG}`,
     altImage: "AxentraOS company logo",
   },
   {
@@ -170,7 +170,7 @@ const companies: company[] = [
       { icon: SiPrisma, label: "Prisma" },
     ],
     link: "https://www.ipexlogistics.com/",
-    imageLink: `${import.meta.env.VITE_COMP_IMG}`,
+    imageLink: `${process.env.NEXT_PUBLIC_COMP_IMG}`,
     altImage: "Ipex Logistics company logo",
   },
 ];
