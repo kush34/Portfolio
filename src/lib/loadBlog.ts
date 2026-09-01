@@ -1,20 +1,20 @@
-const blogFiles = import.meta.glob("../content/blog/*.md", {
-  as: "raw",
-});
+import fs from "fs";
+import path from "path";
 
-export async function getBlogBySlug(slug: string): Promise<string> {
-  const path = `../content/blog/${slug}.md`;
+const BLOG_DIR = path.join(process.cwd(), "src", "content", "blog");
 
-  const loader = blogFiles[path];
-  if (!loader) {
+export function getBlogBySlug(slug: string): string {
+  const filePath = path.join(BLOG_DIR, `${slug}.md`);
+  if (!fs.existsSync(filePath)) {
     throw new Error("Blog not found");
   }
-
-  return await loader();
+  return fs.readFileSync(filePath, "utf-8");
 }
 
 export function getAllBlogSlugs(): string[] {
-  return Object.keys(blogFiles).map((path) =>
-    path.split("/").pop()!.replace(".md", "")
-  );
+  if (!fs.existsSync(BLOG_DIR)) return [];
+  return fs
+    .readdirSync(BLOG_DIR)
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => f.replace(".md", ""));
 }
