@@ -39,8 +39,12 @@ export default function BlogPost({ content }: Props) {
                 - {children}
               </ul>
             ),
-            code({ inline, className, children, ...props }) {
-              if (inline) {
+            code({ className, children, ...props }) {
+              const isBlock =
+                /language-/.test(className ?? "") ||
+                String(children).includes("\n");
+
+              if (!isBlock) {
                 return (
                   <code className="rounded px-1 py-0.5 text-sm">
                     {children}

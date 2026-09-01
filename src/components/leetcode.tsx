@@ -1,3 +1,5 @@
+"use client";
+
 import { PolarAngleAxis, RadialBar, RadialBarChart } from "recharts";
 
 import {

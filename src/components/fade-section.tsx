@@ -1,7 +1,9 @@
-// components/FadeSection.tsx
-import { motion } from "framer-motion";
+"use client";
 
-export const fadeInBlur = {
+// components/FadeSection.tsx
+import { motion, type Variants } from "framer-motion";
+
+export const fadeInBlur: Variants = {
   hidden: {
     opacity: 0,
     y: 120,
@@ -13,7 +15,7 @@ export const fadeInBlur = {
     filter: "blur(0px)",
     transition: {
       duration: 2,
-      ease: [0.22, 1, 0.36, 1], // smooth easeOut
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   },
 };

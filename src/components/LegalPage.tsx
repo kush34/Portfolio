@@ -1,5 +1,5 @@
 
-const LegalPage = ({ type }: { type: String }) => {
+const LegalPage = ({ type }: { type: string }) => {
   const isPrivacy = type === "privacy";
 
   return (
