@@ -5,6 +5,8 @@ import { ExternalLink } from "lucide-react";
 
 import { project } from "@/types";
 
+import NpmBadge from "@/components/NpmBadge";
+
 import {
   Card,
   CardContent,
@@ -14,7 +16,7 @@ import {
 
 import { FaGithub } from "react-icons/fa6";
 
-const MotionCard = motion(Card);
+const MotionCard = motion.create(Card);
 
 const ProjectCard = (project: project) => {
   return (
@@ -26,11 +28,14 @@ const ProjectCard = (project: project) => {
       viewport={{ once: true }}
       className="group overflow-hidden transition-shadow hover:shadow-xl"
     >
-      <img
-        src={project.image}
-        alt={project.altImage}
-        className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
-      />
+      <div className="relative">
+        <img
+          src={project.image}
+          alt={project.altImage}
+          className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+        {project.npmPackage && <NpmBadge name={project.npmPackage} />}
+      </div>
       <CardHeader className="p-0"></CardHeader>
 
       <CardContent className="space-y-3">

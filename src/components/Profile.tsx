@@ -24,11 +24,6 @@ const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggle
     { icon: <IoMdMoon />, link: "", label: "Theme", onclick: toggleTheme }
   ]
   useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved === "dark") document.documentElement.classList.add("dark");
-  }, []);
-
-  useEffect(() => {
     const handleScroll = () => {
       setIsSticky(window.scrollY > 200);
     };

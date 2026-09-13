@@ -36,6 +36,8 @@ const ExperienceCard = ({
   theme,
   techs,
 }: ExperienceCardProps) => {
+  const idPrefix = name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
   return (
     <Card className="border-none shadow-none bg-transparent">
       <CardContent className="space-y-6 p-5">
@@ -72,6 +74,7 @@ const ExperienceCard = ({
                   {techs.map(({ icon: Icon, label }, idx) => (
                     <Tooltip key={idx}>
                       <TooltipTrigger
+                        id={`${idPrefix}-tech-${idx}`}
                         render={
                           <Badge
                             variant="secondary"
@@ -96,6 +99,7 @@ const ExperienceCard = ({
                 <Button
                   size="icon"
                   variant="ghost"
+                  nativeButton={false}
                   render={
                     <a
                       href={link}
