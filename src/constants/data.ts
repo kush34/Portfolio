@@ -33,6 +33,7 @@ const projects: project[] = [
     techstack: ["Typescript"],
     gitlink: "https://github.com/kush34/Open-logistics",
     liveLink: "https://www.npmjs.com/package/open-logistics",
+    npmPackage: "open-logistics",
     altImage: "project9-Open Logistics Library",
     image: `${process.env.NEXT_PUBLIC_IMAGE9}`,
   },

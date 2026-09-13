@@ -173,7 +173,42 @@
 
 /* -------------------------------
    ANIMATIONS (pure CSS)
--------------------------------- */
+ -------------------------------- */
+.badge-shimmer {
+  animation: badge-glow 2.4s ease-in-out infinite;
+}
+.badge-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.7) 50%,
+    transparent 70%
+  );
+  transform: translateX(-150%);
+  animation: badge-shimmer 2.4s ease-in-out infinite;
+}
+@keyframes badge-shimmer {
+  0% {
+    transform: translateX(-150%);
+  }
+  60%,
+  100% {
+    transform: translateX(150%);
+  }
+}
+@keyframes badge-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(251, 191, 36, 0.95);
+  }
+}
+
 @keyframes circle-in {
   from {
     clip-path: circle(0% at 50% 0%);

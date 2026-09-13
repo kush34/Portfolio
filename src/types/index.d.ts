@@ -9,6 +9,7 @@ export interface project {
   image: string;
   liveLink?: string;
   altImage: string;
+  npmPackage?: string;
 }
 
 export interface company {
