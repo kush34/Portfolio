@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 import { Button } from "@/components/ui/button";
 
-const MotionCard = motion(Card);
+const MotionCard = motion.create(Card);
 
 const BlogCard = ({ title, content, time, slug }: blog) => {
   const navigate = useRouter();

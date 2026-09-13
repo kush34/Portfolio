@@ -76,6 +76,7 @@ export default function LeetCodeCard({}: Props) {
 
       <CardContent className="flex flex-col items-center gap-8">
         <ChartContainer
+          id="leetcode-progress"
           config={chartConfig}
           className="mx-auto aspect-square h-[260px]"
         >

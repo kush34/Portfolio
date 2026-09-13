@@ -16,7 +16,7 @@ import {
 
 import { FaGithub } from "react-icons/fa6";
 
-const MotionCard = motion(Card);
+const MotionCard = motion.create(Card);
 
 const ProjectCard = (project: project) => {
   return (

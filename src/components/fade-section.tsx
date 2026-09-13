@@ -1,6 +1,7 @@
 "use client";
 
 // components/FadeSection.tsx
+import { useEffect, useState } from "react";
 import { motion, type Variants } from "framer-motion";
 
 export const fadeInBlur: Variants = {
@@ -26,6 +27,16 @@ interface Props {
 }
 
 export default function FadeSection({ children, className }: Props) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <section className={className}>{children}</section>;
+  }
+
   return (
     <motion.section
       variants={fadeInBlur}

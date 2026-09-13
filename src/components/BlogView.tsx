@@ -98,6 +98,7 @@ export default function BlogView({
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger
+                id="blog-back-trigger"
                 render={
                   <Button
                     variant="outline"

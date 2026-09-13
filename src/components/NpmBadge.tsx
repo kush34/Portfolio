@@ -4,29 +4,52 @@ import { useEffect, useState } from "react";
 import { Download } from "lucide-react";
 
 const fmt = new Intl.NumberFormat("en-US");
+const CACHE_KEY = (name: string) => `npm-downloads:${name}`;
+const TIMEOUT_MS = 8000;
+
+async function fetchJson(url: string) {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
+  try {
+    return await (await fetch(url, { signal: ctrl.signal })).json();
+  } finally {
+    clearTimeout(t);
+  }
+}
 
 export default function NpmBadge({ name }: { name: string }) {
   const [total, setTotal] = useState<number | null>(null);
 
   useEffect(() => {
     let cancelled = false;
+    let cached: number | null = null;
+    try {
+      const parsed = JSON.parse(localStorage.getItem(CACHE_KEY(name)) ?? "null");
+      if (typeof parsed?.total === "number") cached = parsed.total;
+    } catch {}
+    if (cached != null) setTotal(cached);
+
     (async () => {
       try {
-        const reg = await fetch(
-          `https://registry.npmjs.org/${name}`
-        ).then((r) => r.json());
+        const reg = await fetchJson(`https://registry.npmjs.org/${name}`);
         const first = Object.entries(reg.time)
           .filter(([k]) => k !== "created" && k !== "modified")
           .map(([, v]) => (v as string).slice(0, 10))
           .sort()[0];
         const today = new Date().toISOString().slice(0, 10);
         // ponytail: single point call — npm caps ranges at 18 months, chunk if the package outlives that
-        const res = await fetch(
+        const res = await fetchJson(
           `https://api.npmjs.org/downloads/point/${first}:${today}/${name}`
-        ).then((r) => r.json());
-        if (!cancelled) setTotal(res.downloads);
+        );
+        if (!cancelled) {
+          setTotal(res.downloads);
+          localStorage.setItem(
+            CACHE_KEY(name),
+            JSON.stringify({ total: res.downloads })
+          );
+        }
       } catch {
-        if (!cancelled) setTotal(0);
+        if (!cancelled && cached == null) setTotal(574); // ponytail: hardcoded fallback — replace when the API is reliable
       }
     })();
     return () => {

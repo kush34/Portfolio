@@ -23,13 +23,7 @@ const App = () => {
   const handlerRef = useRef<ReturnType<typeof keys> | null>(null);
   const [customCurosr, setCustomCursor] = useState<boolean>(false);
   const [showShortcuts, setShowShortcuts] = useState<boolean>(false);
-  const [theme, setTheme] = useState<"light" | "dark">(
-    () =>
-      (typeof window !== "undefined" &&
-        localStorage.getItem("theme") === "dark")
-        ? "dark"
-        : "light"
-  );
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   function toggleTheme() {
     const isDark = document.documentElement.classList.toggle("dark");
     const newTheme = isDark ? "dark" : "light";
@@ -60,7 +54,9 @@ const App = () => {
     handlerRef.current = handler;
 
     handler.add("alt+a", () => {
-      setTheme(prev => (prev === "dark" ? "light" : "dark"));
+      const isDark = document.documentElement.classList.toggle("dark");
+      setTheme(isDark ? "dark" : "light");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
     });
     handler.add("alt+f", () => {
       window.open(`${process.env.NEXT_PUBLIC_RESUME_LINK}`, "_blank", "noopener,noreferrer");
@@ -122,13 +118,12 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (theme === "dark") {
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark") {
       document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
     }
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+    setTheme(saved === "dark" ? "dark" : "light");
+  }, []);
   return (
     <div className="min-h-screen w-full relative">
       <div className="min-h-screen w-full relative ">
