@@ -52,7 +52,7 @@ const ExperienceCard = ({
                 src={imageLink}
                 alt={altImage}
                 className={`h-full w-full rounded-xl object-contain p-3 ${
-                  theme === "dark" ? img_bg : ""
+                  img_bg ?? ""
                 }`}
               />
             </div>

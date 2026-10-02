@@ -20,7 +20,7 @@ import { SiJest } from "react-icons/si";
 import Tanstack from "@/components/icons/tanstack";
 import { FaAws } from "react-icons/fa6";
 import { VscGitMerge } from "react-icons/vsc";
-import { TbWebhook } from "react-icons/tb";
+import { TbBrandReactNative, TbWebhook } from "react-icons/tb";
 import { GiBearFace } from "react-icons/gi";
 import { DiReact } from "react-icons/di";
 
@@ -73,8 +73,6 @@ const projects: project[] = [
     description:
       "A full-stack AI agent with real-time guardrails enforcement. Features a live policy dashboard to block tools, require human approval, and validate inputs — all without restarting the agent. Built with MCP protocol support for dynamic tool discovery across multiple servers, including a custom MCP server with CRUD tools.",
     image: `${process.env.NEXT_PUBLIC_IMAGE7}`,
-    gitlink: "https://github.com/YOUR_USERNAME/guarded-ai-agent",
-    liveLink: "https://your-deployed-link.vercel.app/",
     altImage: "Guarded AI Agent with MCP Support and Policy Dashboard",
   },
   {
@@ -134,9 +132,30 @@ const projects: project[] = [
 ];
 const companies: company[] = [
   {
+    name: "Speegile Consulting",
+    position: "App Developer",
+    time: "September 2026 - Present",
+    points: [
+      "Integrated 3+ external APIs/services, including Google Maps, Supabase, and LiveKit.",
+      "Implemented map-based doctor discovery handling live patient + doctor locations, route visualization, and location updates.",
+      "Reduced unnecessary map re-renders by identifying and optimizing a pulse animation triggering updates roughly 8×/second.",
+    ],
+    techs: [
+      { icon: TbBrandReactNative, label: "React Native" },
+      { icon: SiFastapi, label: "FastAPI" },
+      { icon: SiPostgresql, label: "PostgreSQL" },
+      { icon: DiReact, label: "React" },
+      { icon: TbWebhook, label: "Webhooks" },
+    ],
+    link: "https://www.speegile.com/",
+    img_bg: "brightness-0 dark:brightness-100",
+    imageLink: "/SpeegileLogo-clean.png",
+    altImage: "Speegile company logo",
+  },
+  {
     name: "AxentraOS",
     position: "Software Intern",
-    time: "March 2026 - Present",
+    time: "March 2026 - May 2026",
     points: [
       "Designed and shipped Billing & Dashboard APIs covering MRR, ARR, NRR, and Top Metrics — enabling real-time financial insights across the platform.",
       "Built a full Referral Program system from scratch — referral code generation, click tracking via webhooks, discount logic, and transactional email triggers for referrers, referees, and merchants across 6+ API endpoints.",
@@ -248,4 +267,3 @@ const techList = [
 ];
 
 export { projects, companies, blogs, reviews, techList };
-
