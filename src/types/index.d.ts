@@ -30,6 +30,7 @@ export interface blog {
   content: string;
   time: string;
   link: string;
+  image?: string;
 }
 
 export interface review {

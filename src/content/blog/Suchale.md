@@ -2,7 +2,7 @@
 
 ### 22 Jan 2026 
 
-![DIAGRAM](https://nyvsfzmjbogwtuexvmco.supabase.co/storage/v1/object/sign/portfolio%20iamges/Blog/DAIGRAM.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85MjY4ZmZmYy1jOTM3LTQ1MzMtYjZiNi01NDA4MGZmODY0MWUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwb3J0Zm9saW8gaWFtZ2VzL0Jsb2cvREFJR1JBTS5wbmciLCJpYXQiOjE3NjkwOTAxNjUsImV4cCI6MTgwMDYyNjE2NX0.wZ21V1NaulJtRHoi-nnLd2SNH8qs54WPeWwcJ9oZQfM)
+![DIAGRAM](https://tcxxzqgxgownlojf.public.blob.vercel-storage.com/Blog/DAIGRAM.png)
 ## Introduction
 
 * This blog will explain how to build a chat application on MERN stack.
@@ -19,13 +19,13 @@ Before getting started on web socket we need to understand http request. A simpl
 2. Client request Data from the server.
 3. Server sends the data to client 
 
-![HTTP diagram](https://nyvsfzmjbogwtuexvmco.supabase.co/storage/v1/object/sign/portfolio%20iamges/Blog/HTTP.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85MjY4ZmZmYy1jOTM3LTQ1MzMtYjZiNi01NDA4MGZmODY0MWUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwb3J0Zm9saW8gaWFtZ2VzL0Jsb2cvSFRUUC5wbmciLCJpYXQiOjE3NjkwODc1NDEsImV4cCI6MTgwMDYyMzU0MX0.OmzPsfBjfhr3k_7mMco80verLGV2Cg8k-lDGJPE7VLc)
+![HTTP diagram](https://tcxxzqgxgownlojf.public.blob.vercel-storage.com/Blog/HTTP.png)
 
 Simple right but what about we have to send data to client, without client requesting for data.Well you guessed it right, we will use web socket for that. 
 
 In web socket there is a persistant connection between the client and server and there are events. When ever a event occurs we perform actions. 
 
-![WEBSOCKET diagram](https://nyvsfzmjbogwtuexvmco.supabase.co/storage/v1/object/sign/portfolio%20iamges/Blog/WEBSOCKET.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85MjY4ZmZmYy1jOTM3LTQ1MzMtYjZiNi01NDA4MGZmODY0MWUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwb3J0Zm9saW8gaWFtZ2VzL0Jsb2cvV0VCU09DS0VULnBuZyIsImlhdCI6MTc2OTA4NzU4OCwiZXhwIjoxODAwNjIzNTg4fQ.UPaGYviTzU73KYwhTuDdGpvRJ7jmebGxQSWJic2NmnA)
+![WEBSOCKET diagram](https://tcxxzqgxgownlojf.public.blob.vercel-storage.com/Blog/WEBSOCKET.png)
 
 Suppose for our chat application we have some friend of client sends message to them, then server fires a event called messageSent. The event when reveived by the client perform an action which in this case is to show the new message to client.
 

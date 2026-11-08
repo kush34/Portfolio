@@ -32,7 +32,7 @@ const projects: project[] = [
     title: "Open-logistics | Integrate any logistics provider",
     techstack: ["Typescript"],
     gitlink: "https://github.com/kush34/Open-logistics",
-    liveLink: "https://www.npmjs.com/package/open-logistics",
+    liveLink: "https://open-logistics.vercel.app/",
     npmPackage: "open-logistics",
     altImage: "project9-Open Logistics Library",
     image: `${process.env.NEXT_PUBLIC_IMAGE9}`,
@@ -201,6 +201,8 @@ const blogs: blog[] = [
     time: "04 March 2026",
     link: "/blog/Interview",
     slug: "/blog/Interview",
+    image:
+      "https://tcxxzqgxgownlojf.public.blob.vercel-storage.com/Blog/interview.jpg",
   },
   {
     title: "Making an App out of spite | GeoImg",
@@ -208,6 +210,7 @@ const blogs: blog[] = [
     time: "10 Feb 2026",
     link: "/blog/GeoImg",
     slug: "/blog/GeoImg",
+    image: "https://tcxxzqgxgownlojf.public.blob.vercel-storage.com/Blog/GeoImg.jpeg",
   },
   {
     title:
@@ -217,6 +220,8 @@ const blogs: blog[] = [
     time: "1 Nov 2025",
     link: "/blog/testing",
     slug: "/blog/testing",
+    image:
+      "https://tcxxzqgxgownlojf.public.blob.vercel-storage.com/Blog/testing.jpg",
   },
   {
     title: "Suchale | chat application | MERN Stack + Redis",
@@ -224,6 +229,7 @@ const blogs: blog[] = [
     time: "1 Nov 2025",
     link: "/blog/Suchale",
     slug: "/blog/Suchale",
+    image: "https://tcxxzqgxgownlojf.public.blob.vercel-storage.com/Blog/DAIGRAM.png",
   },
   {
     title: "FastAPI | Express to fastAPI Journey",
@@ -231,6 +237,8 @@ const blogs: blog[] = [
     time: "18 March 2026",
     link: "/blog/fastapi",
     slug: "/blog/fastapi",
+    image:
+      "https://tcxxzqgxgownlojf.public.blob.vercel-storage.com/Blog/fastapi.jpg",
   },
 ];
 const reviews: review[] = [

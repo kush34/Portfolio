@@ -10,7 +10,7 @@ The work was huge. We had to travel around the city verifying assets, taking pic
 
 See the reference image.
 
-![reference Img](https://nyvsfzmjbogwtuexvmco.supabase.co/storage/v1/object/sign/portfolio%20iamges/Blog/GeoImg.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85MjY4ZmZmYy1jOTM3LTQ1MzMtYjZiNi01NDA4MGZmODY0MWUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwb3J0Zm9saW8gaWFtZ2VzL0Jsb2cvR2VvSW1nLmpwZWciLCJpYXQiOjE3NzMxMjg3MzUsImV4cCI6MTgwNDY2NDczNX0.nQ-By-8sDiL4O4n4E3RHnwgKGeQw2ufMn3KhjhPHfS4)
+![reference Img](https://tcxxzqgxgownlojf.public.blob.vercel-storage.com/Blog/GeoImg.jpeg)
 
 ---
 

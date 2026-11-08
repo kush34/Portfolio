@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 
 const MotionCard = motion.create(Card);
 
-const BlogCard = ({ title, content, time, slug }: blog) => {
+const BlogCard = ({ title, content, time, slug, image }: blog) => {
   const navigate = useRouter();
 
   return (
@@ -25,8 +25,19 @@ const BlogCard = ({ title, content, time, slug }: blog) => {
         stiffness: 400,
         damping: 30,
       }}
-      className="group cursor-pointer transition-shadow hover:shadow-xl"
+      className={`group cursor-pointer overflow-hidden transition-shadow hover:shadow-xl ${
+        image ? "pt-0" : ""
+      }`}
     >
+      {image && (
+        <div className="relative overflow-hidden">
+          <img
+            src={image}
+            alt={title}
+            className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
+      )}
       <CardHeader className="flex flex-row items-start justify-between">
         <div className="space-y-2">
           <h3 className="text-xl font-semibold">{title}</h3>

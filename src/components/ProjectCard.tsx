@@ -7,12 +7,7 @@ import { project } from "@/types";
 
 import NpmBadge from "@/components/NpmBadge";
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
 import { FaGithub } from "react-icons/fa6";
 
@@ -26,7 +21,7 @@ const ProjectCard = (project: project) => {
       whileHover={{ y: -6 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="group overflow-hidden transition-shadow hover:shadow-xl"
+      className="group overflow-hidden pt-0 transition-shadow hover:shadow-xl"
     >
       <div className="relative">
         <img
@@ -34,9 +29,36 @@ const ProjectCard = (project: project) => {
           alt={project.altImage}
           className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
+
         {project.npmPackage && <NpmBadge name={project.npmPackage} />}
+
+        {(project.liveLink || project.gitlink) && (
+          <div className="absolute bottom-3 right-3 z-10 flex gap-2">
+            {project.liveLink && (
+              <a
+                href={project.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View ${project.title}`}
+                className="inline-flex size-9 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-colors hover:bg-black/60"
+              >
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            )}
+            {project.gitlink && (
+              <a
+                href={project.gitlink}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`GitHub repository for ${project.title}`}
+                className="inline-flex size-9 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-colors hover:bg-black/60"
+              >
+                <FaGithub className="h-4 w-4" />
+              </a>
+            )}
+          </div>
+        )}
       </div>
-      <CardHeader className="p-0"></CardHeader>
 
       <CardContent className="space-y-3">
         <h3 className="text-xl font-semibold">{project.title}</h3>
@@ -45,41 +67,7 @@ const ProjectCard = (project: project) => {
           {project.description}
         </p>
       </CardContent>
-
-      {(project.liveLink || project.gitlink) && (
-        <CardFooter
-          className={`flex ${project.liveLink && project.gitlink
-              ? "justify-between"
-              : "justify-end"
-            }`}
-        >
-          {project.liveLink && (
-            <a
-              href={project.liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`View ${project.title}`}
-              onClick={(e) => e.stopPropagation()}
-              className="relative z-10 inline-flex size-9 items-center justify-center rounded-md border text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
-            >
-              <ExternalLink className="h-4 w-4" />
-            </a>
-          )}
-
-          {project.gitlink && (
-            <a
-              href={project.gitlink}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`GitHub repository for ${project.title}`}
-              onClick={(e) => e.stopPropagation()}
-              className="relative z-10 inline-flex size-9 items-center justify-center rounded-md text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
-            >
-              <FaGithub className="h-4 w-4" />
-            </a>
-          )}
-        </CardFooter>
-      )}    </MotionCard>
+    </MotionCard>
   );
 };
 

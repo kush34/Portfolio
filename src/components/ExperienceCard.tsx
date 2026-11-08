@@ -39,21 +39,19 @@ const ExperienceCard = ({
   const idPrefix = name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
   return (
-    <Card className="border-none shadow-none bg-transparent">
+    <Card className="border-none shadow-none bg-transparent:blur">
       <CardContent className="space-y-6 p-5">
         <div className="flex justify-between gap-6">
           <div className="flex items-center gap-5">
             <div
-              className={`flex h-16 w-16 md:h-20 md:w-20 items-center justify-center rounded-xl ${
-                theme === "light" ? "bg-neutral-100" : "bg-zinc-900"
-              }`}
+              className={`flex h-16 w-16 md:h-20 md:w-20 items-center justify-center rounded-xl ${theme === "light" ? "bg-neutral-100" : "bg-zinc-900"
+                }`}
             >
               <img
                 src={imageLink}
                 alt={altImage}
-                className={`h-full w-full rounded-xl object-contain p-3 ${
-                  img_bg ?? ""
-                }`}
+                className={`h-full w-full rounded-xl object-contain p-3 ${img_bg ?? ""
+                  }`}
               />
             </div>
 
