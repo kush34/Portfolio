@@ -7,15 +7,13 @@ import { motion, type Variants } from "framer-motion";
 export const fadeInBlur: Variants = {
   hidden: {
     opacity: 0,
-    y: 120,
-    filter: "blur(12px)",
+    y: 48,
   },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: {
-      duration: 2,
+      duration: 0.6,
       ease: [0.22, 1, 0.36, 1] as const,
     },
   },

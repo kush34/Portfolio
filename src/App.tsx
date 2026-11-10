@@ -14,7 +14,7 @@ import PikachuCursor from "@/components/PickachuCursor";
 import keys from 'ctrl-keys'
 import ShortcutModal from "@/components/ShortcutModel";
 
-import { blogs, companies, projects, techList } from "@/constants/data";
+import { blogs, companies, projects, techList, education } from "@/constants/data";
 import FadeSection from "@/components/fade-section";
 import LeetCodeStats from "@/components/leetcode";
 import BackgroundPattern from "@/components/BackgroundPattern";
@@ -47,9 +47,6 @@ const App = () => {
     setVisibleCount((prev) => prev + 4);
   };
 
-  const [blockSize, setBlockSize] = useState(10);
-  const [blockMargin, setBlockMargin] = useState(5);
-  const [fontSize, setFontSize] = useState(14);
   useEffect(() => {
     const handler = keys();
     handlerRef.current = handler;
@@ -78,44 +75,13 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const updateSizes = () => {
-      const w = window.innerWidth;
-      if (w < 200) {
-        setCustomCursor(false);
-        setBlockSize(2);
-        setBlockMargin(1);
-        setFontSize(3);
-      } else if (w < 480) {
-        setCustomCursor(false);
-        setBlockSize(5);
-        setBlockMargin(1);
-        setFontSize(4);
-      } else if (w < 640) {
-        setCustomCursor(false);
-        setBlockSize(5);
-        setBlockMargin(1);
-        setFontSize(10);
-        setFontSize(5);
-      } else if (w < 1024) {
-        setCustomCursor(false);
-        setBlockSize(10);
-        setBlockMargin(2);
-        setFontSize(5);
-      } else if (w < 1280) {
-        setBlockSize(12);
-        setBlockMargin(3);
-        setFontSize(8);
-      }
-      else {
-        setBlockSize(13 );
-        setBlockMargin(5);
-        setFontSize(12);
-      }
+    // keep the custom cursor off small screens only
+    const updateCursor = () => {
+      if (window.innerWidth < 1024) setCustomCursor(false);
     };
-
-    updateSizes();
-    window.addEventListener("resize", updateSizes);
-    return () => window.removeEventListener("resize", updateSizes);
+    updateCursor();
+    window.addEventListener("resize", updateCursor);
+    return () => window.removeEventListener("resize", updateCursor);
   }, []);
 
   useEffect(() => {
@@ -129,28 +95,31 @@ const App = () => {
     <div className="min-h-screen w-full relative">
       <div className="min-h-screen w-full relative ">
         {/* Cloudflare-style background pattern (remove or toggle anytime) */}
-        <BackgroundPattern variant="cloudflare-dashed" size={80} mask="radial" />
+        <BackgroundPattern />
         <div className="flex flex-col items-center justify-center min-h-screen px-4 ">
           <Analytics />
 
-          <div className="w-full max-w-5xl mx-auto flex flex-col gap-24 py-24 main">
+          <div className="w-full max-w-5xl mx-auto flex flex-col gap-section py-section main">
             <FadeSection
             >
               <Profile toggleTheme={changeTheme} toggleModel={() => setShowShortcuts(true)} />
             </FadeSection>
             {showShortcuts && <ShortcutModal onClose={() => setShowShortcuts(false)} />}
-            <FadeSection className="flex flex-wrap items-center gap-2 text-2xl sm:text-3xl">
-              {techList.map((t) => (
-                <Tech key={t.name} name={t.name} Icon={t.Icon} color={t.color} />
-              ))}
+            <FadeSection className="z-10 flex flex-col gap-row items-center justify-center">
+              <h2 className="section-title">Tech Stack</h2>
+              <div className="flex flex-wrap items-center justify-center gap-chip">
+                {techList.map((t) => (
+                  <Tech key={t.name} name={t.name} Icon={t.Icon} color={t.color} />
+                ))}
+              </div>
             </FadeSection>
-            <FadeSection className="z-10 experience flex flex-col gap-15">
+            <FadeSection className="z-10 experience flex flex-col gap-card focus-dim">
               {companies.map((comp) =>
                 <ExperienceCard key={comp.name} {...comp} theme={theme} />
               )}
             </FadeSection>
-              <span className="text-xs text-zinc-600">try alt+w 👀</span>
-            <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <span className="text-xs text-muted-foreground">try alt+w 👀</span>
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-card focus-dim">
               {projects.slice(0, visibleCount).map((p) => (
                 <ProjectCard key={p.id} {...p} />
               ))}
@@ -160,7 +129,7 @@ const App = () => {
               <div className="flex justify-center mt-6 px-4">
                 <button
                   onClick={handleShowMore}
-                  className="tech z-10 flex items-center hover:shadow justify-center gap-2 px-5 py-2 text-sm font-semibold border border-zinc-700 rounded-xl cursor-pointer"
+                  className="tech z-10 flex items-center hover:shadow justify-center gap-2 px-5 py-2 text-sm font-semibold border border-border rounded-xl cursor-pointer"
                 >
                   Show more
                   <svg
@@ -176,7 +145,7 @@ const App = () => {
               </div>
             )}
             {/* <section className="flex flex-col justify-center items-center gap-5 px-4 mb-2 ">
-                <h2 className="text-4xl text-zinc-400 mb-6 font-bold z-10">Reviews</h2>
+                <h2 className="section-title z-10">Reviews</h2>
                 <div className="z-10">
                   {reviews.map((item) => (
                     <Review key={item.id} {...item} />
@@ -185,35 +154,60 @@ const App = () => {
               </section> */}
 
             <FadeSection
-             className="z-10 flex flex-col gap-10 items-center justify-center py-10 rounded-2xl">
-              <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Blogs</h2>
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+             className="z-10 flex flex-col gap-row items-center justify-center py-10 rounded-2xl">
+              <h2 className="section-title">Blogs</h2>
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-card">
                 {blogs.map((blog, index) =>
                   <BlogCard key={index} {...blog} />
                 )}
               </div>
             </FadeSection>
             <FadeSection
-              className="z-10 flex flex-col gap-10 items-center justify-center md:py-10 rounded-2xl">
-              <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Leetcode Grind</h2>
-              <LeetCodeStats username="kush_34" />
+              className="z-10 flex flex-col gap-row items-center justify-center md:py-10 rounded-2xl">
+              <h2 className="section-title">Leetcode Grind</h2>
+              <div className="flex flex-col md:flex-row items-center md:items-start gap-row w-full justify-center">
+                <LeetCodeStats username="kush_34" />
+                <div className="flex flex-col gap-4 w-full md:max-w-sm px-4 md:px-0 mt-4">
+                  {education.map((e) => (
+                    <a
+                      key={e.name}
+                      href={e.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 rounded-xl border border-border px-5 py-4 hover:shadow hover:-translate-y-0.5 transition-all"
+                    >
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-secondary">
+                        <img
+                          src={e.imageLink}
+                          alt={e.altImage}
+                          className={`h-full w-full object-contain p-2 ${e.img_bg ?? ""}`}
+                        />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="font-semibold truncate">{e.name}</p>
+                        <p className="text-sm text-muted-foreground">{e.position}</p>
+                      </div>
+                      <span className="ml-auto shrink-0 text-sm text-muted-foreground">
+                        {e.time}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
             </FadeSection>
             <FadeSection
-              className="w-full z-10 flex flex-col gap-10 items-center justify-center md:py-10 rounded-2xl">
-              <h2 className="text-4xl text-zinc-400 mb-6 font-bold">Github Activity</h2>
-              <div className="overflow-x-hidden">
+              className="w-full z-10 flex flex-col gap-row items-center justify-center md:py-10 rounded-2xl">
+              <h2 className="section-title">Github Activity</h2>
+              <div className="w-full github-cal">
                 <GitHubCalendar
                   key={theme}
                   username="kush34"
-                  blockSize={blockSize}
-                  blockMargin={blockMargin}
                   colorScheme={theme}
-                  fontSize={fontSize}
                 />
               </div>
             </FadeSection>
             <section className="z-10 px-4 mb-10 h-[10vh] text-center">
-              <span className="text-zinc-500 text-center">Made with love by kush</span>
+              <span className="text-muted-foreground text-center">Made with love by kush</span>
             </section>
             {customCurosr && <PikachuCursor />}
           </div>
