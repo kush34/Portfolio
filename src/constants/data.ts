@@ -134,7 +134,7 @@ const companies: company[] = [
   {
     name: "Speegile Consulting",
     position: "App Developer",
-    time: "September 2026 - Present",
+    time: "Sep 2026 – Present",
     points: [
       "Integrated 3+ external APIs/services, including Google Maps, Supabase, and LiveKit.",
       "Implemented map-based doctor discovery handling live patient + doctor locations, route visualization, and location updates.",
@@ -155,7 +155,7 @@ const companies: company[] = [
   {
     name: "AxentraOS",
     position: "Software Intern",
-    time: "March 2026 - May 2026",
+    time: "Mar – May 2026",
     points: [
       "Designed and shipped Billing & Dashboard APIs covering MRR, ARR, NRR, and Top Metrics — enabling real-time financial insights across the platform.",
       "Built a full Referral Program system from scratch — referral code generation, click tracking via webhooks, discount logic, and transactional email triggers for referrers, referees, and merchants across 6+ API endpoints.",
@@ -176,7 +176,7 @@ const companies: company[] = [
   {
     name: "Ipex Logistics",
     position: "Software Intern",
-    time: "Sept 2025 - Dec 2025",
+    time: "Sep – Dec 2025",
     points: [
       "Designed and shipped Dashboard APIs and Notification Services across multiple production projects.",
       "Built backend services using Django and FastAPI — handling REST APIs, background tasks, and business logic.",
@@ -192,6 +192,27 @@ const companies: company[] = [
     link: "https://www.ipexlogistics.com/",
     imageLink: `${process.env.NEXT_PUBLIC_COMP_IMG}`,
     altImage: "Ipex Logistics company logo",
+  },
+];
+
+const education = [
+  {
+    name: "Renaissance University",
+    position: "B.Tech CSE · CGPA 8.2/10",
+    time: "Pursuing",
+    link: "https://renaissance.ac.in/",
+    img_bg: "dark:invert",
+    imageLink: "/ru-black.svg",
+    altImage: "Renaissance University Indore logo",
+  },
+  {
+    name: "Microsoft Azure",
+    position: "AZ-900: Azure Fundamentals",
+    time: "Certified",
+    link: "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/",
+    img_bg: "dark:invert",
+    imageLink: "/azure-a.svg",
+    altImage: "Microsoft Azure logo",
   },
 ];
 const blogs: blog[] = [
@@ -274,4 +295,4 @@ const techList = [
   { name: "Socket.IO", Icon: SiSocketdotio, color: "text-[#21af90]" },
 ];
 
-export { projects, companies, blogs, reviews, techList };
+export { projects, companies, blogs, reviews, techList, education };

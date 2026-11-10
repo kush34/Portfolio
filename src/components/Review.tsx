@@ -7,7 +7,7 @@ const Review = ({ name, content }: review) => {
         {/* <span className="w-10 h-10"><img className="rounded-full" src="https://placehold.co/400x400" alt="Client Image" /></span> */}
         <span className="text-xl font-semibold">{name}</span>
       </span>
-      <span className="text-zinc-400">{content}</span>
+      <span className="text-muted-foreground">{content}</span>
     </div>
   );
 };

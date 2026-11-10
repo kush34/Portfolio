@@ -1,17 +1,59 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { IoMail } from "react-icons/io5";
+import { IoCheckmark, IoMail } from "react-icons/io5";
 import { IoMdMoon } from "react-icons/io";
 import { MdKeyboardCommandKey, MdLocationOn } from "react-icons/md";
 import { SiLeetcode } from "react-icons/si";
 import { HiOutlineDownload } from "react-icons/hi";
 
+const EMAIL = "chattkush34@gmail.com";
+
+const CopyEmailButton = () => {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+    } catch {}
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+  return (
+    <motion.button
+      type="button"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      animate={copied ? { scale: [1, 1.25, 1] } : {}}
+      onClick={copy}
+      className="flex items-center justify-center w-9 h-9 rounded-full border border-border text-foreground hover:shadow-md transition-colors"
+      title={copied ? "Copied!" : "Copy email"}
+      aria-label={copied ? "Email address copied" : "Copy email address"}
+    >
+      {copied ? <IoCheckmark /> : <IoMail />}
+    </motion.button>
+  );
+};
+
 const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggleModel: () => void }) => {
   const [isSticky, setIsSticky] = useState(false);
   const controls = useAnimation();
+  // 3D tilt on the profile photo
+  const tiltX = useMotionValue(0);
+  const tiltY = useMotionValue(0);
+  const rotateX = useSpring(tiltX, { stiffness: 260, damping: 20 });
+  const rotateY = useSpring(tiltY, { stiffness: 260, damping: 20 });
+  const tiltTransform = useMotionTemplate`perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  const handleTilt = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    tiltX.set(-((e.clientY - r.top) / r.height - 0.5) * 24);
+    tiltY.set(((e.clientX - r.left) / r.width - 0.5) * 24);
+  };
+  const resetTilt = () => {
+    tiltX.set(0);
+    tiltY.set(0);
+  };
   const socialLinks = [
     { icon: <FaGithub />, link: "https://github.com/kush34", label: "GitHub" },
     { icon: <SiLeetcode />, link: "https://leetcode.com/kush_34", label: "Leetcode Profile" },
@@ -43,41 +85,47 @@ const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggle
     <>
       <motion.section
         initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative flex flex-col md:flex-row items-center justify-center gap-16 px-12 py-10 max-w-7xl mx-auto rounded-3xl min-h-[300px]"
+        className="relative flex flex-col md:flex-row items-center md:items-start gap-16 px-4 sm:px-6 md:px-0 py-10 w-full rounded-3xl min-h-[300px]"
       >
-        <div className="hidden md:flex flex-col items-start gap-4 absolute -left-5 top-1/8">
-          {socialLinks.map((s, i) => (
-            <motion.a
-              key={i}
-              href={s.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-10 h-10 rounded-full shadow-md hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all"
-              whileHover={{ scale: 1.2 }}
-              title={s.label}
-            >
-              {s.icon}
-            </motion.a>
-          ))}
-        </div>
-
         <div className="flex flex-col items-center justify-center md:items-start gap-4 flex-shrink-0">
           <div className="relative w-54 h-54 sm:w-28 sm:h-28">
-            {/* Penguin */}
-            <img
-              src="./penguin.png"
-              className="absolute w-8 h-8 rotate-20 z-10 -bottom-3 right-0 sm:-bottom-1 sm:right-0"
-              alt="penguin"
-            />
+            {/* 3D tilt photo with shine + penguin easter egg */}
+            <motion.div
+              onMouseMove={handleTilt}
+              onMouseLeave={resetTilt}
+              initial="rest"
+              whileHover="hover"
+              style={{ transform: tiltTransform }}
+              className="relative w-full h-full"
+            >
+              {/* Penguin */}
+              <motion.img
+                src="./penguin.png"
+                variants={{
+                  rest: { rotate: 20, y: 0, scale: 1 },
+                  hover: { rotate: 4, y: -16, scale: 1.45 },
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                className="absolute w-8 h-8 z-10 -bottom-3 right-0"
+                alt="penguin"
+              />
 
-            {/* Profile */}
-            <img
-              src={process.env.NEXT_PUBLIC_PROFILE}
-              alt="profile"
-              className="w-full h-full rounded -rotate-6 hover:rotate-1 object-cover shadow-lg transition-all duration-300 hover:ring-2 hover:shadow-[0_0_20px_5px_rgba(255,255,255,0.4)]"
-            />
+              {/* Profile */}
+              <img
+                src={process.env.NEXT_PUBLIC_PROFILE}
+                alt="profile"
+                className="w-full h-full rounded object-cover shadow-lg"
+              />
+
+              {/* shine sweep */}
+              <motion.div
+                variants={{ rest: { opacity: 0 }, hover: { opacity: 0.35 } }}
+                transition={{ duration: 0.4 }}
+                className="pointer-events-none absolute inset-0 rounded bg-gradient-to-tr from-transparent via-white to-transparent mix-blend-overlay"
+              />
+            </motion.div>
           </div>
           <div className="text-center md:text-left flex flex-col items-center">
             <h2 className="text-2xl font-bold">Chatt Kush</h2>
@@ -87,7 +135,7 @@ const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggle
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 sm:gap-5 max-w-full  xl:max-w-2xl">
+        <div className="flex flex-col gap-4 sm:gap-5 max-w-full xl:max-w-2xl md:pr-24">
           <div>
             <p className="leading-relaxed">
               I&apos;m <strong className="text-lg">Chatt Kush</strong>, a software engineer from Mumbai, India. Currently pursuing B.Tech CSE from
@@ -96,12 +144,28 @@ const Profile = ({ toggleTheme, toggleModel }: { toggleTheme: () => void, toggle
             </p>
           </div>
 
-          <div>
+          <div className="flex flex-col items-center md:items-start gap-4">
+            <div className="flex gap-2">
+              {socialLinks.map((s, i) => (
+                <motion.a
+                  key={i}
+                  href={s.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-9 h-9 rounded-full border border-border hover:shadow-md transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  title={s.label}
+                >
+                  {s.icon}
+                </motion.a>
+              )).filter((_, i) => socialLinks[i].label !== "Email")}
+              <CopyEmailButton />
+            </div>
             <motion.a
               href={`${process.env.NEXT_PUBLIC_RESUME_LINK}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="tech flex items-center justify-center border border-neutral-500 gap-2 lg:w-1/6 duration-100 hover:shadow ease-in rounded-xl h-8 px-3"
+              className="tech flex items-center justify-center gap-2 duration-100 ease-in rounded-xl h-8 px-4 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
             >
               <HiOutlineDownload className="text-lg shrink-0" />
               <span>Resume</span>

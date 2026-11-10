@@ -21,7 +21,7 @@ const ProjectCard = (project: project) => {
       whileHover={{ y: -6 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="group overflow-hidden pt-0 transition-shadow hover:shadow-xl"
+      className="group overflow-hidden pt-0 transition-all duration-300 hover:shadow-xl hover:border-ring/50"
     >
       <div className="relative">
         <img

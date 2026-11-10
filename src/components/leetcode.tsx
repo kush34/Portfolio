@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import { animate, motion, useInView, useMotionValue, useTransform } from "framer-motion";
 import { PolarAngleAxis, RadialBar, RadialBarChart } from "recharts";
 
 import {
@@ -66,6 +68,18 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
+// animates 0 -> value the first time it scrolls into view
+function Count({ value, className }: { value: number; className?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.4 });
+  const mv = useMotionValue(0);
+  useEffect(() => {
+    if (inView) animate(mv, value, { duration: 1.6, ease: "easeOut" });
+  }, [inView, value, mv]);
+  const text = useTransform(mv, (v) => Math.round(v).toLocaleString());
+  return <motion.span ref={ref} className={className}>{text}</motion.span>;
+}
+
 export default function LeetCodeCard({}: Props) {
   return (
     <Card className="w-full max-w-md">
@@ -75,56 +89,43 @@ export default function LeetCodeCard({}: Props) {
       </CardHeader>
 
       <CardContent className="flex flex-col items-center gap-8">
-        <ChartContainer
-          id="leetcode-progress"
-          config={chartConfig}
-          className="mx-auto aspect-square h-[260px]"
-        >
-          <RadialBarChart
-            data={chartData}
-            innerRadius={70}
-            outerRadius={120}
-            startAngle={90}
-            endAngle={-270}
+        <div className="relative">
+          <ChartContainer
+            id="leetcode-progress"
+            config={chartConfig}
+            className="mx-auto aspect-square h-[260px]"
           >
-            <PolarAngleAxis
-              type="number"
-              domain={[0, stats.totalSolved]}
-              tick={false}
-            />
-
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-
-            <RadialBar
-              background
-              dataKey="value"
-              cornerRadius={10}
-            />
-
-            <text
-              x="50%"
-              y="48%"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              className="fill-foreground text-4xl font-bold"
+            <RadialBarChart
+              data={chartData}
+              innerRadius={70}
+              outerRadius={120}
+              startAngle={90}
+              endAngle={-270}
             >
-              {stats.totalSolved}
-            </text>
+              <PolarAngleAxis
+                type="number"
+                domain={[0, stats.totalSolved]}
+                tick={false}
+              />
 
-            <text
-              x="50%"
-              y="60%"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              className="fill-muted-foreground text-sm"
-            >
-              Solved
-            </text>
-          </RadialBarChart>
-        </ChartContainer>
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
+              />
+
+              <RadialBar
+                background
+                dataKey="value"
+                cornerRadius={10}
+              />
+            </RadialBarChart>
+          </ChartContainer>
+
+          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
+            <Count value={stats.totalSolved} className="text-4xl font-bold" />
+            <span className="text-sm text-muted-foreground">Solved</span>
+          </div>
+        </div>
 
         <div className="grid w-full grid-cols-3 gap-4">
           <div className="flex flex-col items-center gap-2">
@@ -136,7 +137,7 @@ export default function LeetCodeCard({}: Props) {
             </Badge>
 
             <span className="text-2xl font-semibold">
-              {stats.easySolved}
+              <Count value={stats.easySolved} />
             </span>
           </div>
 
@@ -149,7 +150,7 @@ export default function LeetCodeCard({}: Props) {
             </Badge>
 
             <span className="text-2xl font-semibold">
-              {stats.mediumSolved}
+              <Count value={stats.mediumSolved} />
             </span>
           </div>
 
@@ -162,7 +163,7 @@ export default function LeetCodeCard({}: Props) {
             </Badge>
 
             <span className="text-2xl font-semibold">
-              {stats.hardSolved}
+              <Count value={stats.hardSolved} />
             </span>
           </div>
         </div>

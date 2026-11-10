@@ -25,7 +25,7 @@ const BlogCard = ({ title, content, time, slug, image }: blog) => {
         stiffness: 400,
         damping: 30,
       }}
-      className={`group cursor-pointer overflow-hidden transition-shadow hover:shadow-xl ${
+      className={`group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-ring/50 ${
         image ? "pt-0" : ""
       }`}
     >

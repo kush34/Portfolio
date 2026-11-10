@@ -6,6 +6,26 @@
 @custom-variant dark (&:is(.dark *));
 
 /* -------------------------------
+   SPACING & COLOR TOKENS
+   (semantic rhythm + shared neutrals; Tailwind v4 turns each
+   --spacing-* / --color-* key into utilities like gap-section, text-heading)
+-------------------------------- */
+@theme {
+  /* spacing rhythm */
+  --spacing-section: 6rem;  /* gap between major sections (was gap-24 / py-24) */
+  --spacing-block: 3.75rem; /* gap between stacked cards/columns (was gap-15) */
+  --spacing-row: 2.5rem;    /* inner row gap in a section (was gap-10) */
+  --spacing-card: 1.5rem;   /* card grid gap (was gap-8) */
+  --spacing-chip: 0.625rem; /* chip/tech gap (was gap-2.5) */
+
+  /* shared neutral beyond the shadcn palette */
+  --color-heading: #a1a1aa; /* section headings (was text-zinc-400) */
+
+  /* drifting background blobs (BackgroundPattern) */
+  --animate-blob-drift: blob-drift 42s ease-in-out infinite;
+}
+
+/* -------------------------------
    THEME VARIABLES (single source of truth)
 -------------------------------- */
 :root {
@@ -137,6 +157,29 @@
     -webkit-backdrop-filter: blur(5px);
   }
 
+  /* unified section heading */
+  .section-title {
+    @apply mb-6 text-4xl font-bold text-heading;
+  }
+
+  /* dim inactive siblings while one is hovered (projects, experience) */
+  .focus-dim > * {
+    transition: opacity 0.3s ease, box-shadow 0.3s ease;
+  }
+  .focus-dim:hover > *:not(:hover) {
+    opacity: 0.55;
+  }
+  .focus-dim > *:hover {
+    z-index: 10;
+  }
+
+  /* GitHub activity: the calendar SVG is fixed-width (844px) — make it fluid
+     so it fits any viewport instead of clipping/overflowing on phones */
+  .github-cal svg {
+    width: 100%;
+    height: auto;
+  }
+
   .article {
     margin: 24px;
   }
@@ -206,6 +249,22 @@
   }
   50% {
     box-shadow: 0 0 18px rgba(251, 191, 36, 0.95);
+  }
+}
+
+/* slow drift path for the ambient background blobs (transform-only => GPU cheap) */
+@keyframes blob-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(9vw, 5vh, 0) scale(1.12);
+  }
+  66% {
+    transform: translate3d(-5vw, 9vh, 0) scale(0.94);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
