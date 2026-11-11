@@ -10,6 +10,7 @@ export interface project {
   liveLink?: string;
   altImage: string;
   npmPackage?: string;
+  vsCodeExtension?: string;
 }
 
 export interface company {

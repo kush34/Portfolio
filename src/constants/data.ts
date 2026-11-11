@@ -85,6 +85,7 @@ const projects: project[] = [
     gitlink: "https://github.com/kush34/Woop",
     liveLink:
       "https://marketplace.visualstudio.com/items?itemName=chattkush.woop",
+    vsCodeExtension: "chattkush.woop",
     altImage: "Woop VS Code Project Launcher Extension",
   },
   {

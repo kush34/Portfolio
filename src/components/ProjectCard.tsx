@@ -31,6 +31,9 @@ const ProjectCard = (project: project) => {
         />
 
         {project.npmPackage && <DownloadsBadge name={project.npmPackage} />}
+        {project.vsCodeExtension && (
+          <DownloadsBadge name={project.vsCodeExtension} source="vscode" />
+        )}
 
         {(project.liveLink || project.gitlink) && (
           <div className="absolute bottom-3 right-3 z-10 flex gap-2">
