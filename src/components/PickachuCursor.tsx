@@ -1,175 +1,115 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
+
+const IDLE_MS = 1500;
+// the sprite trails the pointer instead of covering it
+const OFFSET = { x: -15, y: -10 };
 
 const PikachuCursor: React.FC = () => {
-    const cursorRef = useRef({ x: 0, y: 0 });
-    const pikachuRef = useRef({ x: 0, y: 0 });
+    const boxRef = useRef<HTMLDivElement>(null);
+    const imgRef = useRef<HTMLImageElement>(null);
 
-    const elementRef = useRef<HTMLDivElement>(null);
-
-    const isMovingRef = useRef(false);
-    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-    const [isFast, setIsFast] = useState(false);
-    const [isMoving, setIsMoving] = useState(false);
-    const [gifKey, setGifKey] = useState(0);
-
-    // true = Pikachu is moving left
-    const [flipped, setFlipped] = useState(false);
-
-    const prevMovingRef = useRef(false);
+    const [sleeping, setSleeping] = useState(true);
+    const [visible, setVisible] = useState(false);
 
     useEffect(() => {
+        let idle: ReturnType<typeof setTimeout> | undefined;
+        let lastX = 0;
+        let placed = false;
+        let facingLeft = false;
+
         const handleMouseMove = (e: MouseEvent) => {
-            cursorRef.current = {
-                x: e.clientX,
-                y: e.clientY,
-            };
+            const box = boxRef.current;
+            const img = imgRef.current;
+            if (!box || !img) return;
 
-            if (!isMovingRef.current) {
-                isMovingRef.current = true;
-                setIsMoving(true);
+            if (!placed) {
+                // snap to the pointer on the first move, so the sprite
+                // does not glide in from the top-left corner
+                placed = true;
+                box.style.transition = "none";
+                box.style.transform = `translate3d(${e.clientX + OFFSET.x}px, ${e.clientY + OFFSET.y}px, 0)`;
+                box.getBoundingClientRect(); // flush, so the snap is instant
+                box.style.transition = "";
+                setVisible(true);
+            } else {
+                box.style.transform = `translate3d(${e.clientX + OFFSET.x}px, ${e.clientY + OFFSET.y}px, 0)`;
             }
 
-            if (timeoutRef.current) {
-                clearTimeout(timeoutRef.current);
+            // flip only when the pointer actually changes horizontal direction
+            const dx = e.clientX - lastX;
+            if (Math.abs(dx) > 1 && dx < 0 !== facingLeft) {
+                facingLeft = dx < 0;
+                img.style.transform = facingLeft ? "scaleX(-1)" : "none";
             }
+            lastX = e.clientX;
 
-            timeoutRef.current = setTimeout(() => {
-                isMovingRef.current = false;
-                setIsMoving(false);
-            }, 400);
+            setSleeping(false);
+            clearTimeout(idle);
+            idle = setTimeout(() => setSleeping(true), IDLE_MS);
         };
 
-        window.addEventListener('mousemove', handleMouseMove);
-
-        let requestRef: number;
-
-        const animate = () => {
-            if (!elementRef.current) return;
-
-            const targetX = cursorRef.current.x + 25;
-            const targetY = cursorRef.current.y + 30;
-
-            const dx = targetX - pikachuRef.current.x;
-            const dy = targetY - pikachuRef.current.y;
-
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            const isCurrentlyFast = distance > 150;
-
-            setIsFast((prev) =>
-                prev !== isCurrentlyFast ? isCurrentlyFast : prev
-            );
-
-            const ease = isCurrentlyFast ? 0.15 : 0.08;
-
-            pikachuRef.current.x += dx * ease;
-            pikachuRef.current.y += dy * ease;
-
-            /*
-             * Determine which direction Pikachu is moving.
-             *
-             * dx > 0  -> moving RIGHT
-             * dx < 0  -> moving LEFT
-             *
-             * Your GIF naturally faces RIGHT,
-             * so we flip it only when moving LEFT.
-             */
-            if (isMovingRef.current && Math.abs(dx) > 2) {
-                setFlipped(dx < 0);
-            }
-
-            /*
-             * IMPORTANT:
-             *
-             * Don't rotate the Pikachu.
-             * The running GIF already contains the correct
-             * running animation.
-             *
-             * We only move it and flip it horizontally.
-             */
-            elementRef.current.style.transform = `
-                translate3d(
-                    ${pikachuRef.current.x}px,
-                    ${pikachuRef.current.y}px,
-                    0
-                )
-            `;
-
-            requestRef = requestAnimationFrame(animate);
+        const hide = () => {
+            setVisible(false);
+            setSleeping(true);
+            placed = false;
         };
 
-        requestRef = requestAnimationFrame(animate);
+        // don't leave the sprite stuck in the corner once the pointer leaves
+        const handleVisibility = () => {
+            if (document.hidden) hide();
+        };
+
+        document.addEventListener("mousemove", handleMouseMove);
+        document.documentElement.addEventListener("mouseleave", hide);
+        document.addEventListener("visibilitychange", handleVisibility);
 
         return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-
-            cancelAnimationFrame(requestRef);
-
-            if (timeoutRef.current) {
-                clearTimeout(timeoutRef.current);
-            }
+            document.removeEventListener("mousemove", handleMouseMove);
+            document.documentElement.removeEventListener("mouseleave", hide);
+            document.removeEventListener("visibilitychange", handleVisibility);
+            clearTimeout(idle);
         };
     }, []);
 
-    /*
-     * Restart the GIF whenever Pikachu changes
-     * between running and sleeping.
-     */
-    useEffect(() => {
-        if (prevMovingRef.current !== isMoving) {
-            prevMovingRef.current = isMoving;
-
-            setGifKey((prev) => prev + 1);
-        }
-    }, [isMoving]);
-
-    const src = isMoving
-        ? `/runPicka.gif?v=${gifKey}`
-        : `/sleepingPicka.gif?v=${gifKey}`;
-
     return (
         <div
-            ref={elementRef}
+            ref={boxRef}
+            aria-hidden
+            style={{ visibility: visible ? "visible" : "hidden" }}
             className="
+                pointer-events-none
                 fixed
                 top-0
                 left-0
-                pointer-events-none
                 z-50
                 will-change-transform
-                -mt-10
-                -ml-10
+                transition-transform
+                duration-150
+                ease-out
+                motion-reduce:transition-none
             "
         >
-            <div
-                className={`
-                    transition-transform
-                    duration-300
-                    ${isFast ? 'scale-110' : 'scale-100'}
-                `}
-            >
-                <img
-                    key={gifKey}
-                    src={src}
-                    alt=""
-                    className="w-16 h-16 object-contain"
-                    style={{
-                        /*
-                         * GIF naturally faces RIGHT.
-                         *
-                         * flipped = true
-                         *      => scaleX(-1)
-                         *      => Pikachu faces LEFT
-                         */
-                        transform: flipped ? 'scaleX(-1)' : 'scaleX(1)',
-
-                        transition: 'transform 0.15s ease',
-                    }}
-                />
-            </div>
+            <img
+                ref={imgRef}
+                src="/runPicka.gif"
+                alt=""
+                width={64}
+                height={64}
+                className={`h-16 w-16 object-contain transition-opacity duration-200 ${
+                    sleeping ? "opacity-0" : "opacity-100"
+                }`}
+            />
+            <img
+                src="/sleepingPicka.gif"
+                alt=""
+                width={64}
+                height={64}
+                className={`absolute top-0 left-0 h-16 w-16 object-contain transition-opacity duration-200 ${
+                    sleeping ? "opacity-100" : "opacity-0"
+                }`}
+            />
         </div>
     );
 };

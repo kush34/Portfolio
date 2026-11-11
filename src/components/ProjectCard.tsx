@@ -5,7 +5,7 @@ import { ExternalLink } from "lucide-react";
 
 import { project } from "@/types";
 
-import NpmBadge from "@/components/NpmBadge";
+import DownloadsBadge from "@/components/DownloadsBadge";
 
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -30,7 +30,7 @@ const ProjectCard = (project: project) => {
           className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
 
-        {project.npmPackage && <NpmBadge name={project.npmPackage} />}
+        {project.npmPackage && <DownloadsBadge name={project.npmPackage} />}
 
         {(project.liveLink || project.gitlink) && (
           <div className="absolute bottom-3 right-3 z-10 flex gap-2">
