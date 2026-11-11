@@ -42,8 +42,52 @@ async function cratesDownloads(name: string) {
   return res.crate.downloads as number;
 }
 
+const MARKETPLACE =
+  "https://marketplace.visualstudio.com/_apis/public/gallery/extensionquery";
+
+async function vsCodeInstalls(name: string) {
+  const res = await fetch(MARKETPLACE, {
+    method: "POST",
+    headers: {
+      ...headers,
+      "Content-Type": "application/json",
+      Accept: "application/json;api-version=7.2-preview.1",
+    },
+    body: JSON.stringify({
+      filters: [
+        {
+          criteria: [{ filterType: 7, value: name }],
+          pageNumber: 1,
+          pageSize: 1,
+        },
+      ],
+      assetTypes: [],
+      flags: 914,
+    }),
+    next: { revalidate: 3600 },
+  });
+  if (!res.ok) throw new Error(`${res.status} ${MARKETPLACE}`);
+  const ext = (await res.json()).results?.[0]?.extensions?.[0];
+  if (!ext) throw new Error(`unknown extension ${name}`);
+  return (ext.statistics as { statisticName: string; value: number }[]).find(
+    (s) => s.statisticName === "downloadCount"
+  )?.value as number;
+}
+
 export async function GET(request: NextRequest) {
   const name = request.nextUrl.searchParams.get("pkg") ?? "open-logistics";
+
+  if (request.nextUrl.searchParams.get("source") === "vscode") {
+    try {
+      return NextResponse.json({ total: await vsCodeInstalls(name) });
+    } catch {
+      return NextResponse.json(
+        { error: "marketplace unreachable" },
+        { status: 502 }
+      );
+    }
+  }
+
   const alt = REGISTRIES[name] ?? { pypi: name, crates: name };
 
   const results = await Promise.allSettled([
